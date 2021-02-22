@@ -9,11 +9,22 @@
 - [Deploy](#deploy)
 
 ### Features
-
+- Fast contact and response with your assigned professional
 
 
 ### Technologies
-
+Made using the following technologies: 
+   * [ReactJS] - For the frontend and the web page!
+   * [Formik]
+   * [JWT]
+   * [Joi]
+   * [NodeMailer]
+   * [Socket.io]
+   * [Node.js] - evented I/O for the backend
+   * [Express] - fast node.js network app framework 
+   * [MongoDB] - Non-relational database
+   * [Jest] - For unitaring testing on javascript (Not implement yet)
+   * > And more...
 
 ### Installation
 
