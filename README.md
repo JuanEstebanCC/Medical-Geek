@@ -44,6 +44,8 @@ Made using the following technologies:
 
 
 <b align="center"> **Happy Coding!**</b>
+
+ [JWT]: <https://jwt.io/>
  [Formik]: <https://formik.org/>
  [Joi]: <https://joi.dev/>
  [NodeMailer]: <https://nodemailer.com>
