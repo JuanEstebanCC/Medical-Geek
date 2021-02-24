@@ -1,23 +1,24 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom'
-import '../styles/styles.css'
-import NavbarHome from '../components/navbarHome'
+import React from "react";
+import { withRouter } from "react-router-dom";
+import "../styles/styles.css";
 
 const Home = () => {
-    return (
-        <body>
-            <NavbarHome/>
-            
-            <div className="main">
-                <div className="items-center">
-                    <div>
-                        
-                    </div>
-
-                </div>
-            </div>
-        </body>
-    );
-}
+  return (
+    <body>
+      <div class="div-home">
+        <h1 class="home-title">Chat with a doctor</h1>
+        <span className="img"></span>
+        <p class="p-home">
+          Worry no more about diet, medicine, or medical appointment All in one
+          place.
+        </p>
+        <a class="button-home" href="/register">
+          <span class="text-button-home">Register</span>
+        </a>
+      </div>
+      <footer class="footer-home"></footer>
+    </body>
+  );
+};
 
 export default withRouter(Home);

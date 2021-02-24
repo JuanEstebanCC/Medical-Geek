@@ -4,10 +4,14 @@ const chatSchema = new Schema({
 
   messages: [
 	{
-	  author:{ type: String, required: true},
-		message:{ type: String, required: true}
+	  	author:{ type: String },
+		message:{ type: String,  minLength: 255}
 	}
+<<<<<<< HEAD
   ],
+=======
+],
+>>>>>>> 4b8dfc9121da071b4b133dec184cc4f2aceb815f
   participants: [
 	{
 	  type: String,
@@ -16,4 +20,4 @@ const chatSchema = new Schema({
   ]
 })
 
-module.exports = model('Chat', chatSchema);
+module.exports = model('chat', chatSchema);

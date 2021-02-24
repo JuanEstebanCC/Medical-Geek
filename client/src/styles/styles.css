@@ -1,44 +1,106 @@
-.main{
-    width: 100%;
-    height:1000px;
-    padding: 2%;
-    background-image: url(https://i.pinimg.com/originals/19/92/f4/1992f42e0662a1f7c1adbcc76444c648.png);
-    background-size: cover;                     
-    background-repeat: no-repeat;
-    background-position: center center;
-
+* {
+  font-family: "Padauk", sans-serif;
 }
-
-.items-center{
-    justify-content: center;
-    align-items: center;
-    
+.body-home {
+  overflow: hidden;
 }
-body{
-    overflow: -moz-hidden-unscrollable;
-}
+.img {
+  position: absolute;
+  width: 947px;
+  height: 704px;
+  left: 796px;
+  top: 107px;
 
-.form-login{
-    margin-left: auto;
-    margin-right: auto;
+  background: url(../images/414.jpg);
+  background-size: 70em 45em;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+  border-radius: 224px;
 }
+.home-title {
+  position: absolute;
+  width: 599px;
+  height: 130px;
+  left: 94px;
+  top: 244px;
 
-.login{
-    background-color: rgb(132, 200, 255);
-    border-radius: 5%;
-    width: 40%;
-    height: 100%;
-    padding: 5%;
-    vertical-align: middle;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    
+  font-family: Padauk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 78px;
+  line-height: 1em;
+
+  /* or 36% */
+  display: flex;
+  align-items: center;
+  letter-spacing: 1.25px;
+  font-feature-settings: "kern" off, "clig" off;
+
+  color: #726ae4;
+
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
 }
+.p-home {
+  position: absolute;
+  width: 582px;
+  left: 94px;
+  top: 386px;
 
-.button{
-    margin-left: 10px;
-    margin-right: 10px;
+  font-family: Padauk;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 1em;
+
+  /* or 71% */
+  display: flex;
+  align-items: center;
+  letter-spacing: 1.25px;
+
+  color: #000000;
+  padding-top: 1rem;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.footer-home {
+  position: absolute;
+  width: 116.79rem;
+  height: 8.625rem;
+  left: 0px;
+  top: 49.59em;
+  background: rgba(204, 204, 204, 0.15);
+}
+.button-home {
+  position: absolute;
+  width: 250px;
+  height: 84px;
+  left: 10.0625rem;
+  top: 34.9375rem;
+
+  background: #7872ea;
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 90px;
+  z-index: -1;
+}
+.text-button-home {
+  position: absolute;
+  top: 02rem;
+  left: 3.2rem;
+  width: 180px;
+  height: 25px;
+
+  font-family: Padauk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  text-decoration: none !important;
+  line-height: 23px;
+
+  /* or 57% */
+  letter-spacing: 1.25px;
+
+  color: #ffffff;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .header-chat{
