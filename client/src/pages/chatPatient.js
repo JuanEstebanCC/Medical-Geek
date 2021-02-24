@@ -4,15 +4,15 @@ import { withRouter } from 'react-router-dom';
 const ChatPatient = () => {
     const [tipo_usuario, setTipo_usuario] = useState(0)
     
-    const patientName = 'Miguel Quintero'
+    const DoctorName = 'Juan Pedro Monzalve'
 
     return (
         <body>
             <div className="chat">
                 <div className="header-chat">
                     <button></button>
-                    <h2>Patient {patientName}</h2>
-                    <img src="https://d500.epimg.net/cincodias/imagenes/2020/05/04/lifestyle/1588577532_319277_1588577593_noticia_normal.jpg"/>
+                    <h2>Doctor {DoctorName}</h2>
+                    <img src="https://st.depositphotos.com/1771835/1477/i/950/depositphotos_14779771-stock-photo-portrait-of-confident-young-doctor.jpg"/>
                 </div>
                 <div className="messages"></div>
                 <footer class="footer-chat">
