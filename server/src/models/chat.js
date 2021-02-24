@@ -5,7 +5,7 @@ const chatSchema = new Schema({
   messages: {
 	{
 	  author:{ type: String, required: true},
-		message:{ type: String, required: true}
+		message:{ type: String, required: true, minLength: 255}
 	}
   },
   participants: [

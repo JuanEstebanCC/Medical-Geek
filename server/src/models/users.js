@@ -1,40 +1,56 @@
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcryptjs');
-
+const { Schema, model } = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new Schema({
-
-  full_name:{
-	type: String,
-	required: true,
-	maxLength: 80,
-	minLength: 3
-  }
+  full_name: {
+    type: String,
+    required: true,
+    maxLength: 80,
+    minLength: 3,
+  },
   email: {
-	type: String,
-	unique: true,
-	pattern: "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$",
-  }
+    type: String,
+    unique: true,
+    pattern: "^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$",
+  },
   password: {
-	type: String,
-	required: true,
-	maxLength: 12,
-	minLength: 4
-  }
+    type: String,
+    required: true,
+    maxLength: 12,
+    minLength: 4,
+  },
   photo: {
-	type: String
-  }
+    type: String,
+  },
   usertype: {
-	type: Number,
-	enum: ['1','2','3'] // 1 = Admin, 2 = Normal User, 3 = Doctor
-	required: true,
-  }
+    type: Number,
+    enum: ["1", "2", "3"], // 1 = Admin, 2 = Normal User, 3 = Doctor
+    required: true,
+  },
   specialization: {
-	type: String,
-	required: true,
-	default: null
-  }
-})
+    type: String,
+    required: true,
+    default: null,
+  },
+  dietType: {
+    enum: ["Vegetariana", "Adelgazar", "Organica", "Proteica"],
+    default: null,
+  },
+  medicines: {
+    default: null,
+    nameMedicine: {
+      type: String,
+      required: true,
+    },
+    takeDate: {
+      type: String,
+      required: true,
+    },
+  },
+  assignedDoctor: {
+    type: String,
+  },
+});
 
 userSchema.methods.encryptPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
@@ -45,4 +61,4 @@ userSchema.methods.validatePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-module.exports = model('User', userSchema);
+module.exports = model("User", userSchema);
