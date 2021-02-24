@@ -40,3 +40,71 @@ body{
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.header-chat{
+    width: 100%;
+    height: 20%;
+    left: 0px;
+    top: 0px;
+    background: rgba(250, 250, 250, 0.5);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.header-chat h2{
+    position: absolute;
+    margin-left: 38%;
+    padding-top: 20px;
+}
+
+.header-chat > img{
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    margin-left: 90%;
+}
+
+.footer-chat{
+    width: 100%;
+    height: 80px;
+    background: #FAFAFA;
+}
+
+.footer-chat > input{
+    position: absolute;
+    width: 1157px;
+    height: 50px;
+    margin-left:  5%;
+    margin-top:  20px;
+    border-radius: 5px;
+}
+
+.header-chat > button{
+    position: absolute;
+    background-image:url(../images/flecha.png);
+    background-size: 50px, 50px;
+    border: none;
+    background-repeat:no-repeat;
+    height: 50px;
+    width: 50px;
+    background-position:center;
+    margin-left: 5%;
+    margin-top: 20px;
+}
+
+.footer-chat > button{
+    position: absolute;
+    background-image:url(../images/enviar.png);
+    background-size: 50px, 50px;
+    border: none;
+    background-repeat:no-repeat;
+    height: 50px;
+    width: 50px;
+    background-position:center;
+    margin-left: 85%;
+    margin-top: 20px;
+}
+
+.messages{
+    width: 100%;
+    min-height: 600px;
+}

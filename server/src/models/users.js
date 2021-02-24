@@ -9,26 +9,26 @@ const userSchema = new Schema({
 	required: true,
 	maxLength: 80,
 	minLength: 3
-  }
+  },
   email: {
 	type: String,
 	unique: true,
 	pattern: "^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$",
-  }
+  },
   password: {
 	type: String,
 	required: true,
 	maxLength: 12,
 	minLength: 4
-  }
+  },
   photo: {
 	type: String
-  }
+  },
   usertype: {
 	type: Number,
-	enum: ['1','2','3'] // 1 = Admin, 2 = Normal User, 3 = Doctor
+	enum: ['1','2','3'], // 1 = Admin, 2 = Normal User, 3 = Doctor
 	required: true,
-  }
+  },
   specialization: {
 	type: String,
 	required: true,

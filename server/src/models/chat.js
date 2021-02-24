@@ -2,12 +2,12 @@ const { Schema, model } = require('mongoose');
 
 const chatSchema = new Schema({
 
-  messages: {
+  messages: [
 	{
 	  author:{ type: String, required: true},
 		message:{ type: String, required: true}
 	}
-  },
+  ],
   participants: [
 	{
 	  type: String,
