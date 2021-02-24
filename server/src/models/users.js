@@ -34,10 +34,10 @@ const userSchema = new Schema({
   },
   dietType: {
     enum: ["Vegetariana", "Adelgazar", "Organica", "Proteica"],
-    default: null,
+
   },
   medicines: {
-    default: null,
+    
     nameMedicine: {
       type: String,
       required: true,
