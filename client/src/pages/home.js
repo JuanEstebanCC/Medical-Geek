@@ -12,7 +12,7 @@ const Home = () => {
           Worry no more about diet, medicine, or medical appointment All in one
           place.
         </p>
-        <a class="button-home" href="/register">
+        <a class="button-home" href="/login">
           <span class="text-button-home">Register</span>
         </a>
       </div>

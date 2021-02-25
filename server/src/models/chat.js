@@ -7,11 +7,9 @@ const chatSchema = new Schema({
 	  	author:{ type: String },
 		message:{ type: String,  minLength: 255}
 	}
-<<<<<<< HEAD
+
   ],
-=======
-],
->>>>>>> 4b8dfc9121da071b4b133dec184cc4f2aceb815f
+
   participants: [
 	{
 	  type: String,

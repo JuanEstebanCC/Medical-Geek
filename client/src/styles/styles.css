@@ -1,9 +1,11 @@
 * {
   font-family: "Padauk", sans-serif;
 }
+
 .body-home {
   overflow: hidden;
 }
+
 .img {
   position: absolute;
   width: 947px;
@@ -17,6 +19,7 @@
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
   border-radius: 224px;
 }
+
 .home-title {
   position: absolute;
   width: 599px;
@@ -34,12 +37,13 @@
   display: flex;
   align-items: center;
   letter-spacing: 1.25px;
-  font-feature-settings: "kern" off, "clig" off;
+  font-feature-settings: "kern"off, "clig"off;
 
   color: #726ae4;
 
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
 }
+
 .p-home {
   position: absolute;
   width: 582px;
@@ -61,6 +65,7 @@
   padding-top: 1rem;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
 .footer-home {
   position: absolute;
   width: 116.79rem;
@@ -69,6 +74,7 @@
   top: 49.59em;
   background: rgba(204, 204, 204, 0.15);
 }
+
 .button-home {
   position: absolute;
   width: 250px;
@@ -81,6 +87,7 @@
   border-radius: 90px;
   z-index: -1;
 }
+
 .text-button-home {
   position: absolute;
   top: 02rem;
@@ -103,70 +110,165 @@
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.header-chat{
-    width: 100%;
-    height: 20%;
-    left: 0px;
-    top: 0px;
-    background: rgba(250, 250, 250, 0.5);
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+.header-chat {
+  width: 100%;
+  height: 20%;
+  left: 0px;
+  top: 0px;
+  background: rgba(250, 250, 250, 0.5);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.header-chat h2{
-    position: absolute;
-    margin-left: 38%;
-    padding-top: 20px;
+.header-chat h2 {
+  position: absolute;
+  margin-left: 38%;
+  padding-top: 20px;
 }
 
-.header-chat > img{
-    width: 80px;
-    height: 80px;
-    border-radius: 100px;
-    margin-left: 90%;
+.header-chat>img {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  margin-left: 90%;
 }
 
-.footer-chat{
-    width: 100%;
-    height: 80px;
-    background: #FAFAFA;
+.footer-chat {
+  width: 100%;
+  height: 80px;
+  background: #FAFAFA;
 }
 
-.footer-chat > input{
-    position: absolute;
-    width: 1157px;
-    height: 50px;
-    margin-left:  5%;
-    margin-top:  20px;
-    border-radius: 5px;
+.footer-chat>input {
+  position: absolute;
+  width: 1157px;
+  height: 50px;
+  margin-left: 5%;
+  margin-top: 20px;
+  border-radius: 5px;
 }
 
-.header-chat > button{
-    position: absolute;
-    background-image:url(../images/flecha.png);
-    background-size: 50px, 50px;
-    border: none;
-    background-repeat:no-repeat;
-    height: 50px;
-    width: 50px;
-    background-position:center;
-    margin-left: 5%;
-    margin-top: 20px;
+.header-chat>button {
+  position: absolute;
+  background-image: url(../images/flecha.png);
+  background-size: 50px, 50px;
+  border: none;
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  margin-left: 5%;
+  margin-top: 20px;
 }
 
-.footer-chat > button{
-    position: absolute;
-    background-image:url(../images/enviar.png);
-    background-size: 50px, 50px;
-    border: none;
-    background-repeat:no-repeat;
-    height: 50px;
-    width: 50px;
-    background-position:center;
-    margin-left: 85%;
-    margin-top: 20px;
+.footer-chat>button {
+  position: absolute;
+  background-image: url(../images/enviar.png);
+  background-size: 50px, 50px;
+  border: none;
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  margin-left: 85%;
+  margin-top: 20px;
 }
 
-.messages{
-    width: 100%;
-    min-height: 600px;
+.messages {
+  width: 100%;
+  min-height: 600px;
+}
+
+
+/*Styles for login: */
+
+.main-container {
+  display: flex;
+  width: 100%;
+  overflow: -moz-hidden-unscrollable;
+}
+
+.container-left {
+  flex-direction: row;
+  width: 60%;
+}
+
+.container-rigth {
+  flex-direction: row;
+  width: 40%;
+  position: absolute;
+  height: 1047px;
+  top: 0px;
+
+  background: #FAFAFA;
+  border: 0.2px solid #C9EEFF;
+  filter: blur(15px);
+  border-radius: 31px;
+}
+
+.image-login {
+  position: absolute;
+  width: 746px;
+  height: 726px;
+  left: 55px;
+  top: 218px;
+
+  background: url('../images/414.jpg');
+  filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.25));
+  border-radius: 121px;
+}
+
+.button-login {
+  position: absolute;
+  width: 250px;
+  height: 84px;
+  left: 970px;
+  top: 500px;
+
+  background: #7872EA;
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 90px;
+}
+
+.form-login {
+  position: absolute;
+  width: 30% !important;
+  top: 232px;
+  left: 900px;
+}
+
+.general-letter {
+  font-family: Padauk;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+.letter {
+
+  font-size: 25px;
+  line-height: 12px;
+  color: #000000;
+}
+
+.main-tittle {
+
+  font-size: 40px;
+  line-height: 12px;
+  color: #000000;
+}
+
+.tittle-login {
+  position: absolute;
+  left: 290px;
+  top: 71px;
+  text-align: center;
+  mix-blend-mode: darken;
+  text-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
+}
+
+.text-invitation {
+  position: absolute;
+  left: 920px;
+  top: 700px;
+  text-align: center;
 }
