@@ -34,6 +34,66 @@ const Login = () => {
         </div>
         <div className="gray-div" />
         <div className="container-right">
+          <div className="container-right">
+            <div className="form-login">
+              <Formik
+                initialValues={{
+                  email: "",
+                  password: "",
+                }}
+                onSubmit={(values) => {
+                  login(values);
+                }}
+              >
+                {(formik) => (
+                  <Form>
+                    <div className="login">
+                      <div class="mb-3">
+                        <label
+                          htmlFor="email"
+                          className="form-label letter general-letter"
+                        >
+                          Email
+                        </label>
+                        <Field
+                          type="email"
+                          className="form-control"
+                          id="email"
+                          name="email"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <br />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          htmlFor="password"
+                          className="form-label letter general-letter"
+                        >
+                          Password
+                        </label>
+                        <Field
+                          type="password"
+                          className="form-control"
+                          id="password"
+                          name="password"
+                        />
+                      </div>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+            <button type="submit" className="button-login letter">
+              Login
+            </button>
+            <div className="text-invitation letter general-letter">
+              Don´t have an account yet? <br />
+              <br />
+              <br />
+              <a href="/register">Register now</a>
+            </div>
+          </div>
           <div className="form-login">
             <Formik
               initialValues={{
