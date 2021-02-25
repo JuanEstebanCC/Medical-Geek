@@ -18,7 +18,7 @@ router.get('/login', async(req,res)=>{
 })
 
 router.get('/chats', async(req,res)=>{
-    const {email} = req.body
+    const {email} = req.query
 
     try {
 
@@ -46,5 +46,18 @@ router.post('/new_chat', async(req,res)=>{
     }
 })
 
+router.put('/new_message', async(req,res)=>{
+    const {email_patient, author, message} = req.body
+
+    try {
+        const newChat = await chat.update({participants: email_patient}, {$push:{messages:{author: author, message: message}}})
+        
+        res.send('message saved')
+        
+    }catch(error){
+        console.log(error)
+        res.send('Error').status(500)
+    }
+})
 
 module.exports= router;
