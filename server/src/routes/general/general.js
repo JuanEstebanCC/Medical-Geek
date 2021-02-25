@@ -18,7 +18,7 @@ router.get('/login', async(req,res)=>{
 })
 
 router.get('/chats', async(req,res)=>{
-    const {email} = req.body
+    const {email} = req.query
 
     try {
 
