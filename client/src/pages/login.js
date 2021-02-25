@@ -1,80 +1,87 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import NavbarHome from "../components/navbarHome";
 import { Formik, Form, Field } from "formik";
 
 const Login = () => {
-  const [tipo_usuario, setTipo_usuario] = useState(0);
 
   //función para realizar petición en donde se válide que el usuario existe
-  function login() {}
+  function login(values) {
+    fetch('/login', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password
+      })
+    })
+  }
   //Fin función
 
   return (
     <body>
-      <NavbarHome />
-      <div className="main">
-        <Formik
-          initialValues={{
-            correo: "",
-            contrasena: "",
-            tipo_usuario: tipo_usuario,
-          }}
-          onSubmit={(values) => {
-            Login(values);
-          }}
-        >
-          {(formik) => (
-            <Form>
-              <div className="login">
-                <div class="mb-3">
-                  <label htmlFor="Tipo_usuario" className="form-label">
-                    tipo de usuario
-                  </label>
-                  <select
-                    name="tipo_usuario"
-                    className="form-control"
-                    onChange={(e) => setTipo_usuario(e.target.value)}
-                  >
-                    <option value="0">-</option>
-                    <option value="1">Médico</option>
-                    <option value="2">Paciente</option>
-                  </select>
-                </div>
+      <div className="main-container">
+        <div className="container-left">
+          <div className="tittle-login">
+            <p className="main-tittle general-letter">¡Wellcome!</p>
+            <p className="letter general-letter">remember a daily contact <br /><br />with your doctor</p>
+          </div>
+          <div className="image-login">
 
-                <div class="mb-3">
-                  <label htmlFor="correo" className="form-label">
-                    Correo
-                  </label>
-                  <Field
-                    type="email"
-                    className="form-control"
-                    id="correo"
-                    name="correo"
-                  />
-                </div>
+          </div>
+        </div>
+        <div className="container-right">
+          <div className="form-login">
+            <Formik
+              initialValues={{
+                email: "",
+                password: ""
+              }}
+              onSubmit={(values) => {
+                login(values);
+              }}
+            >
+              {(formik) => (
+                <Form>
+                  <div className="login">
 
-                <div class="mb-3">
-                  <label htmlFor="contrasena" className="form-label">
-                    Contrasena
+                    <div class="mb-3">
+                      <label htmlFor="email" className="form-label letter general-letter">
+                        email
                   </label>
-                  <Field
-                    type="password"
-                    className="form-control"
-                    id="contrasena"
-                    name="contrasena"
-                  />
-                </div>
+                      <Field
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        name="email"
+                      />
+                    </div>
+                    <div class="mb-3"><br /></div>
+                    <div class="mb-3">
+                      <label htmlFor="password" className="form-label letter general-letter">
+                        password
+                  </label>
+                      <Field
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        name="password"
+                      />
+                    </div>
 
-                <div class="d-grid gap-2">
-                  <button class="btn btn-dark" type="submit">
-                    Ingresar
-                  </button>
-                </div>
-              </div>
-            </Form>
-          )}
-        </Formik>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          </div>
+          <button type="submit" className="button-login letter">Login</button>
+          <div className="text-invitation letter general-letter">
+            Don´t have an account yet? <br /><br /><br />
+            <a href="/register" >Register now</a>
+
+          </div>
+        </div>
       </div>
     </body>
   );
