@@ -7,7 +7,7 @@ const Home = () => {
     <body>
       <div class="div-home">
         <h1 class="home-title">Chat with a doctor</h1>
-        <span className="img"></span>
+        <span className="img-home"></span>
         <p class="p-home">
           Worry no more about diet, medicine, or medical appointment All in one
           place.
