@@ -21,6 +21,7 @@ const userSchema = new Schema({
   },
   photo: {
     type: String,
+    default: null,
   },
   usertype: {
     type: Number,
@@ -34,10 +35,9 @@ const userSchema = new Schema({
   },
   dietType: {
     enum: ["Vegetariana", "Adelgazar", "Organica", "Proteica"],
-
+    default: null,
   },
   medicines: {
-    
     nameMedicine: {
       type: String,
       required: true,
@@ -46,8 +46,10 @@ const userSchema = new Schema({
       type: String,
       required: true,
     },
+    default: null,
   },
   assignedDoctor: {
+    default: null,
     type: String,
   },
 });

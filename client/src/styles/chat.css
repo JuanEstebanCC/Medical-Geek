@@ -1,0 +1,30 @@
+.chat-container{
+    display: flex;
+    width: 100%;
+}
+
+.header-chat{
+    width: 100%;
+    height: auto;
+    background-color: #9bdfff;
+    border-color: black;
+    border-radius: 50px ;
+}
+
+.available-chats{
+    flex-direction: column;
+    width: 30%;
+    padding: 1.5%;
+    background-color: #c9eeff;
+    height: auto;
+}
+
+.messages-container{
+    flex-direction: column;
+    width: 70%;
+    
+}
+
+.messages{
+    padding: 3%;
+}
