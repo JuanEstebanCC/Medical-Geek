@@ -35,7 +35,6 @@ const userSchema = new Schema({
   },
   dietType: {
     enum: ["Vegetariana", "Adelgazar", "Organica", "Proteica"],
-    default: null,
   },
   medicines: {
     nameMedicine: {
@@ -46,7 +45,6 @@ const userSchema = new Schema({
       type: String,
       required: true,
     },
-    default: null,
   },
   assignedDoctor: {
     default: null,
