@@ -27,9 +27,12 @@ const ChatPatient = () => {
                 <div className="messages">
                    {
                         array.map(data =>
-                            <div className="message">
-                                <h3>{data.author}: {data.message}</h3>
-                            </div> 
+                            <div className="content-message">
+                                <div className="message">
+                                    <h3>{data.author}: {data.message}</h3>
+                                </div>
+                                <img className="img-message" src="https://d500.epimg.net/cincodias/imagenes/2020/05/04/lifestyle/1588577532_319277_1588577593_noticia_normal.jpg"/> 
+                            </div>
                         )
                     }                               
                 </div>

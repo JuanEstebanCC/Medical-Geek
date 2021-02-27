@@ -181,6 +181,34 @@ a {
   min-height: 600px;
 }
 
+.message{
+  width: 500px;
+  height: 50px;
+  left: 720px;
+  top: 380px;
+  background: rgba(120, 114, 234, 0.7);
+  border: 0.2px solid #7872EA;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin-top: 5%;
+  margin-left: 60%;
+}
+
+.content-message{
+  padding: auto;
+}
+
+.img-message{
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  margin-left: 95%;
+}
+
+.message > h3{
+  margin-top: 2%;
+}
 /*Styles for login: */
 
 .main-container {
