@@ -17,8 +17,8 @@ router.get('/login', async(req,res)=>{
 
 })
 
-router.get('/chats', async(req,res)=>{
-    const {email} = req.query
+router.get('/chats/:email', async(req,res)=>{
+    const email = req.params.email
 
     try {
 
