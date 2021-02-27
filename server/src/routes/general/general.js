@@ -3,6 +3,8 @@ const router = Router()
 const users = require('../../models/users');
 const chat  = require('../../models/chat');
 
+//Validate if an user exists inside the database
+
 router.get('/login', async(req,res)=>{
     const {password, email} = req.body
 
@@ -17,6 +19,7 @@ router.get('/login', async(req,res)=>{
 
 })
 
+//  Get personal chats
 router.get('/chats/:email', async(req,res)=>{
     const email = req.params.email
 
@@ -32,7 +35,7 @@ router.get('/chats/:email', async(req,res)=>{
 })
 
 
-
+//Create chat after signup
 router.post('/new_chat', async(req,res)=>{
     const {email_patient, email_doctor} = req.body
 
@@ -46,6 +49,7 @@ router.post('/new_chat', async(req,res)=>{
     }
 })
 
+//Messaging
 router.put('/new_message', async(req,res)=>{
     const {email_patient, author, message} = req.body
 

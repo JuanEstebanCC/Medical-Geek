@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
+
 import '../styles/chat.css'
 
 const ChatDoctor = () => {
-    const [tipo_usuario, setTipo_usuario] = useState(0)
-    
+    const [name, setName] = useState('')
+    const [room, setRoom] = useState('')
+
     const patientName = 'Miguel quintero'
 
     useEffect(()=>{

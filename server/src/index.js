@@ -3,6 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express();
+const socketio = require('socket.io')
+const http = require('http')
 //Import database_conection
 require('./db_config/db')
 
@@ -22,6 +24,22 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', generalServices)
 
 // 
-app.listen(app.get('port'), ()=>{
+/* app.listen(app.get('port'), ()=>{
+    console.log(`Server running on port ${app.get('port')}`)
+}) */
+
+const server= http.createServer(app)
+const io = socketio(server)
+
+io.on('connection', (socket)=>{
+    console.log("New connection")
+
+    socket.on('disconnect', ()=>{
+        console.log("User has left")
+    })
+})
+
+server.listen(app.get('port'), ()=>{
     console.log(`Server running on port ${app.get('port')}`)
 })
+
