@@ -3,6 +3,21 @@ import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 
 const Register = () => {
+  const handleSubmit = () => {
+    /*   fetch("/send_mail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to: "juanescifuentes75@gmail.com",
+        subject: "Wellcome to Medical Geek",
+        username: "juanescifuentes75@gmail.com",
+        password: "12345",
+      }),
+	});*/
+    console.log("Mail send");
+  };
   return (
     <>
       <div className="container-left">
@@ -31,7 +46,9 @@ const Register = () => {
               specialization: "",
             }}
             onSubmit={(values) => {
-              // login(values);
+              console.log(values);
+              handleSubmit(values);
+              // Petitions(values);
             }}
           >
             {(formik) => (
@@ -39,7 +56,7 @@ const Register = () => {
                 <div className="register-form">
                   <div class="mb-3">
                     <label
-                      htmlFor="password"
+                      htmlFor="full_name"
                       className="form-label letter general-letter"
                     >
                       Full name
@@ -49,6 +66,7 @@ const Register = () => {
                       className="form-control-register form-group"
                       id="full_name"
                       name="full_name"
+                      required
                     />
                   </div>
                   <div class="mb-3">
@@ -63,6 +81,7 @@ const Register = () => {
                       className="form-control-register"
                       id="email"
                       name="email"
+                      required
                     />
                   </div>
 
@@ -78,19 +97,22 @@ const Register = () => {
                       className="form-control-register"
                       id="password"
                       name="password"
+                      required
                     />
                   </div>
                   <div class="mb-3">
                     <label
-                      htmlFor="password"
+                      htmlFor="userType"
                       className="form-label letter  general-letter"
                     >
                       User Type
                     </label>
                     <Field
                       as="select"
+                      id="userType"
                       name="userType"
                       className="p-2 form-select  form-control-register"
+                      required
                     >
                       <option value="patient">Patient</option>
                       <option value="doctor">Doctor</option>
@@ -103,7 +125,11 @@ const Register = () => {
         </div>
       </div>
       <br />
-      <button type="submit" className="button-register letter">
+      <button
+        type="submit"
+        className="button-register letter"
+        // onClick={Petitions}
+      >
         Register
       </button>
       <div className="text-invitation-register letter general-letter">
