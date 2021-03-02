@@ -1,6 +1,14 @@
 <h1 align="center">Medical Geek :syringe:</h1>
+
 <p align="center"> A website for people with medical conditions that helps maintain a healthy lifestyle, <br/>contact professionals, and an easier life in general.</p>
 
+<p align="center">
+<img align="center" alt="GitHub last commit" src="https://img.shields.io/github/last-commit/juanestebancc/Medical-geek"> 
+ <img align="center" alt="GitHub top language" src="https://img.shields.io/github/languages/top/juanestebancc/Medical-Geek">
+ <img align="center" alt="Lines of code" src="https://img.shields.io/tokei/lines/github/juanestebancc/Medical-Geek">
+</P>
+
+### Table of contents
 - [Features](#features)
 - [Technologies](#technologies)
 - [Installation](#installation)
@@ -45,9 +53,32 @@ git clone https://github.com/JuanEstebanCC/Medical-Geek.git
 ```
 
 #### Server
-
+Open the server directory
+```
+cd server
+```
+Install all dependencies (NPM needed)
+```
+npm install 
+```
+Run the server on the port 
+>*The default port is 5300/tcp , but if you have a .env file you can change it*
+```
+npm run dev
+```
 #### Client
-
+Open the client directory
+```
+cd server
+```
+Install all dependencies (NPM needed)
+```
+npm install 
+```
+Run the react js server on development mode (3000/tcp port)
+```
+npm start
+```
 ### Deploy
 
 <b align="center"> **Happy Coding!**</b>
