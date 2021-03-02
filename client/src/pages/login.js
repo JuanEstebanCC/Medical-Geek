@@ -14,7 +14,17 @@ const Login = () => {
         email: values.email,
         password: values.password,
       }),
-    });
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      if (data.length > 0) {
+        window.localStorage.setItem('id_user', data.id)
+        login(); 
+    } else {
+        alert('Usuario o clave INVALIDA')
+    }
+    })
   }
   //Fin función
 
