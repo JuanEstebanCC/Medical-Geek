@@ -1,53 +1,173 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import io from 'socket.io-client'
+import queryString from 'query-string';
+import { Formik, Form, Field } from "formik";
 
 import '../styles/chat.css'
 
+let socket;
+
 const ChatDoctor = () => {
-    const [name, setName] = useState('')
-    const [room, setRoom] = useState('')
+    const [message, setMessage] = useState('')
+    const [data, setdata] = useState([{participants: [{}]}])
+    const [individualChat, setIndividualChat] = useState({ messages: [{ /* author: '', messages: '' */ }], participants: [{}] })
+    const [chatName, setChatName] = useState()
+    
 
-    const patientName = 'Miguel quintero'
+    useEffect(() => {
+        fetch(`/chats/lorena0118a@gmail.com`)
+            .then(res => res.json())
+            .then(data => setdata(data))
 
-    useEffect(()=>{
-        fetch('/chats?' + new URLSearchParams({
-   
-            email: "lorena0118a@gmail.com"
-        
-        })).then((response) => {
-            console.log(response)
-
+        /* socket = io(`/chats/lorena0118a@gmail.com`, {
+            headers: {
+                "Access-Control-Allow-Origin": "http://localhost:3000"
+            },
+            reconnectionDelayMax: 10000
         })
-    },[])
+
+        console.log(socket) */
+    }, [])
+
+    //Save new message in database
+    function newMessage(values) {
+        if (values.message != "") {
+            fetch('/new_message', {
+                method: "PUT",
+                headers: { "content-Type": "application/JSON" },
+                body: JSON.stringify({
+                    email: "lorena0118a@gmail.com",
+                    email_participant1: "lorena0118a@gmail.com",
+                    email_participant2: "Carlos@gmail.com",
+                    author: "Lorena",
+                    message: values.message
+                })
+            })
+        }
+    }
 
     return (
-        <div className="chat-container">
-             
-            <div className="available-chats">
-            <button className="btn btn-secondary">Cerrar</button>
-            <br/><br/>
-            <div>
-            hola
-            </div>
-                
-            </div>
-            <div className="messages-container">
-                <div className="header-chat">
-                    
-                    <h2>Patient {patientName}</h2>
-                    <img src="https://d500.epimg.net/cincodias/imagenes/2020/05/04/lifestyle/1588577532_319277_1588577593_noticia_normal.jpg"/>
+        <body>
+
+
+            <div className="chat-container">
+
+                <div className="available-chats">
+                    <button className="btn btn-secondary">Cerrar</button>
+                    <br /><br />
+                    {
+                        data.map((item, index) => {
+                            let chatName = 'no sirve';
+
+                            
+
+                            item.participants.map((item2,index2)=>{
+                                 if(item2.email != 'lorena0118a@gmail.com'){
+                                chatName = item2.name;
+                                } 
+                            })
+
+                            
+                            
+                            return <div className="chat-button">
+                                <button type="button" className="btn chat" onClick={async () => {
+                                    await setIndividualChat(item)
+                                    item.participants.map((item2, index) => {
+                                        if (item2.email != 'lorena0118a@gmail.com') {
+                                            setChatName(item2.name)
+                                        }
+                                    })
+
+                                    
+                                }}>
+
+
+                                    {chatName}
+
+                                </button>
+                            </div>
+
+
+                        })
+
+                    }
+
+
+
+
                 </div>
-               <div className="messages">
-               hola
-               </div>
-                
-            </div>
-            
-               {/*  <footer class="footer-chat">
+                <div className="messages-container">
+                    <div className="header-chat">
+                        
+                        <h2> {chatName}</h2>
+                        <img src="https://d500.epimg.net/cincodias/imagenes/2020/05/04/lifestyle/1588577532_319277_1588577593_noticia_normal.jpg" />
+                    </div>
+                    <div className="messages">
+                        {
+
+                            individualChat.messages.map((item, index) => {
+
+                                let messagesDesign = "leftMessage"
+
+                                if (item.email == "lorena0118a@gmail.com") {
+                                    messagesDesign = "rightMessage"
+                                }
+                                return <div className={messagesDesign}>
+                                    {item.message} <br />
+
+                                </div>
+
+
+                            })
+
+
+                        }
+                    </div>
+                    <div className="input-messages-container">
+                        <Formik
+                            initialValues={{
+                                message: ""
+                            }}
+                            onSubmit={(values) => {
+                                console.log(values)
+                                newMessage(values)
+                            }}
+                        >
+                            {(formik) => (
+                                <Form>
+
+                                    <div className="mb-3 input-messages-container">
+                                        <label
+                                            htmlFor="message"
+                                            className="form-label letter general-letter"
+                                        >
+
+                                        </label>
+                                        <Field
+                                            type="text"
+                                            className="form-control input-messages"
+                                            id="message"
+                                            name="message"
+                                        />
+                                        -<button type="submit" className="btn btn-info">Enviar</button>
+                                    </div>
+
+                                    
+
+                                </Form>
+                            )}
+                        </Formik>
+                    </div>
+
+                </div>
+
+                {/*  <footer class="footer-chat">
                     <input type="text"></input>
                     <button></button>
                 </footer> */}
-        </div>
+            </div>
+        </body>
     );
 }
 

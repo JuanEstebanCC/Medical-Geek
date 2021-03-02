@@ -21,17 +21,19 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use('/', generalServices)
+
 
 // 
 /* app.listen(app.get('port'), ()=>{
     console.log(`Server running on port ${app.get('port')}`)
 }) */
 
-const server= http.createServer(app)
-const io = socketio(server)
+const server = http.createServer(app);
+const io = socketio(server);
 
-io.on('connection', (socket)=>{
+app.use(generalServices)
+
+io.on('connect', (socket)=>{
     console.log("New connection")
 
     socket.on('disconnect', ()=>{
@@ -39,7 +41,9 @@ io.on('connection', (socket)=>{
     })
 })
 
+
 server.listen(app.get('port'), ()=>{
     console.log(`Server running on port ${app.get('port')}`)
 })
+
 

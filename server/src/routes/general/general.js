@@ -6,11 +6,12 @@ const chat  = require('../../models/chat');
 //Validate if an user exists inside the database
 
 router.get('/login', async(req,res)=>{
-    const {password, email} = req.body
+    const {password, email} = req.query
 
     try {
 
         const isUser = await users.find({password: password, email:email})
+        console.log(isUser)
         res.send(isUser)
         
     } catch (error) {
@@ -25,36 +26,40 @@ router.get('/chats/:email', async(req,res)=>{
 
     try {
 
-        const chats = await chat.find({participants: email})
+        const chats = await chat.find({"participants.email": email})
         res.send(chats)
         
     } catch (error) {
-        res.status(500).statusMessage('Internal error').send('Error')
+        res.statusCode(500).send('Error')
     }
 
 })
 
 
-//Create chat after signup
+//Create chat 
 router.post('/new_chat', async(req,res)=>{
-    const {email_patient, email_doctor} = req.body
+    const {email_participant1, name_participant1,name_participant2, email_participant2} = req.body
 
     try {
-        const newChat = await new chat({messages: [], participants: [email_patient, email_doctor]})
+        const newChat = await new chat({messages: [], participants: [{email: email_participant1, name: name_participant1},{email:email_participant2, name: name_participant2}]})
         newChat.save()
         res.send('Chat created')
         
     }catch(error){
-        res.send('Error').status(500).statusMessage('Culdn´t create the chat')
+        res.send('Error').statusCode(500)
     }
 })
 
 //Messaging
 router.put('/new_message', async(req,res)=>{
-    const {email_patient, author, message} = req.body
+    const {email_participant1, email_participant2, author, email, message} = req.body
 
     try {
-        const newChat = await chat.update({participants: email_patient}, {$push:{messages:{author: author, message: message}}})
+        const newChat = await chat.update({"participants.email": email_participant1 && email_participant2}, {$push:{messages:{email: email, author: author, message: message}}}, {function(error,result){
+            if(error){
+                res.send(error)
+            }
+        }})
         
         res.send('message saved')
         
