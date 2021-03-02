@@ -28,7 +28,7 @@ Made using the following technologies:
 - [Bootstrap] - The most popular CSS framework
 - [Node.js] - evented I/O for the backend
 - [Express] - fast node.js network app framework
-  - [MongoDB] - Non-relational database
+- [MongoDB] - Non-relational database
 - [Jest] - For unitaring testing on javascript (Not implement yet)
   - > And more...
 
