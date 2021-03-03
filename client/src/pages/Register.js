@@ -3,19 +3,38 @@ import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 
 const Register = () => {
-  const handleSubmit = () => {
-    /*   fetch("/send_mail", {
+  const handleSubmit = async (values) => {
+    console.log(values)
+   const rawResponse = await fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        to: "juanescifuentes75@gmail.com",
-        subject: "Wellcome to Medical Geek",
-        username: "juanescifuentes75@gmail.com",
-        password: "12345",
+        email: values.email,
+        full_name: values.full_name,
+        password: values.password,
+        usertype: values.userType,
+        specialization: values.specialization
       }),
-	});*/
+    })
+    const content = await rawResponse.json();
+    console.log(content);
+    localStorage.setItem("token", content.token, { path: "/" });
+    localStorage.setItem("id", content.id, { path: "/" });
+
+    fetch("/send_mail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to: values.email,
+        subject: "Wellcome to Medical Geek, "+ values.full_name,
+        username: values.email,
+        password: values.password,
+      }),
+	});
     console.log("Mail send");
   };
   return (
@@ -41,14 +60,12 @@ const Register = () => {
               full_name: "",
               email: "",
               password: "",
-              userType: "",
-              assignedDoctor: "",
-              specialization: "",
+              userType: 2,
+              specialization: "Optometría",
             }}
             onSubmit={(values) => {
-              console.log(values);
               handleSubmit(values);
-              // Petitions(values);
+ 
             }}
           >
             {(formik) => (
@@ -99,15 +116,15 @@ const Register = () => {
                       name="password"
                       required
                     />
-                  </div>
-                  <div class="mb-3">
+                  </div>{
+              /*    <div class="mb-3">
                     <label
                       htmlFor="userType"
                       className="form-label letter  general-letter"
                     >
                       User Type
                     </label>
-                    <Field
+                    <select
                       as="select"
                       id="userType"
                       name="userType"
@@ -116,22 +133,23 @@ const Register = () => {
                     >
                       <option value="patient">Patient</option>
                       <option value="doctor">Doctor</option>
-                    </Field>
-                  </div>
+                    </select>
+                  </div>*/}
                 </div>
+                <button
+                  type="submit"
+                  className="button-register letter"
+                  // onClick={Petitions}
+                >
+                  Register
+                </button>
               </Form>
             )}
           </Formik>
         </div>
       </div>
       <br />
-      <button
-        type="submit"
-        className="button-register letter"
-        // onClick={Petitions}
-      >
-        Register
-      </button>
+
       <div className="text-invitation-register letter general-letter">
         Do you have an account? <br />
         <br />

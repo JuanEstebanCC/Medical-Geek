@@ -63,4 +63,4 @@ userSchema.methods.validatePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-module.exports = model("User", userSchema);
+module.exports = model("User", userSchema);;

@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { io } from "socket.io-client"
+<<<<<<< HEAD
 let socket;
+=======
+import useAuthContext from '../hooks/useAuthContext';
+
+let socket;
+
+>>>>>>> 0a3cdd89307037cc88a57bf87829d7841d892067
 const Login = () => {
+  const {Login} = useAuthContext();
   //función para realizar petición en donde se válide que el usuario existe
   function login(values) {
 
@@ -13,9 +21,23 @@ const Login = () => {
       email: values.email,
       password: values.password
   
+<<<<<<< HEAD
   }))
       .then(res => res.json())
       .then(data => console.log(data))
+=======
+    }))
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      if (data) {
+        window.localStorage.setItem('id_user', data.id)
+        Login(); 
+      } else {
+        alert('INVALID username or password')
+      }
+    })
+>>>>>>> 0a3cdd89307037cc88a57bf87829d7841d892067
       /* .then(
         socket = io('/login', {
           headers: {
@@ -97,7 +119,10 @@ const Login = () => {
                       Login
                     </button>
                   </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0a3cdd89307037cc88a57bf87829d7841d892067
                 </Form>
               )}
             </Formik>
