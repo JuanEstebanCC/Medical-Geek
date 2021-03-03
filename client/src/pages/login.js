@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { io } from "socket.io-client"
+import { io } from "socket.io-client";
 let socket;
 const Login = () => {
   //función para realizar petición en donde se válide que el usuario existe
   function login(values) {
-
-    console.log(values.email)
-    fetch('/login?'  + new URLSearchParams({
-   
-      email: values.email,
-      password: values.password
-  
-  }))
-      .then(res => res.json())
-      .then(data => console.log(data))
-      /* .then(
+    console.log(values.email);
+    fetch(
+      "/login?" +
+        new URLSearchParams({
+          email: values.email,
+          password: values.password,
+        })
+    )
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    /* .then(
         socket = io('/login', {
           headers: {
             "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const Login = () => {
                         className="form-label letter general-letter"
                       >
                         Email
-                        </label>
+                      </label>
                       <Field
                         type="email"
                         className="form-control"
@@ -83,7 +83,7 @@ const Login = () => {
                         className="form-label letter general-letter"
                       >
                         Password
-                        </label>
+                      </label>
                       <Field
                         type="password"
                         className="form-control"
@@ -97,7 +97,6 @@ const Login = () => {
                       Login
                     </button>
                   </div>
-
                 </Form>
               )}
             </Formik>
@@ -109,10 +108,7 @@ const Login = () => {
             <br />
             <a href="/register">Register now</a>
           </div>
-
         </div>
-
-
       </div>
     </body>
   );

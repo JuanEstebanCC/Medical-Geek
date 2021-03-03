@@ -1,14 +1,21 @@
 // Import all modules
 const { Router } = require("express");
+const router = Router();
+
 const jwt = require('jsonwebtoken');
 const config = require('../../config/config');
-const router = Router();
+
+const verifyToken = require('./verifyToken')
+const {validation_Register} = require('../../validations/validations')
+
 const User = require("../../models/User");
 const chat = require("../../models/chat");
 
 // End point to register a user
 router.post("/register", async (req, res) =>{
+
     const {email,full_name,password,specialization,usertype} = req.body;
+    const validate = await validation_Register.validateAsync(req.body)
     let filter = { usertype: 3, specialization};
     User.findRandom(filter, {}, {limit: 1}, async function(err, results) {
       if (!err) {

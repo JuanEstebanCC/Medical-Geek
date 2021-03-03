@@ -374,7 +374,8 @@ input:password {
 }
 .register-form {
   position: absolute;
-  top: 0px;
+  right: 1rem;
+  top: 3rem;
 }
 .form-control-register {
   margin-top: 8px;
