@@ -3,8 +3,12 @@ import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 
 const Register = () => {
+  const [userType, setUserType] = useState(0)
+  const [specialization, setspecialization] = useState("cardiologo")
+
   const handleSubmit = async (values) => {
     console.log(values)
+    console.log(userType)
    const rawResponse = await fetch("/register", {
       method: "POST",
       headers: {
@@ -14,8 +18,8 @@ const Register = () => {
         email: values.email,
         full_name: values.full_name,
         password: values.password,
-        usertype: values.userType,
-        specialization: values.specialization
+        usertype: userType,
+        specialization: specialization
       }),
     })
     const content = await rawResponse.json();
@@ -60,8 +64,8 @@ const Register = () => {
               full_name: "",
               email: "",
               password: "",
-              userType: 2,
-              specialization: "Optometría",
+              userType: "",
+              specialization: "",
             }}
             onSubmit={(values) => {
               handleSubmit(values);
@@ -116,8 +120,8 @@ const Register = () => {
                       name="password"
                       required
                     />
-                  </div>{
-              /*    <div class="mb-3">
+                  </div>
+                 <div class="mb-3">
                     <label
                       htmlFor="userType"
                       className="form-label letter  general-letter"
@@ -130,11 +134,16 @@ const Register = () => {
                       name="userType"
                       className="p-2 form-select  form-control-register"
                       required
+                      onChange={(e)=>{
+                        
+                        setUserType(e.target.value)
+                      }}
                     >
-                      <option value="patient">Patient</option>
-                      <option value="doctor">Doctor</option>
+                      <option value={undefined}>-</option>
+                      <option value="3">Patient</option>
+                      <option value="2">Doctor</option>
                     </select>
-                  </div>*/}
+                  </div>
                 </div>
                 <button
                   type="submit"

@@ -48,7 +48,3 @@ server.listen(app.get('port'), ()=>{
     console.log(`Server running on port ${app.get('port')}`)
 })
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a3cdd89307037cc88a57bf87829d7841d892067

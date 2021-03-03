@@ -15,7 +15,7 @@ import {_home, _login, _ChatPatient, _ChatDoctor, _Register} from './config/path
 import Home from "./pages/home";
 import Login from "./pages/login";
 import ChatPatient from "./pages/chatPatient";
-import Chat from "./pages/chatDoctor";
+import ChatDoctor from "./pages/chatDoctor";
 import Register from "./pages/Register";
 
 const App = () => {
