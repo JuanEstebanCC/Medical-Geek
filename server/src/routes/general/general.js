@@ -1,7 +1,9 @@
 // Import all modules
 const { Router } = require("express");
+const jwt = require('jsonwebtoken');
+const config = require('../../config/config');
 const router = Router();
-const users = require("../../models/users");
+const User = require("../../models/User");
 const chat = require("../../models/chat");
 
 // End point to register a user
@@ -53,12 +55,24 @@ router.get('/login', async(req,res)=>{
 
     try {
 
-        const isUser = await users.find({password: password, email:email})
-        console.log(isUser)
-        res.send(isUser)
+      const user = await User.findOne({ email: email });
+      if (!user) {
+        return res.status(404).json("The email doesn't exist");
+      }
+      const passwordIsValid = await user.validatePassword(password);
+      console.log(passwordIsValid)
+      if (!passwordIsValid) {
+        return res.status(404).status({ auth: false, token: null });
+      }
+      const id = user._id;
+      const token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 60 * 60 * 24,
+      });
+      res.json({ auth: true, token, message: 'logged', id });
         
     } catch (error) {
-        res.status(500).statusMessage('No se encontró al usuario. Verificar datos').send('Error')
+      console.log(error)
+      res.status(500)
     }
 });
 

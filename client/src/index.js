@@ -5,6 +5,8 @@ import { BrowserRouter, Switch} from "react-router-dom";
 import PrivateRoute from './components/privateRout';
 //Import public rout
 import PublicRoute from './components/publicRout';
+//Import auth contenxt provider
+import AuthProvider from './contexts/authContext';
 
 //Import path
 import {_home, _login, _ChatPatient, _ChatDoctor, _Register} from './config/path';
@@ -18,7 +20,8 @@ import Register from "./pages/Register";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
       <Switch>
         <PublicRoute exact path={_home} component={Home} />
         <PublicRoute path={_login} component={Login} />
@@ -26,7 +29,9 @@ const App = () => {
         <PrivateRoute path={_ChatDoctor} component={ChatDoctor} />
         <PublicRoute path={_Register} component={Register} />
       </Switch>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
+    
   );
 };
 
