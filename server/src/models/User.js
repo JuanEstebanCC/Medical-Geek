@@ -1,6 +1,8 @@
 const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose")
+let random = require('mongoose-simple-random');
 const bcrypt = require("bcryptjs");
-
+mongoose.plugin(random)
 const userSchema = new Schema({
   full_name: {
     type: String,
@@ -16,7 +18,6 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    maxLength: 12,
     minLength: 4,
   },
   photo: {
@@ -25,7 +26,7 @@ const userSchema = new Schema({
   },
   usertype: {
     type: Number,
-    enum: ["1", "2", "3"], // 1 = Admin, 2 = Normal User, 3 = Doctor
+    enum: [1, 2, 3], // 1 = Admin, 2 = Normal User, 3 = Doctor
     required: true,
   },
   specialization: {
@@ -39,11 +40,11 @@ const userSchema = new Schema({
   medicines: {
     nameMedicine: {
       type: String,
-      required: true,
+      default: null,
     },
     takeDate: {
       type: String,
-      required: true,
+      default: null,
     },
   },
   assignedDoctor: {
@@ -51,6 +52,7 @@ const userSchema = new Schema({
     type: String,
   },
 });
+
 
 userSchema.methods.encryptPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
@@ -61,4 +63,4 @@ userSchema.methods.validatePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-module.exports = model("User", userSchema);
+module.exports = model("User", userSchema);;

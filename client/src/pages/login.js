@@ -78,7 +78,7 @@ const Login = () => {
                         className="form-label letter general-letter"
                       >
                         Email
-                        </label>
+                      </label>
                       <Field
                         type="email"
                         className="form-control"
@@ -95,7 +95,7 @@ const Login = () => {
                         className="form-label letter general-letter"
                       >
                         Password
-                        </label>
+                      </label>
                       <Field
                         type="password"
                         className="form-control"
@@ -109,7 +109,6 @@ const Login = () => {
                       Login
                     </button>
                   </div>
-
                 </Form>
               )}
             </Formik>
@@ -121,10 +120,7 @@ const Login = () => {
             <br />
             <a href="/register">Register now</a>
           </div>
-
         </div>
-
-
       </div>
     </body>
   );
