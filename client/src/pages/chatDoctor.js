@@ -3,12 +3,14 @@ import { withRouter, Link } from 'react-router-dom';
 import io from 'socket.io-client'
 import queryString from 'query-string';
 import { Formik, Form, Field } from "formik";
+import useAuthContext from '../hooks/useAuthContext';
 
 import '../styles/chat.css'
 
 let socket;
 
 const ChatDoctor = () => {
+    const {Logout} = useAuthContext();
     const [message, setMessage] = useState('')
     const [data, setdata] = useState([{participants: [{}]}])
     const [individualChat, setIndividualChat] = useState({ messages: [{ /* author: '', messages: '' */ }], participants: [{}] })
@@ -47,6 +49,10 @@ const ChatDoctor = () => {
         }
     }
 
+    function logout() {
+        Logout();
+    }
+
     return (
         <body>
 
@@ -54,7 +60,7 @@ const ChatDoctor = () => {
             <div className="chat-container">
 
                 <div className="available-chats">
-                    <button className="btn btn-secondary">Cerrar</button>
+                    <button className="btn btn-secondary" onClick={logout}>Cerrar</button>
                     <br /><br />
                     {
                         data.map((item, index) => {
