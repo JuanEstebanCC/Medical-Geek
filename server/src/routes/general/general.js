@@ -56,7 +56,7 @@ User.findRandom(filter, {}, {limit: 1}, async function(err, results) {
 // End point to user login
 router.get("/login", async (req, res) => {
   try {
-    const {  email,password } = req.body;
+    const {  email,password } = req.query;
     const user = await User.findOne({ email: email });
     if (!user) {
       return res.status(404).json("The email doesn't exist");
@@ -81,44 +81,48 @@ router.get("/chats/:email", async (req, res) => {
   const email = req.params.email;
 
   try {
-    const chats = await chat.find({ participants: email });
+    const chats = await chat.find({"participants.email": email});
+    console.log(chats)
     res.send(chats);
   } catch (error) {
-    res.status(500).statusMessage("Internal error").send("Error");
+    console.log(error)
+    res.status(500).send(error);
   }
 });
 
 // End point for create a new chat
-router.post("/new_chat", async (req, res) => {
-  const { email_patient, email_doctor } = req.body;
+router.post('/new_chat', async(req,res)=>{
+  const {email_participant1, name_participant1,name_participant2, email_participant2} = req.body
 
   try {
-    const newChat = await new chat({
-      messages: [],
-      participants: [email_patient, email_doctor],
-    });
-    newChat.save();
-    res.send("Chat created");
-  } catch (error) {
-    res.send("Error").status(500).statusMessage("Culdn´t create the chat");
+      const newChat = await new chat({messages: [], participants: [{email: email_participant1, name: name_participant1},{email:email_participant2, name: name_participant2}]})
+      newChat.save()
+      res.send('Chat created')
+      
+  }catch(error){
+      res.send('Error').statusCode(500)
   }
-});
+})
+
 
 // End point for create a new message
-router.put("/new_message", async (req, res) => {
-  const { email_patient, author, message } = req.body;
+router.put('/new_message', async(req,res)=>{
+  const {email_participant1, email_participant2, author, email, message} = req.body
 
   try {
-    const newChat = await chat.update(
-      { participants: email_patient },
-      { $push: { messages: { author: author, message: message } } }
-    );
-    res.send("message saved");
-  } catch (error) {
-    console.log(error);
-    res.send("Error").status(500);
+      const newChat = await chat.update({"participants.email": email_participant1 && email_participant2}, {$push:{messages:{email: email, author: author, message: message}}}, {function(error,result){
+          if(error){
+              res.send(error)
+          }
+      }})
+      
+      res.send('message saved')
+      
+  }catch(error){
+      console.log(error)
+      res.send('Error').statusCode(500)
   }
-});
+})
 
 //Export the module
 module.exports = router;

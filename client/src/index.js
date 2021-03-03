@@ -6,7 +6,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import ChatPatient from "./pages/chatPatient";
-import ChatDoctor from "./pages/chatDoctor";
+import Chat from "./pages/chatDoctor";
 import Register from "./pages/Register";
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
       <Route path="/chatPatient" component={ChatPatient} />
-      <Route path="/chatDoctor" component={ChatDoctor} />
+      <Route exact path="/chat" component={Chat} />
       <Route path="/Register" component={Register} />
     </BrowserRouter>
   );

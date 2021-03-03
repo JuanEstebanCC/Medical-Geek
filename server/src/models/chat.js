@@ -4,6 +4,7 @@ const chatSchema = new Schema({
 
   messages: [
 	{
+		email: {type: String},
 	  	author:{ type: String },
 		message:{ type: String,  minLength: 255}
 	}
@@ -12,8 +13,8 @@ const chatSchema = new Schema({
 
   participants: [
 	{
-	  type: String,
-	  required: true,
+	  name: {type: String, required:true},
+	  email: {type: String, required:true}
 	}
   ]
 })
