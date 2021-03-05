@@ -3,43 +3,69 @@ import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 
 const Register = () => {
-  const [userType, setUserType] = useState(0)
-  const [specialization, setspecialization] = useState("cardiologo")
-
-  function specialization(){
-    if (userType == 2) {
-      return <div class="mb-3">
-        <label
-          htmlFor="specialization"
-          className="form-label letter  general-letter"
-        >
-          User Type
-    </label>
-        <select
-          as="select"
-          id="specialization"
-          name="specialization"
-          className="p-2 form-select  form-control-register"
-          required
-          onChange={(e) => {
-
-            setspecialization(e.target.value)
-          }}
-        >
-          <option value={undefined}>-</option>
-          <option value="general">general</option>
-          <option value="cardiologo">cardiologo</option>
-          <option value="oftalmologo">oftalmologo</option>
-        </select>
-      </div>
+  const [userType, setUserType] = useState(2);
+  const [specialization, setspecialization] = useState("general");
+  const userTypeState = parseInt(userType);
+  function specializationS() {
+    if (userTypeState === 3) {
+      return (
+        <div class="specialization">
+          <label
+            htmlFor="specialization"
+            className="form-label letter  general-letter"
+          >
+            Specialization
+          </label>
+          <select
+            as="select"
+            id="specialization"
+            name="specialization"
+            className="p-2 form-select  form-control-register"
+            required
+            onChange={(e) => {
+              setspecialization(e.target.value);
+            }}
+          >
+            <option value="general">General</option>
+            <option value="cardiologo">Cardiologo</option>
+            <option value="oftalmologo">Oftalmologo</option>
+          </select>
+        </div>
+      );
     }
-  }
+    if (userTypeState === 2) {
+      return (
+        <div class="specialization">
+          <label
+            htmlFor="specialization"
+            className="form-label letter  general-letter"
+          >
+            I want to contact with a
+          </label>
+          <select
+            as="select"
+            id="specialization"
+            name="specialization"
+            className="p-2 form-select  form-control-register"
+            required
+            onChange={(e) => {
+              setspecialization(e.target.value);
+            }}
+          >
+            <option value="general">General</option>
+            <option value="cardiologo">Cardiologo</option>
+            <option value="oftalmologo">Oftalmologo</option>
+          </select>
+        </div>
+      );
+    }
   }
 
   const handleSubmit = async (values) => {
-    console.log(values)
-    console.log(userType, specialization)
-    const rawResponse =  await fetch("/register", {
+    console.log(values);
+    console.log(userTypeState);
+    console.log(specialization);
+    const rawResponse = await fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,15 +74,16 @@ const Register = () => {
         email: values.email,
         full_name: values.full_name,
         password: values.password,
-        usertype: userType,
-        specialization: specialization
-      })
-    })
+        usertype: userTypeState,
+        specialization: specialization,
+      }),
+    });
     const content = await rawResponse.json();
-    console.log(content);
-    localStorage.setItem("token", content.token, { path: "/" });
-    localStorage.setItem("id", content.id, { path: "/" });
-
+    if (content.auth === true) {
+      console.log(content);
+      localStorage.setItem("token", content.token, { path: "/" });
+      localStorage.setItem("id", content.id, { path: "/" });
+    }
     fetch("/send_mail", {
       method: "POST",
       headers: {
@@ -99,7 +126,6 @@ const Register = () => {
             }}
             onSubmit={(values) => {
               handleSubmit(values);
-
             }}
           >
             {(formik) => (
@@ -165,53 +191,17 @@ const Register = () => {
                       className="p-2 form-select  form-control-register"
                       required
                       onChange={(e) => {
-
-                        setUserType(e.target.value)
+                        setUserType(e.target.value);
                       }}
                     >
-                      <option value={undefined}>-</option>
-                      <option value="3">Patient</option>
-                      <option value="2">Doctor</option>
+                      <option value="2">Patient</option>
+                      <option value="3">Doctor</option>
                     </select>
                   </div>
                 </div>
 
-                {
-                  specialization()
-                /*   (usertype) => {
-                    if (userType == 2) {
-                      <div class="mb-3">
-                        <label
-                          htmlFor="specialization"
-                          className="form-label letter  general-letter"
-                        >
-                          User Type
-                    </label>
-                        <select
-                          as="select"
-                          id="specialization"
-                          name="specialization"
-                          className="p-2 form-select  form-control-register"
-                          required
-                          onChange={(e) => {
-
-                            setspecialization(e.target.value)
-                          }}
-                        >
-                          <option value={undefined}>-</option>
-                          <option value="general">general</option>
-                          <option value="cardiologo">cardiologo</option>
-                          <option value="oftalmologo">oftalmologo</option>
-                        </select>
-                      </div>
-                    }
-                  } */
-                }
-                <button
-                  type="submit"
-                  className="button-register letter"
-                // onClick={Petitions}
-                >
+                {specializationS()}
+                <button type="submit" className="button-register letter">
                   Register
                 </button>
               </Form>

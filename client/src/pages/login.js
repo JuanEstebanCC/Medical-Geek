@@ -1,34 +1,32 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { io } from "socket.io-client"
-import useAuthContext from '../hooks/useAuthContext';
-
-let socket;
+import { io } from "socket.io-client";
+import useAuthContext from "../hooks/useAuthContext";
 
 const Login = () => {
-  const {Login} = useAuthContext();
+  const { Login } = useAuthContext();
   //función para realizar petición en donde se válide que el usuario existe
   function login(values) {
-
-    console.log(values.email)
-    fetch('/login?'  + new URLSearchParams({
-   
-      email: values.email,
-      password: values.password
-  
-    }))
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      if (data) {
-        window.localStorage.setItem('id_user', data.id)
-        Login(); 
-      } else {
-        alert('INVALID username or password')
-      }
-    })
-      /* .then(
+    console.log(values.email);
+    fetch(
+      "/login?" +
+        new URLSearchParams({
+          email: values.email,
+          password: values.password,
+        })
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          window.localStorage.setItem("id_user", data.id);
+          Login();
+        } else {
+          alert("INVALID username or password");
+        }
+      });
+    /* .then(
         socket = io('/login', {
           headers: {
             "Content-Type": "application/json",
@@ -78,7 +76,7 @@ const Login = () => {
                         className="form-label letter general-letter"
                       >
                         Email
-                        </label>
+                      </label>
                       <Field
                         type="email"
                         className="form-control"
@@ -95,7 +93,7 @@ const Login = () => {
                         className="form-label letter general-letter"
                       >
                         Password
-                        </label>
+                      </label>
                       <Field
                         type="password"
                         className="form-control"
@@ -120,10 +118,7 @@ const Login = () => {
             <br />
             <a href="/register">Register now</a>
           </div>
-
         </div>
-
-
       </div>
     </body>
   );

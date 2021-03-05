@@ -181,13 +181,13 @@ a {
   min-height: 600px;
 }
 
-.message{
+.message {
   width: 500px;
   height: 50px;
   left: 720px;
   top: 380px;
   background: rgba(120, 114, 234, 0.7);
-  border: 0.2px solid #7872EA;
+  border: 0.2px solid #7872ea;
   box-sizing: border-box;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
@@ -195,34 +195,34 @@ a {
   margin-left: 60%;
 }
 
-.content-message{
+.content-message {
   padding: auto;
 }
 
-.img-message{
+.img-message {
   width: 70px;
   height: 70px;
   border-radius: 100px;
   margin-left: 95%;
 }
 
-.message > h3{
+.message > h3 {
   margin-top: 2%;
 }
 /*Styles for login: */
-.main-container{
+.main-container {
   display: flex;
   width: 100%;
   overflow: -moz-hidden-unscrollable;
 }
 
-.container-left{
+.container-left {
   flex-direction: column;
   padding: 3%;
   width: 60%;
 }
 
-.container-right{
+.container-right {
   background-color: rgb(197, 197, 197);
   flex-direction: row;
   width: 40%;
@@ -239,7 +239,7 @@ a {
   line-height: 12px;
   margin-bottom: 1.5rem;
   color: #000000;
-} 
+}
 
 .image-login {
   background: url("../images/10610.jpg") !important;
@@ -262,12 +262,12 @@ a {
   mix-blend-mode: darken;
   text-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
 }
-.button-container{
+.button-container {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-  align-items: center ;
+  align-items: center;
 }
 
 .button-login {
@@ -286,7 +286,7 @@ button:hover {
   color: black;
 }
 
-.form-login{
+.form-login {
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -399,4 +399,9 @@ input {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box; /* Firefox, other Gecko */
   box-sizing: border-box; /* Opera/IE 8+ */
+}
+.specialization {
+  position: relative;
+  top: 28rem;
+  left: -1rem;
 }

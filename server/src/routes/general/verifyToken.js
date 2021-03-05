@@ -1,10 +1,8 @@
-// Import jwt and the secret 
+// Import jwt and the secret
 const jwt = require("jsonwebtoken");
 const config = require("../../config/config");
 
-
 function verifyToken(req, res, next) {
-  // 
   const token = req.headers["x-access-token"];
   if (!token) {
     return res.status(401).json({
