@@ -304,6 +304,7 @@ router.post("/send_mail", (req, res) => {
 </body>
 
 </html>`;
+    //
     // Set the mail options for the sending with nodemailer
     const mailOptions = {
       from: "medicalgeek1@gmail.com",
@@ -313,7 +314,6 @@ router.post("/send_mail", (req, res) => {
     };
     // Seding email with nodemailer and responding tiwh a json
     transporter.sendMail(mailOptions, (err, info) => {
-      // console.log(`sent: ${info.response}`);
       console.log({ sent: info.response });
       res.json({ message: "Main send" });
     });

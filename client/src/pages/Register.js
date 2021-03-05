@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 
 const Register = () => {
   const [userType, setUserType] = useState(2);
@@ -26,9 +27,10 @@ const Register = () => {
               setspecialization(e.target.value);
             }}
           >
-            <option value="general">General</option>
-            <option value="cardiologo">Cardiologo</option>
-            <option value="oftalmologo">Oftalmologo</option>
+            <option value="General">General</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Ophthalmologist">Ophthalmologist</option>
+            <option value="Optometrist">Optometrist</option>
           </select>
         </div>
       );
@@ -52,14 +54,20 @@ const Register = () => {
               setspecialization(e.target.value);
             }}
           >
-            <option value="general">General</option>
-            <option value="cardiologo">Cardiologo</option>
-            <option value="oftalmologo">Oftalmologo</option>
+            <option value="General">General</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Ophthalmologist">Ophthalmologist</option>
+            <option value="Optometrist">Optometrist</option>
           </select>
         </div>
       );
     }
   }
+  const validate = Yup.object({
+    email: Yup.string().required("Email required"),
+    full_name: Yup.string().required("Name required"),
+    password: Yup.string().min(5, "Password must have at least 5 characters"),
+  });
 
   const handleSubmit = async (values) => {
     console.log(values);
@@ -124,6 +132,7 @@ const Register = () => {
               userType: "",
               specialization: "",
             }}
+            validationSchema={validate}
             onSubmit={(values) => {
               handleSubmit(values);
             }}
