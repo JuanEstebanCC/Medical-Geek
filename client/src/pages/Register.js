@@ -6,10 +6,40 @@ const Register = () => {
   const [userType, setUserType] = useState(0)
   const [specialization, setspecialization] = useState("cardiologo")
 
+  function specialization(){
+    if (userType == 2) {
+      return <div class="mb-3">
+        <label
+          htmlFor="specialization"
+          className="form-label letter  general-letter"
+        >
+          User Type
+    </label>
+        <select
+          as="select"
+          id="specialization"
+          name="specialization"
+          className="p-2 form-select  form-control-register"
+          required
+          onChange={(e) => {
+
+            setspecialization(e.target.value)
+          }}
+        >
+          <option value={undefined}>-</option>
+          <option value="general">general</option>
+          <option value="cardiologo">cardiologo</option>
+          <option value="oftalmologo">oftalmologo</option>
+        </select>
+      </div>
+    }
+  }
+  }
+
   const handleSubmit = async (values) => {
     console.log(values)
-    console.log(userType)
-   const rawResponse = await fetch("/register", {
+    console.log(userType, specialization)
+    const rawResponse =  await fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,7 +50,7 @@ const Register = () => {
         password: values.password,
         usertype: userType,
         specialization: specialization
-      }),
+      })
     })
     const content = await rawResponse.json();
     console.log(content);
@@ -34,11 +64,11 @@ const Register = () => {
       },
       body: JSON.stringify({
         to: values.email,
-        subject: "Wellcome to Medical Geek, "+ values.full_name,
+        subject: "Wellcome to Medical Geek, " + values.full_name,
         username: values.email,
         password: values.password,
       }),
-	});
+    });
     console.log("Mail send");
   };
   return (
@@ -69,7 +99,7 @@ const Register = () => {
             }}
             onSubmit={(values) => {
               handleSubmit(values);
- 
+
             }}
           >
             {(formik) => (
@@ -121,7 +151,7 @@ const Register = () => {
                       required
                     />
                   </div>
-                 <div class="mb-3">
+                  <div class="mb-3">
                     <label
                       htmlFor="userType"
                       className="form-label letter  general-letter"
@@ -134,8 +164,8 @@ const Register = () => {
                       name="userType"
                       className="p-2 form-select  form-control-register"
                       required
-                      onChange={(e)=>{
-                        
+                      onChange={(e) => {
+
                         setUserType(e.target.value)
                       }}
                     >
@@ -145,10 +175,42 @@ const Register = () => {
                     </select>
                   </div>
                 </div>
+
+                {
+                  specialization()
+                /*   (usertype) => {
+                    if (userType == 2) {
+                      <div class="mb-3">
+                        <label
+                          htmlFor="specialization"
+                          className="form-label letter  general-letter"
+                        >
+                          User Type
+                    </label>
+                        <select
+                          as="select"
+                          id="specialization"
+                          name="specialization"
+                          className="p-2 form-select  form-control-register"
+                          required
+                          onChange={(e) => {
+
+                            setspecialization(e.target.value)
+                          }}
+                        >
+                          <option value={undefined}>-</option>
+                          <option value="general">general</option>
+                          <option value="cardiologo">cardiologo</option>
+                          <option value="oftalmologo">oftalmologo</option>
+                        </select>
+                      </div>
+                    }
+                  } */
+                }
                 <button
                   type="submit"
                   className="button-register letter"
-                  // onClick={Petitions}
+                // onClick={Petitions}
                 >
                   Register
                 </button>
