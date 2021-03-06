@@ -11,30 +11,31 @@ let socket;
 
 const Chat = () => {
     const {Logout} = useAuthContext();
-    const [message, setMessage] = useState('')
-    const [data, setdata] = useState([{participants: [{}]}])
-    const [individualChat, setIndividualChat] = useState({ messages: [{ /* author: '', messages: '' */ }], participants: [{}] })
-    const [chatName, setChatName] = useState()
-    
+    const [message, setMessage] = useState('');
+    const [data, setdata] = useState([{participants: [{}]}]);
+    const [individualChat, setIndividualChat] = useState({ messages: [{ /* author: '', messages: '' */ }], participants: [{}] });
+    const [chatName, setChatName] = useState();
+
+    //Connection socket.io
+    const socket = io('http://localhost:3000')  
 
     useEffect(() => {
         fetch(`/chats/lorena0118a@gmail.com`)
             .then(res => res.json())
-            .then(data => setdata(data))
-
-        /* socket = io(`/chats/lorena0118a@gmail.com`, {
-            headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
-            },
-            reconnectionDelayMax: 10000
-        })
-
-        console.log(socket) */
+            .then(data => {
+                console.log(data)
+                setdata(data)
+            })
     }, [])
 
     //Save new message in database
     function newMessage(values) {
         if (values.message != "") {
+
+            socket.emit('chat:message', {
+                message: values.message
+            });
+
             fetch('/new_message', {
                 method: "PUT",
                 headers: { "content-Type": "application/JSON" },
@@ -64,17 +65,13 @@ const Chat = () => {
                     <br /><br />
                     {
                         data.map((item, index) => {
-                            let chatName = 'no sirve';
-
-                            
+                            let chatName = 'no sirve';    
 
                             item.participants.map((item2,index2)=>{
                                  if(item2.email != 'lorena0118a@gmail.com'){
                                 chatName = item2.name;
                                 } 
                             })
-
-                            
                             
                             return <div className="chat-button">
                                 <button type="button" className="btn chat" onClick={async () => {

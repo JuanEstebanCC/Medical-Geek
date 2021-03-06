@@ -3,8 +3,8 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
-const socketio = require('socket.io')
-const http = require('http')
+const socketio = require('socket.io');
+const http = require('http');
 //Import database_conection
 require("./db_config/db");
 
@@ -19,32 +19,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Set the endpoints
+//Set the endpoints
 app.use(require("./routes/send_mail/send_mail"));
 app.use("/", generalServices);
 
-
-
-// 
-/* app.listen(app.get('port'), ()=>{
-    console.log(`Server running on port ${app.get('port')}`)
-}) */
-
-const server = http.createServer(app);
-const io = socketio(server);
-
 app.use(generalServices)
 
-io.on('connect', (socket)=>{
-    console.log("New connection")
-
-    socket.on('disconnect', ()=>{
-        console.log("User has left")
-    })
-})
-
+//Socket.io
+const server = http.createServer(app);
+const io = socketio(server);
+//Import connection socket
+require('./sockets/sockets')(io);
 
 server.listen(app.get('port'), ()=>{
     console.log(`Server running on port ${app.get('port')}`)
-})
-
+});
