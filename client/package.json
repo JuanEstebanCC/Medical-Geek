@@ -1,6 +1,9 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "description": "A website for people with medical conditions that helps maintain a healthy lifestyle, contact professionals, and an easier life in general",
+  "author": "Juan Esteban Cifuentes, Anyi Lorena Gonzalez, Diego Buitrago",
+  "license": "MIT",
   "private": true,
   "proxy": "http://localhost:5300",
   "dependencies": {
