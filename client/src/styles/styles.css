@@ -405,3 +405,101 @@ input {
   top: 28rem;
   left: -1rem;
 }
+
+/*Styles  My Diet*/
+
+.header-myDiet{
+  width: 100%;
+  height: 100px;
+  background: rgba(248, 248, 248, 0.747);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.header-myDiet > h1{
+  position: absolute;
+  margin-top: 2%;
+  margin-left: 3%;
+  font-family: Padauk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1.25px;
+  font-feature-settings: 'kern' off, 'clig' off;
+  color: #726AE4;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
+}
+
+.button-myDiet{
+  width: 150px;
+  height: 50px;
+  margin-left: 85%;
+  margin-top: 1%;
+  background: #7872EA;
+  color: white;
+  font-size: 29px;
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 90px;
+}
+
+.diet > h2{
+  position: absolute;
+  margin-top: 2%;
+  margin-left: 3%;
+  font-family: Padauk;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1.25px;
+  font-feature-settings: 'kern' off, 'clig' off;
+  color: #726AE4;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
+}
+
+.diet > img{
+  position: absolute;
+  width: 700px;
+  margin-top: 5%;
+  margin-left: 60%;
+}
+
+.diet > p{
+  position: absolute;
+  width: 1034px;
+  height: 342px;
+  left: 66px;
+  top: 15%;
+  font-family: Padauk;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 50px;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  letter-spacing: 1.25px;
+  color: #000000;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.diet > ul{
+  position: absolute;
+  margin-top: 16%;
+  margin-left: 5%
+}
+
+.diet > ul > li{
+  font-family: Padauk;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 50px;
+  letter-spacing: 1.25px;
+  color: #000000;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
