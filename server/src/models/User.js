@@ -37,16 +37,18 @@ const userSchema = new Schema({
   dietType: {
     enum: ["Vegetariana", "Adelgazar", "Organica", "Proteica"],
   },
-  medicines: {
-    nameMedicine: {
-      type: String,
-      default: null,
-    },
-    takeDate: {
-      type: String,
-      default: null,
-    },
-  },
+  medicines: [
+    {
+      nameMedicine: {
+        type: String,
+        default: null,
+      },
+      takeDate: {
+        type: String,
+        default: null,
+      }
+    }
+  ],
   assignedDoctor: {
     default: null,
     type: String,

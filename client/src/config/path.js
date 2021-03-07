@@ -4,3 +4,4 @@ export const _ChatPatient = "/ChatPatient";
 export const _ChatDoctor = "/ChatDoctor";
 export const _Register = "/Register";
 export const _Dashboard = "/Dashboard";
+export const _MyMedicine = "/MyMedicine"

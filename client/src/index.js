@@ -16,6 +16,7 @@ import {
   _ChatDoctor,
   _Register,
   _Dashboard,
+  _MyMedicine
 } from "./config/path";
 
 //Import pages
@@ -25,6 +26,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/dashboard";
 import ChatPatient from "./pages/chatPatient";
 import ChatDoctor from "./pages/chatDoctor";
+import MyMedicine from "./pages/MyMedicine";
 
 const App = () => {
   return (
@@ -37,6 +39,7 @@ const App = () => {
           <PrivateRoute path={_ChatDoctor} component={ChatDoctor} />
           <PublicRoute path={_Dashboard} component={Dashboard} />
           <PublicRoute path={_Register} component={Register} />
+          <PublicRoute path={_MyMedicine} component={MyMedicine} />
         </Switch>
       </BrowserRouter>
     </AuthProvider>

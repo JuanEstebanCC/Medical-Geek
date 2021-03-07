@@ -7,11 +7,11 @@ import useAuthContext from '../hooks/useAuthContext';
 
 import '../styles/chat.css'
 
-let socket;
+/* let socket; */
 
 const Chat = () => {
     const {Logout} = useAuthContext();
-    const [message, setMessage] = useState('');
+
     const [data, setdata] = useState([{participants: [{}]}]);
     const [individualChat, setIndividualChat] = useState({ messages: [{ /* author: '', messages: '' */ }], participants: [{}] });
     const [chatName, setChatName] = useState();

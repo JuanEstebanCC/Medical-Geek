@@ -11,6 +11,21 @@ const { validation_Register } = require("../../validations/validations");
 const User = require("../../models/User");
 const chat = require("../../models/chat");
 
+router.put("/assign_medicine", async (req,res)=>{
+  try {
+      const {patient_email, medicineName, takeDate} = req.body
+      const assignedMedicine= await User.update({email: patient_email}, {
+          $push: { medicine: { nameMedicine: medicineName, takeDate: takeDate} },
+        })
+     
+     res.send(assignedMedicine)
+  } catch (error) {
+      console.log(error)
+      res.send(error)
+  }
+})
+
+
 // End point to register a user
 router.post("/register", async (req, res) => {
   const { email, full_name, password, specialization, usertype } = req.body;
@@ -94,10 +109,11 @@ router.get("/chats/:email", async (req, res) => {
   const email = req.params.email;
 
   try {
-    const chats = await chat.find({ participants: email });
+    const chats = await chat.find({ "participants.email": email });
     res.send(chats);
   } catch (error) {
-    res.status(500).statusMessage("Internal error").send("Error");
+    
+    res.status(500).send("Error");
   }
 });
 
@@ -146,12 +162,13 @@ router.post("/new_chat", async (req, res) => {
         { email: email_participant2, name: name_participant2 },
       ],
     });
-    newChat.save();
+    await newChat.save();
     res.send("Chat created");
   } catch (error) {
     res.send("Error").statusCode(500);
   }
 });
+
 
 //Messaging
 router.put("/new_message", async (req, res) => {

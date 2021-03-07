@@ -14,6 +14,7 @@ app.use(helmet());
 
 //importing routes
 const generalServices = require("./routes/general/general");
+const doctorServices = require("./routes/doctor/doctor");
 //Settings
 app.set("port", process.env.PORT || 5300);
 
@@ -37,6 +38,8 @@ app.get("/", function (req, res) {
 });
 
 app.use(generalServices);
+
+
 
 //Socket.io
 const server = http.createServer(app);

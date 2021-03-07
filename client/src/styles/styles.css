@@ -236,7 +236,7 @@ a {
 
 .main-tittle {
   font-size: 40px;
-  line-height: 12px;
+  line-height: 30px;
   margin-bottom: 1.5rem;
   color: #000000;
 }
@@ -337,6 +337,14 @@ button:hover {
   box-sizing: border-box;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
+}
+
+/* For mymedicine */
+
+.container-center{
+  padding: 3%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Styles for Register */
