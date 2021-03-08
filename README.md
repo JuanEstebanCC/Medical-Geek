@@ -1,3 +1,8 @@
+<p align="center">
+<img widt="150" height="150"  src="https://i.ibb.co/59jPb1V/medicalgeek.png"/>
+</p>
+
+
 <h1 align="center">Medical Geek :syringe:</h1>
 
 <p align="center"> A website for people with medical conditions that helps maintain a healthy lifestyle, <br/>contact professionals, and an easier life in general.</p>
