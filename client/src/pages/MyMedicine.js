@@ -4,28 +4,68 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 
 const MyMedicine = () => {
+
+    const [data, setData] = useState([])
+    const [patient, setPatient] = useState('')
+    useEffect(()=>{
+        fetch('/my_patientes?email=lorena0118a@gmail.com', {
+            method: 'GET'
+        })
+        .then(res => res.json())
+        .then(data => {
+                console.log(data)
+                setData(data)
+         })
+    },[])
+
+    function AssignMedication(values){
+        fetch('/assign_medicine', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body: JSON.stringify({
+                "patient_email":patient, 
+                "medicineName": values.medicine_name, 
+                "how_many": values.how_many,
+                "how_often": values.how_often
+            })
+        })
+    }
+
+    const validate = Yup.object({
+        medicine_name: Yup.string().required("Name required"),
+        how_many: Yup.number(),
+        how_often: Yup.number()
+      });
     return (
 
         <body>
+            
+            <div className="nav-medicine">
+                <div className="logo-medicine">
+                </div>
+                <div className="logo-medicine">
+                </div>
+            </div>
             <div className="main-container">
-                <div className="container-center">
+                <div className="container-left">
                     <div className="tittle-login">
-                        <p className="main-tittle general-letter">¡Someone of your patientes <br/>needs medicine?!</p>
-                        <p className="letter general-letter">
-                            Here you can prescribe medications <br />
-                            <br />
-                                to those you are caring for <br /><br /><br /><br />
-                        </p>
+                        <p className="main-tittle general-letter">Prescribe medications to your patientes</p>
+                        <br/>
                     </div>
-                    <div className="">
+                    <div className="medicine-form">
                         <Formik
                             initialValues={{
-                                email: "",
-                                password: "",
+                                patient: "juanescifuentes75@gmail.com",
+                                medicine_name: "",
+                                how_many:"",
+                                how_often: ""
                             }}
                             onSubmit={(values) => {
-                                console.log(values);
+                                AssignMedication(values)
                             }}
+                            validationSchema={validate}
                         >
                             {(formik) => (
                                 <Form>
@@ -38,14 +78,22 @@ const MyMedicine = () => {
                                                 Patient
                       </label>
                                             <select
-                                                
+
                                                 className="form-control"
                                                 id="patient"
                                                 name="patient"
+                                                onChange={(e)=>{
+                                                    setPatient(e.target.value)
+                                                }}
                                             >
-                                            <option value="first patient">first patient</option>
-                                            <option value="first patient">second patient</option>
-                                            <option value="first patient">third patient</option>
+                                                <option value="">-</option>
+                                                {
+                                                    data.map((item,index)=>{
+                                                        return <option value={item.email}>{item.full_name}</option>
+                                                    })
+                                                }
+                                                
+                                            
                                             </select>
                                         </div>
                                         {/* <div class="mb-3">
@@ -70,19 +118,33 @@ const MyMedicine = () => {
                                                 htmlFor="password"
                                                 className="form-label letter general-letter"
                                             >
-                                                how often should the patient take it?
-                      </label>
+                                                how many?
+                                            </label>
                                             <Field
-                                                type="time"
+                                                type="number"
                                                 className="form-control"
-                                                id="password"
-                                                name="password"
+                                                id="how_many"
+                                                name="how_many"
+                                            />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label
+                                                htmlFor="password"
+                                                className="form-label letter general-letter"
+                                            >
+                                                how often
+                                            </label>
+                                            <Field
+                                                type="number"
+                                                className="form-control"
+                                                id="how_often"
+                                                name="how_often"
                                             />
                                         </div>
                                     </div>
                                     <div className="button">
                                         <button type="submit" className="button-login letter">
-                                        assign
+                                            assign
                     </button>
                                     </div>
                                 </Form>
@@ -97,8 +159,12 @@ const MyMedicine = () => {
                         <a href="/register">Register now</a>
                     </div> */}
                 </div>
+                <div className="container-left">
+                    <div className="assigMedicine_image">
+                        
+                    </div>
+                </div>
             </div>
-            {/*  <div className="gray-div"/> */}
 
 
         </body>

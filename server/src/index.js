@@ -44,6 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(generalServices);
 app.use(require("./routes/send_mail/send_mail"));
 
+
 // Error Middlewares
 app.use(notFound);
 app.use(handleErrors);

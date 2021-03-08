@@ -1,9 +1,11 @@
 * {
   font-family: "Padauk", sans-serif;
 }
+
 a {
   text-decoration: none;
 }
+
 /* Styles for Home*/
 .body-home {
   overflow: hidden;
@@ -40,7 +42,7 @@ a {
   display: flex;
   align-items: center;
   letter-spacing: 1.25px;
-  font-feature-settings: "kern" off, "clig" off;
+  font-feature-settings: "kern"off, "clig"off;
 
   color: #726ae4;
 
@@ -128,7 +130,7 @@ a {
   padding-top: 20px;
 }
 
-.header-chat > img {
+.header-chat>img {
   width: 80px;
   height: 80px;
   border-radius: 100px;
@@ -141,7 +143,7 @@ a {
   background: #fafafa;
 }
 
-.footer-chat > input {
+.footer-chat>input {
   position: absolute;
   width: 1157px;
   height: 50px;
@@ -150,7 +152,7 @@ a {
   border-radius: 5px;
 }
 
-.header-chat > button {
+.header-chat>button {
   position: absolute;
   background-image: url(../images/flecha.png);
   background-size: 50px, 50px;
@@ -163,7 +165,7 @@ a {
   margin-top: 20px;
 }
 
-.footer-chat > button {
+.footer-chat>button {
   position: absolute;
   background-image: url(../images/enviar.png);
   background-size: 50px, 50px;
@@ -206,9 +208,10 @@ a {
   margin-left: 95%;
 }
 
-.message > h3 {
+.message>h3 {
   margin-top: 2%;
 }
+
 /*Styles for login: */
 .main-container {
   display: flex;
@@ -242,7 +245,7 @@ a {
 }
 
 .image-login {
-  background: url("../images/10610.jpg") !important;
+  background-image: url(../images/enviar.png) !important;
   width: 80%;
   height: 450px;
   margin-left: auto;
@@ -262,6 +265,7 @@ a {
   mix-blend-mode: darken;
   text-shadow: 4px 4px 25px rgba(0, 0, 0, 0.25);
 }
+
 .button-container {
   width: 50%;
   margin-left: auto;
@@ -341,16 +345,43 @@ button:hover {
 
 /* For mymedicine */
 
-.container-center{
+.container-center {
   padding: 3%;
   margin-left: auto;
   margin-right: auto;
 }
 
+.medicine-form {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.assigMedicine_image{
+  background-image: url(../images/enviar.png) !important;
+ /*  vertical-align: middle; */
+  margin-left: auto;
+  margin-right: auto;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.25));
+  border-radius: 121px;
+}
+
+.nav-medicine{
+  width: 100%;
+  display:flex;
+  height: 40px;
+ 
+}
+
+.logo-medicine{
+  background-image: url(https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg);
+}
 /* Styles for Register */
 input:password {
   font-size: 5px;
 }
+
 .image-register {
   position: absolute;
   width: 55rem;
@@ -379,11 +410,13 @@ input:password {
   font-size: 2rem !important;
   color: #ffffff !important;
 }
+
 .register-form {
   position: absolute;
   right: 1rem;
   top: 3rem;
 }
+
 .form-control-register {
   margin-top: 8px;
   font-size: 19.5px;
@@ -395,19 +428,25 @@ input:password {
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
 }
+
 .text-invitation-register {
   position: absolute;
   top: 830px;
   right: 11rem;
   text-align: center;
 }
+
 input {
   width: 250px;
   padding: 8px;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box; /* Opera/IE 8+ */
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
 }
+
 .specialization {
   position: relative;
   top: 28rem;
@@ -416,14 +455,14 @@ input {
 
 /*Styles  My Diet*/
 
-.header-myDiet{
+.header-myDiet {
   width: 100%;
   height: 100px;
   background: rgba(248, 248, 248, 0.747);
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.header-myDiet > h1{
+.header-myDiet>h1 {
   position: absolute;
   margin-top: 2%;
   margin-left: 3%;
@@ -435,12 +474,12 @@ input {
   display: flex;
   align-items: center;
   letter-spacing: 1.25px;
-  font-feature-settings: 'kern' off, 'clig' off;
+  font-feature-settings: 'kern'off, 'clig'off;
   color: #726AE4;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
 }
 
-.button-myDiet{
+.button-myDiet {
   width: 150px;
   height: 50px;
   margin-left: 85%;
@@ -452,7 +491,7 @@ input {
   border-radius: 90px;
 }
 
-.diet > h2{
+.diet>h2 {
   position: absolute;
   margin-top: 2%;
   margin-left: 3%;
@@ -464,19 +503,19 @@ input {
   display: flex;
   align-items: center;
   letter-spacing: 1.25px;
-  font-feature-settings: 'kern' off, 'clig' off;
+  font-feature-settings: 'kern'off, 'clig'off;
   color: #726AE4;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
 }
 
-.diet > img{
+.diet>img {
   position: absolute;
   width: 700px;
   margin-top: 5%;
   margin-left: 60%;
 }
 
-.diet > p{
+.diet>p {
   position: absolute;
   width: 1034px;
   height: 342px;
@@ -495,13 +534,13 @@ input {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.diet > ul{
+.diet>ul {
   position: absolute;
   margin-top: 16%;
   margin-left: 5%
 }
 
-.diet > ul > li{
+.diet>ul>li {
   font-family: Padauk;
   font-style: normal;
   font-weight: normal;
