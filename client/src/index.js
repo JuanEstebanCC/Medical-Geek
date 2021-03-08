@@ -17,10 +17,11 @@ import {
   _Register,
   _Dashboard,
   _MyMedicine,
-  _MyDiet
+  _MyDiet,
 } from "./config/path";
 
 //Import pages
+import NotFound from "./pages/notFound";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/Register";
@@ -43,6 +44,7 @@ const App = () => {
           <PrivateRoute path={_MyDiet} component={MyDiet} />
           <PublicRoute path={_Register} component={Register} />
           <PublicRoute path={_MyMedicine} component={MyMedicine} />
+          <PublicRoute component={NotFound} />
         </Switch>
       </BrowserRouter>
     </AuthProvider>

@@ -91,20 +91,22 @@ const Register = () => {
       console.log(content);
       localStorage.setItem("token", content.token, { path: "/" });
       localStorage.setItem("id", content.id, { path: "/" });
+      fetch("/send_mail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: values.email,
+          subject: "Wellcome to Medical Geek, " + values.full_name,
+          username: values.email,
+          password: values.password,
+        }),
+      });
+      console.log("Mail send");
+    } else {
+      console.log(content.error);
     }
-    fetch("/send_mail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        to: values.email,
-        subject: "Wellcome to Medical Geek, " + values.full_name,
-        username: values.email,
-        password: values.password,
-      }),
-    });
-    console.log("Mail send");
   };
   return (
     <>
