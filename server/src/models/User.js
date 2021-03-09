@@ -35,7 +35,7 @@ const userSchema = new Schema({
     default: null,
   },
   dietType: {
-    enum: ["Vegetariana", "Adelgazar", "Organica", "Proteica"],
+    enum: ["Vegetarian", "Carnivore", "Macrobiotic", "Fertility"],
   },
   medicines: [
     {

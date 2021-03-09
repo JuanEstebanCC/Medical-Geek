@@ -1,37 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { withRouter } from "react-router-dom";
 import "../styles/styles.css";
 
 const MyDiet = () => {
 
-    const data = {
-        typeDiet: "Vegetarian",
-        description: "Their diet consists of only plant-based foods. It does not include animal protein or animal products such as eggs, milk, or honey.",
-        imageURL: "https://img.freepik.com/foto-gratis/hermosa-mujer-joven-verduras-bolsa-compras-casa_1301-7672.jpg?size=626&ext=jpg&ga=GA1.2.509040202.1614980453",
-        list: [
-            "Vegetables	2 1/2 cups a day",
-            "Fruits	2 cups a day.",
-            "Grains (mostly whole)	6 1/2 ounces a day",
-            "Dairy	3 cups a day",
-            "Protein foods	3 1/2 ounces a day",
-            "Oils	27 grams a day"
-        ]   
-    }
+    const [data, setdata] = useState([{}]);
+    const [list, setlist] = useState('');
+    
+    useEffect(async () => {
+
+        const res = await fetch('/user_patient?' + new URLSearchParams({id: localStorage.getItem('id_user')}));
+
+        const data = await res.json();
+
+        const response = await fetch('/diet?' + new URLSearchParams({typeDiet: data[0].dietType}));
+
+        const diet = await response.json();
+    
+        setdata(diet);
+        setlist(diet[0].list)
+
+    }, [])
+    const array = Array.from(list)
 
   return (
     <body>
         <div className="myDiet">
             <div className="header-myDiet">
+                <span className="logo-diet"></span>
                 <h1>Hello My Diet</h1>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIXRSORJ7ZOtQACCs3zHBDxvPqVFq3EFnRgA&usqp=CAU"/> 
             <button className="button-myDiet" >Close</button>
             </div>
             <div className="diet">
-                <h2>{data.typeDiet}</h2>
-                <img src={data.imageURL}></img>
-                <p>{data.description}</p>
+                <h2>{data[0].typeDiet}</h2>
+                <img src={data[0].imageURL}></img>
+                <p>{data[0].description}</p>
                 <ul>
                     {
-                        data.list.map(item =>
+                        array.map(item =>
                             <li>{item}</li>
                             )
                     }

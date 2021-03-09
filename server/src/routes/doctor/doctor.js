@@ -2,7 +2,6 @@ const { Router } = require("express");
 const router = Router();
 
 const User = require("../../models/User");
-const chat = require("../../models/chat");
 
 //Assign medicine to my patients
 
@@ -19,3 +18,20 @@ router.put("/assign_medicine", async (req,res)=>{
         res.send(error)
     }
   })
+
+//Assign diet to my patients
+router.put("/assign_diet", async (req, res, next)=>{
+    try {
+        const {patient_name, dietType} = req.body
+        const assignedDiet = await User.update({full_name: patient_name}, {
+            $set: {dietType: dietType},
+          })
+       
+       res.send(assignedDiet)
+    } catch (error) {
+        console.log(error)
+        next(err);
+    }
+})
+
+module.exports = router;

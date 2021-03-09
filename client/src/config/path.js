@@ -6,3 +6,4 @@ export const _Register = "/Register";
 export const _Dashboard = "/Dashboard";
 export const _MyMedicine = "/MyMedicine"
 export const _MyDiet = '/myDiet';
+export const _DietDoctor = '/DietDoctor';

@@ -15,6 +15,7 @@ app.use(helmet());
 //importing routes
 const generalServices = require("./routes/general/general");
 const doctorServices = require("./routes/doctor/doctor");
+const patienteServices = require("./routes/patiente/patiente");
 //Settings
 app.set("port", process.env.PORT || 5300);
 
@@ -33,6 +34,8 @@ app.use(express.urlencoded({ extended: true }));
 //Set the endpoints
 app.use(require("./routes/send_mail/send_mail"));
 app.use("/", generalServices);
+app.use("/", doctorServices);
+app.use("/", patienteServices);
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
