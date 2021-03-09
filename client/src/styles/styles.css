@@ -375,8 +375,23 @@ button:hover {
 }
 
 .logo-medicine{
-  background-image: url(https://d500.epimg.net/cincodias/imagenes/2018/11/13/lifestyle/1542113135_776401_1542116070_noticia_normal.jpg);
+  width: 10%;
+  height: 80px;
+  background: url(../images/logo.png);
+  background-repeat: no-repeat;
+  background-size: 75%;
 }
+.image-mymedicine{
+  width: 100%;
+  height: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  background: url(../images/logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 /* Styles for Register */
 input:password {
   font-size: 5px;

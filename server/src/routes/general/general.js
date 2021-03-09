@@ -156,34 +156,7 @@ router.put("/new_message", async (req, res, next) => {
 
 /* --------------------------- Medicine's Section --------------------------- */
 
-router.put("/assign_medicine", async (req, res, next) => {
-  try {
-    const { patient_email, medicineName, how_many, how_often } = req.body;
-    const assignedMedicine = await User.update(
-      { email: patient_email },
-      {
-        $push: { medicines: { nameMedicine: medicineName, how_many: how_many, how_often:how_often } },
-      }
-    );
 
-    res.send(assignedMedicine);
-  } catch (err) {
-    next(err);  
-  }
-});
-
-
-/* See all my patientes */
-router.get("/my_patientes", async (req, res, next) => {
-  const {email} = req.query;
-
-  try {
-    const patients = await User.find({ assignedDoctor: email });
-    res.send(patients);
-  } catch (err) {
-    next(err);
-  }
-});
 
 
 /* -------------------------------------------------------------------------- */
