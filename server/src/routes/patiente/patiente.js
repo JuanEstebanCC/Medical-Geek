@@ -6,6 +6,8 @@ const {ObjectId} = require('mongodb');
 const diet = require("../../models/diet");
 const User = require("../../models/User");
 
+//User data
+
 router.get("/user_patient", async (req, res, next) => {
   const {id} = req.query;
 
@@ -16,6 +18,8 @@ router.get("/user_patient", async (req, res, next) => {
     next(error);
   }
 });
+
+//Diet according to user
 
 router.get("/diet", async (req, res, next) => {
     const {typeDiet} = req.query;

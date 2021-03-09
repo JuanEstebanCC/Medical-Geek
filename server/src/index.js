@@ -10,7 +10,12 @@ const socketio = require("socket.io");
 const http = require("http");
 //Import database_conection
 require("./db_config/db");
+// Use Helmet for security issues
 app.use(helmet());
+
+// Import errors middlewares
+const notFound = require("./errors/notFound");
+const handleErrors = require("./errors/handleErrors");
 
 //importing routes
 const generalServices = require("./routes/general/general");
@@ -20,7 +25,8 @@ const patienteServices = require("./routes/patiente/patiente");
 app.set("port", process.env.PORT || 5300);
 
 // Build of the frontend
-app.use(express.static(path.join(__dirname, "../../client/build")));
+// TODO Discomment this line when build the frontend
+// app.use(express.static(path.join(__dirname, "../../client/build")));
 
 // Compresion settings
 app.use(compression());
@@ -32,17 +38,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Set the endpoints
-app.use(require("./routes/send_mail/send_mail"));
+// TODO Discomment this line when build the frontend
+/* app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+}); */
+
 app.use("/", generalServices);
 app.use("/", doctorServices);
 app.use("/", patienteServices);
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-app.use(generalServices);
+app.use(require("./routes/send_mail/send_mail"));
 
 
+// Error Middlewares
+app.use(notFound);
+app.use(handleErrors);
 
 //Socket.io
 const server = http.createServer(app);
@@ -53,3 +62,11 @@ require("./sockets/sockets")(io);
 server.listen(app.get("port"), () => {
   console.log(`Server running on port ${app.get("port")}`);
 });
+
+// TODO Hacer el middware para el control de errores y el middleware 404  en archivos separados,
+// TODO Hacer errores personalizados en el backend y mostrarlos en el frontend
+// TODO ver si se puede cambiar el / por /api/
+// TODO ver si se puede usar Sentry
+// TODO crear un 404 page para el frontend
+// TODO verificar si se importa react en todas los componentes (pages)
+// TODO cerrar la conexión de moongose en caso de error

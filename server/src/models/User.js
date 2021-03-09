@@ -43,15 +43,20 @@ const userSchema = new Schema({
         type: String,
         default: null,
       },
-      takeDate: {
-        type: String,
+      how_many: {
+        type: Number,
         default: null,
+      },
+      how_often:{
+        type: Number,
+        default: null,
+
       }
     }
   ],
   assignedDoctor: {
-    default: null,
     type: String,
+    default: null,
   },
 });
 
