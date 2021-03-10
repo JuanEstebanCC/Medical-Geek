@@ -19,7 +19,7 @@ import {
   _AssignMedicine,
   _MyDiet,
   _DietDoctor,
-  _MyMedicine
+  _MyMedicine,
 } from "./config/path";
 
 //Import pages
@@ -32,8 +32,8 @@ import ChatPatient from "./pages/chatPatient";
 import ChatDoctor from "./pages/chatDoctor";
 import MyDiet from "./pages/myDiet";
 import DietDoctor from "./pages/dietDoctor";
-import AssignMedicine from './pages/AssignMedicine'
-import MyMedicine from './pages/MyMedicine'
+import AssignMedicine from "./pages/AssignMedicine";
+import MyMedicine from "./pages/MyMedicine";
 
 const App = () => {
   return (
@@ -44,7 +44,7 @@ const App = () => {
           <PublicRoute path={_login} component={Login} />
           <PrivateRoute path={_ChatPatient} component={ChatPatient} />
           <PrivateRoute path={_ChatDoctor} component={ChatDoctor} />
-          <PublicRoute path={_Dashboard} component={Dashboard} />
+          <PrivateRoute path={_Dashboard} component={Dashboard} />
           <PrivateRoute path={_MyDiet} component={MyDiet} />
           <PrivateRoute path={_DietDoctor} component={DietDoctor} />
           <PublicRoute path={_Register} component={Register} />

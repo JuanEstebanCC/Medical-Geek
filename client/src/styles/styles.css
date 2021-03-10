@@ -42,7 +42,7 @@ a {
   display: flex;
   align-items: center;
   letter-spacing: 1.25px;
-  font-feature-settings: "kern"off, "clig"off;
+  font-feature-settings: "kern" off, "clig" off;
 
   color: #726ae4;
 
@@ -130,7 +130,7 @@ a {
   padding-top: 20px;
 }
 
-.header-chat>img {
+.header-chat > img {
   width: 80px;
   height: 80px;
   border-radius: 100px;
@@ -143,7 +143,7 @@ a {
   background: #fafafa;
 }
 
-.footer-chat>input {
+.footer-chat > input {
   position: absolute;
   width: 1157px;
   height: 50px;
@@ -152,7 +152,7 @@ a {
   border-radius: 5px;
 }
 
-.header-chat>button {
+.header-chat > button {
   position: absolute;
   background-image: url(../images/flecha.png);
   background-size: 50px, 50px;
@@ -165,7 +165,7 @@ a {
   margin-top: 20px;
 }
 
-.footer-chat>button {
+.footer-chat > button {
   position: absolute;
   background-image: url(../images/enviar.png);
   background-size: 50px, 50px;
@@ -208,7 +208,7 @@ a {
   margin-left: 95%;
 }
 
-.message>h3 {
+.message > h3 {
   margin-top: 2%;
 }
 
@@ -357,9 +357,9 @@ button:hover {
   margin-right: auto;
 }
 
-.assigMedicine_image{
+.assigMedicine_image {
   background-image: url(../images/enviar.png) !important;
- /*  vertical-align: middle; */
+  /*  vertical-align: middle; */
   margin-left: auto;
   margin-right: auto;
   background-repeat: no-repeat;
@@ -367,21 +367,20 @@ button:hover {
   border-radius: 121px;
 }
 
-.nav-medicine{
+.nav-medicine {
   width: 100%;
-  display:flex;
+  display: flex;
   height: 40px;
- 
 }
 
-.logo-medicine{
+.logo-medicine {
   width: 10%;
   height: 80px;
   background: url(../images/logo.png);
   background-repeat: no-repeat;
   background-size: 75%;
 }
-.image-mymedicine{
+.image-mymedicine {
   width: 100%;
   height: 70%;
   margin-left: auto;
@@ -467,6 +466,12 @@ input {
   top: 28rem;
   left: -1rem;
 }
+.error {
+  position: relative;
+  top: 29rem;
+  font-size: x-large;
+  left: 5rem;
+}
 
 /*Styles  My Diet*/
 
@@ -477,7 +482,7 @@ input {
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.logo-diet{
+.logo-diet {
   position: absolute;
   background: url("../images/logo.png");
   background-size: 120px, 120px;
@@ -490,7 +495,7 @@ input {
   margin-top: 10px;
 }
 
-.header-myDiet > img{
+.header-myDiet > img {
   position: absolute;
   width: 90px;
   height: 90px;
@@ -511,8 +516,8 @@ input {
   display: flex;
   align-items: center;
   letter-spacing: 1.25px;
-  font-feature-settings: 'kern'off, 'clig'off;
-  color: #726AE4;
+  font-feature-settings: "kern" off, "clig" off;
+  color: #726ae4;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
 }
 
@@ -521,14 +526,14 @@ input {
   height: 50px;
   margin-left: 83%;
   margin-top: 1%;
-  background: #7872EA;
+  background: #7872ea;
   color: white;
   font-size: 29px;
   box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
   border-radius: 90px;
 }
 
-.diet>h2 {
+.diet > h2 {
   position: absolute;
   margin-top: 2%;
   margin-left: 3%;
@@ -540,19 +545,19 @@ input {
   display: flex;
   align-items: center;
   letter-spacing: 1.25px;
-  font-feature-settings: 'kern'off, 'clig'off;
-  color: #726AE4;
+  font-feature-settings: "kern" off, "clig" off;
+  color: #726ae4;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
 }
 
-.diet>img {
+.diet > img {
   position: absolute;
   width: 700px;
   margin-top: 5%;
   margin-left: 60%;
 }
 
-.diet>p {
+.diet > p {
   position: absolute;
   width: 1034px;
   height: 342px;
@@ -571,17 +576,17 @@ input {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.diet>ul {
+.diet > ul {
   position: absolute;
   margin-top: 19%;
-  margin-left: 5%
+  margin-left: 5%;
 }
 
-.diet > ul > li{
+.diet > ul > li {
   width: 1034px;
 }
 
-.diet>ul>li {
+.diet > ul > li {
   font-family: Padauk;
   font-style: normal;
   font-weight: normal;
@@ -592,17 +597,17 @@ input {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.footer-diet{
+.footer-diet {
   width: 100%;
   height: 90px;
   background: #fafafa;
 }
 
-.assign-diet{
+.assign-diet {
   min-height: 760px;
 }
 
-.footer-diet > h1{
+.footer-diet > h1 {
   margin-left: 23%;
   padding-top: 35px;
   font-family: Padauk;
@@ -616,11 +621,11 @@ input {
   align-items: center;
   text-align: center;
   letter-spacing: 1.25px;
-  font-feature-settings: 'kern' off;
+  font-feature-settings: "kern" off;
   color: #000000;
 }
 
-.assign-diet > h2{
+.assign-diet > h2 {
   position: absolute;
   width: 1034px;
   height: 342px;
@@ -639,33 +644,43 @@ input {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.assign-diet > img{
+.assign-diet > img {
   position: absolute;
   width: 45%;
   margin-top: 2%;
   margin-left: 45%;
 }
 
-.form-diet{
+.form-diet {
   position: absolute;
   width: 500px;
   margin-left: 10%;
   margin-top: 13%;
 }
 
-.form-diet > div{
+.form-diet > div {
   margin: 20px;
   padding: 10px;
 }
 
-.button-diet{
+.button-diet {
   width: 150px;
   height: 50px;
   margin-left: 18%;
   margin-top: 27%;
-  background: #7872EA;
+  background: #7872ea;
   color: white;
   font-size: 29px;
   box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
   border-radius: 90px;
+}
+
+.overflow-h {
+  margin-top: 0.006rem;
+  overflow-y: auto !important;
+  max-height: 61.46rem !important;
+}
+
+.margin-dash {
+  margin-top: 2rem !important;
 }

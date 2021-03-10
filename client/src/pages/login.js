@@ -20,7 +20,9 @@ const Login = () => {
       .then((data) => {
         console.log(data);
         if (data) {
-          window.localStorage.setItem("id_user", data.id);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("id", data.id);
+          window.location.href = "/dashboard";
           Login();
         } else {
           alert("INVALID username or password");
