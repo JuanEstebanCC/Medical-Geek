@@ -18,7 +18,7 @@ import {
   _Dashboard,
   _AssignMedicine,
   _MyDiet,
-  _DietDoctor,
+  _AssignDiet,
   _MyMedicine
 } from "./config/path";
 
@@ -31,7 +31,7 @@ import Dashboard from "./pages/dashboard";
 import ChatPatient from "./pages/chatPatient";
 import ChatDoctor from "./pages/chatDoctor";
 import MyDiet from "./pages/myDiet";
-import DietDoctor from "./pages/dietDoctor";
+import AssignDiet from "./pages/assignDiet";
 import AssignMedicine from './pages/AssignMedicine'
 import MyMedicine from './pages/MyMedicine'
 
@@ -46,7 +46,7 @@ const App = () => {
           <PrivateRoute path={_ChatDoctor} component={ChatDoctor} />
           <PublicRoute path={_Dashboard} component={Dashboard} />
           <PrivateRoute path={_MyDiet} component={MyDiet} />
-          <PrivateRoute path={_DietDoctor} component={DietDoctor} />
+          <PrivateRoute path={_AssignDiet} component={AssignDiet} />
           <PublicRoute path={_Register} component={Register} />
           <PublicRoute path={_AssignMedicine} component={AssignMedicine} />
           <PublicRoute path={_MyMedicine} component={MyMedicine} />

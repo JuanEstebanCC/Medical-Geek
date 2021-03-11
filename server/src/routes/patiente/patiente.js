@@ -7,8 +7,7 @@ const diet = require("../../models/diet");
 const User = require("../../models/User");
 
 //User data
-
-router.get("/user_patient", async (req, res, next) => {
+router.get("/user_data", async (req, res, next) => {
   const {id} = req.query;
 
   try {

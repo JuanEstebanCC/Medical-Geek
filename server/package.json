@@ -34,6 +34,7 @@
     "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.4.1",
     "socket.io": "^3.1.1",
+    "twilio": "^3.57.0",
     "uuid": "^8.3.2"
   }
 }

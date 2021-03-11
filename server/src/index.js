@@ -47,6 +47,7 @@ app.use("/", generalServices);
 app.use("/", doctorServices);
 app.use("/", patienteServices);
 app.use(require("./routes/send_mail/send_mail"));
+app.use(require("./routes/send_message/send_message"));
 
 
 // Error Middlewares

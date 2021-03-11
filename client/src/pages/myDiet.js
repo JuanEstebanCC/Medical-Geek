@@ -9,7 +9,7 @@ const MyDiet = () => {
     
     useEffect(async () => {
 
-        const res = await fetch('/user_patient?' + new URLSearchParams({id: localStorage.getItem('id_user')}));
+        const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id_user')}));
 
         const data = await res.json();
 
@@ -33,7 +33,7 @@ const MyDiet = () => {
                 <div className="myDiet">
                     <div className="header-myDiet">
                         <span className="logo-diet"></span>
-                        <h1>Hello My Diet</h1>
+                        <h1>Hello - My Diet</h1>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIXRSORJ7ZOtQACCs3zHBDxvPqVFq3EFnRgA&usqp=CAU"/> 
                     <button className="button-myDiet" >Close</button>
                     </div>

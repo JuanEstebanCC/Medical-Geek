@@ -3,16 +3,17 @@ import { createContext, useCallback, useMemo, useState } from 'react';
 export const AuthContext = createContext();
 
 export default function  AuthProvider({children}) {
-    const [isAutenticated, setIsAutenticated] = useState(localStorage.getItem('authentication'))
+    const [isAutenticated, setIsAutenticated] = useState(localStorage.getItem('authentication'));
 
     const Login = useCallback(() => {
-        window.localStorage.setItem('authentication', true)
+        window.localStorage.setItem('authentication', true);
         setIsAutenticated(true);
     }, []);
 
     const Logout = useCallback(() => {
-        window.localStorage.removeItem('authentication', true)
-        window.localStorage.removeItem('id_user', true)
+        window.localStorage.removeItem('authentication', true);
+        window.localStorage.removeItem('id_user', true);
+        window.localStorage.removeItem('id', true)
         setIsAutenticated(false);
     }, []);
 
