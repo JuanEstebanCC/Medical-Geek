@@ -9,7 +9,7 @@ const MyDiet = () => {
     
     useEffect(async () => {
 
-        const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id_user')}));
+        const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id')}));
 
         const data = await res.json();
 

@@ -44,7 +44,7 @@ const App = () => {
           <PublicRoute path={_login} component={Login} />
           <PrivateRoute path={_ChatPatient} component={ChatPatient} />
           <PrivateRoute path={_ChatDoctor} component={ChatDoctor} />
-          <PublicRoute path={_Dashboard} component={Dashboard} />
+          <PrivateRoute path={_Dashboard} component={Dashboard} />
           <PrivateRoute path={_MyDiet} component={MyDiet} />
           <PrivateRoute path={_AssignDiet} component={AssignDiet} />
           <PublicRoute path={_Register} component={Register} />

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
+import useAuthContext from "../hooks/useAuthContext";
 import * as Yup from "yup";
 
 const Register = () => {
   const [userType, setUserType] = useState(2);
   const [specialization, setspecialization] = useState("general");
+  const [errorMessage, setErrorMessage] = useState("");
   const userTypeState = parseInt(userType);
+  const { Login } = useAuthContext();
   function specializationS() {
     if (userTypeState === 3) {
       return (
@@ -87,10 +90,11 @@ const Register = () => {
       }),
     });
     const content = await rawResponse.json();
+    localStorage.setItem("token", content.token);
+    localStorage.setItem("id", content.id);
+    window.location.href = "/dashboard";
+    Login();
     if (content.auth === true) {
-      console.log(content);
-      localStorage.setItem("token", content.token, { path: "/" });
-      localStorage.setItem("id", content.id, { path: "/" });
       fetch("/send_mail", {
         method: "POST",
         headers: {
@@ -105,6 +109,9 @@ const Register = () => {
       });
       console.log("Mail send");
     } else {
+      if (content.error) {
+        setErrorMessage(content.error);
+      }
       console.log(content.error);
     }
   };
@@ -212,6 +219,11 @@ const Register = () => {
                 </div>
 
                 {specializationS()}
+                {errorMessage && (
+                  <div className="error text-danger">
+                    Error: {errorMessage}{" "}
+                  </div>
+                )}
                 <button type="submit" className="button-register letter">
                   Register
                 </button>

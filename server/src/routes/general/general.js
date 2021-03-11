@@ -88,6 +88,17 @@ router.get("/login", async (req, res, next) => {
     next(err);
   }
 });
+
+// Get user info
+
+router.get("/user", verifyToken, async (req, res, next) => {
+  const user = await User.findById(req.userId, { password: 0 });
+  if (!user) {
+    return res.status("404").send("No user found");
+  }
+  console.log("Youre in the dashboard");
+  res.json(user);
+});
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- Chat's section ----------------------------- */
@@ -155,9 +166,6 @@ router.put("/new_message", async (req, res, next) => {
 /* -------------------------------------------------------------------------- */
 
 /* --------------------------- Medicine's Section --------------------------- */
-
-
-
 
 /* -------------------------------------------------------------------------- */
 
