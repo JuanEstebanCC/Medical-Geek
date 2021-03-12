@@ -6,8 +6,23 @@ import * as Yup from 'yup';
 
 const DietViewDoctor = () => {
 
+  const [data, setdata] = useState([{}]);
   const [patient_name, setpatient_name] = useState('');
   const [dietType, setdietType] = useState('');
+
+  useEffect(async () => {
+
+    const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id')}));
+
+    const data = await res.json();
+
+    const response = await fetch('my_patients?' + new URLSearchParams({doctorName: data[0].full_name}));
+
+    const user = await response.json();
+
+    setdata(user)
+
+  }, []);
 
   function newDiet(values) {
     console.log(values)
@@ -72,10 +87,11 @@ const DietViewDoctor = () => {
                             }}
                           >
                             <option value="">----</option>
-                            <option value="first patient">first patient</option>
-                            <option value="second patient">second patient</option>
-                            <option value="third patient">third patient</option>
-                            <option value="Diego Buitrago">Diego Buitrago</option>
+                            {
+                              data.map(patient =>
+                                <option value={patient.full_name}>{patient.full_name}</option> 
+                                )
+                            }
                           </select>
                         </div>
                         <div class="patient-diet">

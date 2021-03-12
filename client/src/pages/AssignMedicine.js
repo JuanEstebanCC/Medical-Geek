@@ -8,7 +8,7 @@ const AssignMedicine = () => {
     const [data, setData] = useState([])
     const [patient, setPatient] = useState('')
     useEffect(()=>{
-        fetch('/my_patientes?email=lorena0118a@gmail.com', {
+        fetch(`/my_patientes?email=${localStorage.getItem('email')}`, {
             method: 'GET'
         })
         .then(res => res.json())

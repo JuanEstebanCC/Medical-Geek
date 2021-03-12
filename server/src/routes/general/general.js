@@ -88,6 +88,17 @@ router.get("/login", async (req, res, next) => {
     next(err);
   }
 });
+
+// Get user info
+
+router.get("/user", verifyToken, async (req, res, next) => {
+  const user = await User.findById(req.userId, { password: 0 });
+  if (!user) {
+    return res.status("404").send("No user found");
+  }
+  console.log("Youre in the dashboard");
+  res.json(user);
+});
 /* -------------------------------------------------------------------------- */
 
 /* ----------------------------- Chat's section ----------------------------- */
@@ -167,7 +178,30 @@ router.get("/my_information", async (req, res, next) => {
     next(err);
   }
 });
+/* -------------------------------------------------------------------------- */
 
+/* --------------------------- Send notifications --------------------------- */
+
+router.post("/notification_medicine", async (req, res, next) => {
+  try {
+    const { to, message } = req.body;
+    // Your Account Sid and Auth Token from twilio.com/console
+    // and set the environment variables. See http://twil.io/secure
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const client = require("twilio")(accountSid, authToken);
+
+    client.messages
+      .create({
+        from: "whatsapp:+14155238886",
+        body: message,
+        to: `whatsapp:+57${to}`,
+      })
+      .then((message) => console.log(message.sid));
+  } catch (err) {
+    next(err);
+  }
+});
 
 /* -------------------------------------------------------------------------- */
 

@@ -13,7 +13,7 @@ let socket;
 const Chat = () => {
     
     const {Logout} = useAuthContext();
-    const [information, setInformation] = useState({})
+    const [information, setInformation] = useState({email : ''})
     const [data, setdata] = useState([{participants: [{}]}]);
     const [individualChat, setIndividualChat] = useState({ messages: [{ /* author: '', messages: '' */ }], participants: [{}] });
     const [chatName, setChatName] = useState();
@@ -22,16 +22,18 @@ const Chat = () => {
       
 
     useEffect(async() => {
-        await fetch(`/my_information?`+ new URLSearchParams({id: localStorage.getItem('id_user')}) )
+        fetch(`/my_information?`+ new URLSearchParams({id: localStorage.getItem('id')}) )
             .then(res => res.json())
             .then(data => {
                 /* console.log(data); */
                  setInformation(data[0])
             })
 
+/*             console.log(information) 
+ */            
         socket = io('http://localhost:3000')
-
-        fetch(`/chats/${information.email}`)
+            
+       fetch(`/chats/${localStorage.getItem('email')}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -88,7 +90,10 @@ const Chat = () => {
             <div className="chat-container">
 
                 <div className="available-chats">
-                    <button className="btn btn-secondary" onClick={logout}>Cerrar</button>
+                    <a href="/dashboard">
+                    <button className="btn btn-secondary">Cerrar</button>
+                    </a>
+                    
                     <br /><br />
                     {
                         data.map((item, index) => {

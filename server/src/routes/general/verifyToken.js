@@ -11,7 +11,7 @@ function verifyToken(req, res, next) {
     });
   }
   const decodec = jwt.verify(token, config.secret);
-  req.userId = decodec.indexOf;
+  req.userId = decodec.id;
   next();
 }
 
