@@ -154,9 +154,19 @@ router.put("/new_message", async (req, res, next) => {
 });
 /* -------------------------------------------------------------------------- */
 
-/* --------------------------- Medicine's Section --------------------------- */
+/* --------------------------- My information --------------------------- */
 
+router.get("/my_information", async (req, res, next) => {
+  const {id} = req.query
 
+  try {
+    const information = await User.find({ "_id":id });
+    res.send(information);
+  } catch (err) {
+    console.log(err)
+    next(err);
+  }
+});
 
 
 /* -------------------------------------------------------------------------- */
