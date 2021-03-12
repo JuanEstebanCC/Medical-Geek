@@ -169,5 +169,30 @@ router.put("/new_message", async (req, res, next) => {
 
 /* -------------------------------------------------------------------------- */
 
+/* --------------------------- Send notifications --------------------------- */
+
+router.post("/notification_medicine", async (req, res, next) => {
+  try {
+    const { to, message } = req.body;
+    // Your Account Sid and Auth Token from twilio.com/console
+    // and set the environment variables. See http://twil.io/secure
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const client = require("twilio")(accountSid, authToken);
+
+    client.messages
+      .create({
+        from: "whatsapp:+14155238886",
+        body: message,
+        to: `whatsapp:+57${to}`,
+      })
+      .then((message) => console.log(message.sid));
+  } catch (err) {
+    next(err);
+  }
+});
+
+/* -------------------------------------------------------------------------- */
+
 //Export the module
 module.exports = router;
