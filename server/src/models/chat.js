@@ -6,7 +6,7 @@ const chatSchema = new Schema({
 	{
 		email: {type: String},
 	  	author:{ type: String },
-		message:{ type: String,  minLength: 255}
+		message:{ type: String,  maxLength: 255}
 	}
 
   ],

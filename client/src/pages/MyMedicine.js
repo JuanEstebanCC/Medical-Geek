@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 const MyMedicine = () => {
     const [data, setData] = useState([])
     useEffect(async ()=>{
-        const res = await fetch('/user_patient?' + new URLSearchParams({id: '6045999dc4a0ee9ffe2162fb'}));
+        const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id')}));
         const data = await res.json();
         setData(data[0].medicines)
     }, [])

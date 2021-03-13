@@ -4,6 +4,7 @@ import useAuthContext from "../hooks/useAuthContext";
 
 const Dashboard = () => {
   const [datos, setdatos] = useState([{}]);
+  const [chats, setChats] = useState([{ participants: [] }]);
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
 
@@ -21,9 +22,16 @@ const Dashboard = () => {
       })
         .then((response) => response.json())
         .then((data) => setdatos(data));
+
+      fetch(`/chats/${localStorage.getItem('email')}`)
+        .then(res => res.json())
+        .then(data => {
+
+          setChats(data)
+        })
     })();
   }, [token]);
-  console.log(datos);
+  console.log(chats);
   function logout() {
     Logout();
   }
@@ -35,32 +43,24 @@ const Dashboard = () => {
             <h4 className="text-center bg-light border p-2 rounded">
               Your chat's
             </h4>
-            <img
-              className="mt-5 mr-4 mx-auto d-block rounded-circle"
-              alt="Preview"
-              src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg"
-            />
-            <p className="m-5 mx-auto d-block text-center text-muted ">
-              Juan Alberto
-            </p>
-            <img
-              className="m-5 mx-auto d-block rounded-circle"
-              alt="Preview"
-              src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg"
-            />
-            <p className="text-center text-muted mb-0">Juan Alberto</p>
-            <img
-              className="m-5 mx-auto d-block rounded-circle"
-              alt="Preview"
-              src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg"
-            />
-            <p className="text-center text-muted mb-0">Juan Alberto</p>
-            <img
-              className="m-5 mx-auto d-block rounded-circle"
-              alt="Preview"
-              src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg"
-            />
-            <p className="text-center text-muted mb-0">Juan Alberto</p>
+            {chats.map((item, index) => {
+              let name;
+              item.participants.map((item2, index2) => {
+                if (item2 != localStorage.getItem('email')) {
+                  name = item2.name
+                }
+              })
+              return <a href="/chatdoctor">
+                <img
+                  className="mt-5 mr-4 mx-auto d-block rounded-circle"
+                  alt="Preview"
+                  src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg"
+                />
+                <p className="m-5 mx-auto d-block text-center text-muted ">
+                  {name}
+                </p>
+              </a>
+            })}
           </div>
           <div class="col-md-8 bg-light p-4 rounded">
             <div class="row">
@@ -99,16 +99,27 @@ const Dashboard = () => {
               Edit profile
             </button>
             <h5 className="text-center text-muted mb-0">
-              {datos.userType === 2 ? "Doctor" : "Patient"}
+              {datos.usertype === 2 ? "Patient" : "Doctor"}
             </h5>
             <h4 className="text-center text-justify p-2">{datos.full_name}</h4>
             <div className="d-flex align-content-end flex-wrap">
-              <button className="btn  btn-outline-success d-block mt-4  mx-auto ">
-                View medicaments
+              <a href={datos.usertype === 2 ? "/MyMedicine" : "/AssignMedicine"}>
+                <button className="btn  btn-outline-success d-block mt-4  mx-auto ">
+                  {datos.usertype === 2 ? "View medicaments" : "Assign Medicaments"}
               </button>
-              <button className="btn btn-outline-success d-block mt-4 mx-auto">
-                View diets
+              </a>
+              <a href={datos.usertype ===2 ? "/MyDiet" : "assignDiet"}>
+                <button className="btn btn-outline-success d-block mt-4 mx-auto">
+                {datos.usertype === 2 ? "My diet" : "Assign a diet"}
               </button>
+              </a>
+              <a href="/grupalChats">
+                <button className="btn btn-outline-success d-block mt-4 mx-auto">
+                  Interesting chats
+              </button>
+              </a>
+
+
               <div className="m-5 p-5"></div>
               <div className="mt-5 pt-5"></div>
               <div class="row align-items-end">

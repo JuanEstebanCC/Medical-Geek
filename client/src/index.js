@@ -19,7 +19,8 @@ import {
   _AssignMedicine,
   _MyDiet,
   _AssignDiet,
-  _MyMedicine
+  _MyMedicine,
+  _GrupalChats
 } from "./config/path";
 
 //Import pages
@@ -34,6 +35,8 @@ import MyDiet from "./pages/myDiet";
 import AssignDiet from "./pages/assignDiet";
 import AssignMedicine from './pages/AssignMedicine'
 import MyMedicine from './pages/MyMedicine'
+import GrupalChats from './pages/grupalChat'
+
 
 const App = () => {
   return (
@@ -48,9 +51,10 @@ const App = () => {
           <PrivateRoute path={_MyDiet} component={MyDiet} />
           <PrivateRoute path={_AssignDiet} component={AssignDiet} />
           <PublicRoute path={_Register} component={Register} />
-          <PublicRoute path={_AssignMedicine} component={AssignMedicine} />
-          <PublicRoute path={_MyMedicine} component={MyMedicine} />
+          <PrivateRoute path={_AssignMedicine} component={AssignMedicine} />
+          <PrivateRoute path={_MyMedicine} component={MyMedicine} />
           <PublicRoute component={NotFound} />
+          <PrivateRoute path={_GrupalChats} component={GrupalChats} />
         </Switch>
       </BrowserRouter>
     </AuthProvider>

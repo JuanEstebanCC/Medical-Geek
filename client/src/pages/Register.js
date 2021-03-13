@@ -95,7 +95,10 @@ const Register = () => {
     window.location.href = "/dashboard";
     Login();
     if (content.auth === true) {
-      fetch("/send_mail", {
+      console.log(content);
+      localStorage.setItem("token", content.token, { path: "/" });
+      localStorage.setItem("id", content.id, { path: "/" });
+      /* fetch("/send_mail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -106,8 +109,20 @@ const Register = () => {
           username: values.email,
           password: values.password,
         }),
-      });
+      }); */
       console.log("Mail send");
+      fetch("/new_chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          "email_participant1": values.email,
+          "name_participant1": values.full_name,
+          "name_participant2": 'Lorena',
+          "email_participant2": 'lorena0118a@gmail.com',
+        }),
+      });
     } else {
       if (content.error) {
         setErrorMessage(content.error);

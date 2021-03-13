@@ -7,20 +7,33 @@ import useAuthContext from '../hooks/useAuthContext';
 
 import '../styles/chat.css'
 
-/* let socket; */
+let socket;
+
 
 const Chat = () => {
+    
     const {Logout} = useAuthContext();
-
+    const [information, setInformation] = useState({email : ''})
     const [data, setdata] = useState([{participants: [{}]}]);
     const [individualChat, setIndividualChat] = useState({ messages: [{ /* author: '', messages: '' */ }], participants: [{}] });
     const [chatName, setChatName] = useState();
 
     //Connection socket.io
-    const socket = io('http://localhost:3000')  
+      
 
-    useEffect(() => {
-        fetch(`/chats/lorena0118a@gmail.com`)
+    useEffect(async() => {
+        fetch(`/my_information?`+ new URLSearchParams({id: localStorage.getItem('id')}) )
+            .then(res => res.json())
+            .then(data => {
+                /* console.log(data); */
+                 setInformation(data[0])
+            })
+
+/*             console.log(information) 
+ */            
+        socket = io('http://localhost:3000')
+            
+       fetch(`/chats/${localStorage.getItem('email')}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -29,26 +42,42 @@ const Chat = () => {
     }, [])
 
     //Save new message in database
-    function newMessage(values) {
+    async function newMessage(values) {
         if (values.message != "") {
 
-            socket.emit('chat:message', {
+            await socket.emit('chat:message', {
                 message: values.message
             });
 
+             socket.on('new:message', function(data){
+                console.log(data)
+                 let container =  document.getElementById('container-messages')
+                 console.log(container)
+                container.innerHTML += `<div className=${'rightMessage'}>
+                ${data.message} <br />
+        
+                </div>`
+            })
+            console.log(individualChat.participants[0].email)
+            console.log(individualChat.participants[1].email)
+            console.log(information.email)
+            console.log(information.full_name)
+            console.log(values.message)
             fetch('/new_message', {
                 method: "PUT",
                 headers: { "content-Type": "application/JSON" },
                 body: JSON.stringify({
-                    email: "lorena0118a@gmail.com",
-                    email_participant1: "lorena0118a@gmail.com",
-                    email_participant2: "Carlos@gmail.com",
-                    author: "Lorena",
-                    message: values.message
+                    email: information.email,
+                    email_participant1: individualChat.participants[0].email,
+                    email_participant2: individualChat.participants[1].email,
+                    author: information.full_name,
+                    message: values.messages
                 })
             })
         }
     }
+
+    
 
     function logout() {
         Logout();
@@ -56,19 +85,22 @@ const Chat = () => {
 
     return (
         <body>
-
+            
 
             <div className="chat-container">
 
                 <div className="available-chats">
-                    <button className="btn btn-secondary" onClick={logout}>Cerrar</button>
+                    <a href="/dashboard">
+                    <button className="btn btn-secondary">Cerrar</button>
+                    </a>
+                    
                     <br /><br />
                     {
                         data.map((item, index) => {
                             let chatName = 'no sirve';    
 
                             item.participants.map((item2,index2)=>{
-                                 if(item2.email != 'lorena0118a@gmail.com'){
+                                 if(item2.email != `${information.email}`){
                                 chatName = item2.name;
                                 } 
                             })
@@ -77,7 +109,7 @@ const Chat = () => {
                                 <button type="button" className="btn chat" onClick={async () => {
                                     await setIndividualChat(item)
                                     item.participants.map((item2, index) => {
-                                        if (item2.email != 'lorena0118a@gmail.com') {
+                                        if (item2.email != `${information.email}`) {
                                             setChatName(item2.name)
                                         }
                                     })
@@ -103,17 +135,17 @@ const Chat = () => {
                 <div className="messages-container">
                     <div className="header-chat">
                         
-                        <h2> {chatName}</h2>
+                        <h3> {chatName}</h3>
                         <img src="https://d500.epimg.net/cincodias/imagenes/2020/05/04/lifestyle/1588577532_319277_1588577593_noticia_normal.jpg" />
                     </div>
-                    <div className="messages">
+                    <div className="messages" id="container-messages">
                         {
 
                             individualChat.messages.map((item, index) => {
 
                                 let messagesDesign = "leftMessage"
 
-                                if (item.email == "lorena0118a@gmail.com") {
+                                if (item.email == `${information.email}`) {
                                     messagesDesign = "rightMessage"
                                 }
                                 return <div className={messagesDesign}>
@@ -133,7 +165,7 @@ const Chat = () => {
                                 message: ""
                             }}
                             onSubmit={(values) => {
-                                console.log(values)
+                                
                                 newMessage(values)
                             }}
                         >
