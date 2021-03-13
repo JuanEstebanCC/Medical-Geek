@@ -8,6 +8,8 @@ const cors = require("cors");
 const app = express();
 const socketio = require("socket.io");
 const http = require("http");
+const cron = require("node-cron");
+const moment = require("moment");
 //Import database_conection
 require("./db_config/db");
 // Use Helmet for security issues
@@ -47,8 +49,6 @@ app.use("/", generalServices);
 app.use("/", doctorServices);
 app.use("/", patienteServices);
 app.use(require("./routes/send_mail/send_mail"));
-app.use(require("./routes/send_message/send_message"));
-
 
 // Error Middlewares
 app.use(notFound);
@@ -59,6 +59,12 @@ const server = http.createServer(app);
 const io = socketio(server);
 //Import connection socket
 require("./sockets/sockets")(io);
+
+// send message
+cron.schedule('* * * * *', () => {
+  require("./send_message/send_message")(moment);
+});
+
 
 server.listen(app.get("port"), () => {
   console.log(`Server running on port ${app.get("port")}`);
