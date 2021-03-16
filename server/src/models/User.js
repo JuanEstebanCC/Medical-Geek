@@ -49,7 +49,7 @@ const userSchema = new Schema({
         default: null,
       },
       how_often: {
-        type: Number,
+        type: String,
         default: null,
       },
     },
