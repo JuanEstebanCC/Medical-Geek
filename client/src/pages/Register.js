@@ -131,7 +131,7 @@ const Register = () => {
     }
   };
   return (
-    <>
+    <div className="main-container">
       <div className="container-left">
         <div className="tittle-login">
           <p className="main-tittle general-letter">Help or help you!</p>
@@ -144,7 +144,7 @@ const Register = () => {
         </div>
         <div className="image-register"></div>
       </div>
-      <div className="gray-div" />
+      {/* <div className="gray-div" /> */}
 
       <div className="container-right">
         <div className="form-login">
@@ -162,7 +162,7 @@ const Register = () => {
             }}
           >
             {(formik) => (
-              <Form className="register-form">
+              <Form>
                 <div className="register-form">
                   <div class="mb-3">
                     <label
@@ -221,7 +221,7 @@ const Register = () => {
                       as="select"
                       id="userType"
                       name="userType"
-                      className="p-2 form-select  form-control-register"
+                      className="form-control"
                       required
                       onChange={(e) => {
                         setUserType(e.target.value);
@@ -231,9 +231,7 @@ const Register = () => {
                       <option value="3">Doctor</option>
                     </select>
                   </div>
-                </div>
-
-                {specializationS()}
+                  {specializationS()}
                 {errorMessage && (
                   <div className="error text-danger">
                     Error: {errorMessage}{" "}
@@ -242,6 +240,9 @@ const Register = () => {
                 <button type="submit" className="button-register letter">
                   Register
                 </button>
+                </div>
+
+                
               </Form>
             )}
           </Formik>
@@ -255,7 +256,7 @@ const Register = () => {
         <br />
         <a href="/login">Login now</a>
       </div>
-    </>
+    </div>
   );
 };
 
