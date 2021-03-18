@@ -155,7 +155,7 @@ const AssignMedicine = () => {
                                                 onChange={onChange}
                                                 value={value}
                                             />
-                                            <input type="button" value="Add time" onClick={()=>addTime(value)}/>
+                                            <input type="button" value="Add hour" onClick={()=>addTime(value)}/>
                                         </div>
                                             {
                                                 times.map((item)=>

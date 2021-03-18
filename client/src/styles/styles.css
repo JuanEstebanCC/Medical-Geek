@@ -685,7 +685,26 @@ input {
   margin-top: 2rem !important;
 }
 
-<<<<<<< HEAD
+.container-overflow-dashboard{
+  height: 680px;
+  overflow: scroll;
+}
+
+.container-center-dashboard{
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.button-dashboard{
+  width: 100%;
+  height: auto;
+  margin-top: 2%;
+  background: #7872ea;
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 90px;
+  color: #ffffff !important;
+}
+
 /*Styles time*/
 .react-time-picker__wrapper{
   background-color: #2ab7a9;
@@ -709,24 +728,4 @@ input {
 
 .react-time-picker__inputGroup{
   text-align: center;
-=======
-.container-overflow-dashboard{
-  height: 680px;
-  overflow: scroll;
-}
-
-.container-center-dashboard{
-  height: 600px;
-  overflow-y: scroll;
-}
-
-.button-dashboard{
-  width: 100%;
-  height: auto;
-  margin-top: 2%;
-  background: #7872ea;
-  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
-  border-radius: 90px;
-  color: #ffffff !important;
->>>>>>> 3924aa833e9b7ae4f97a9bc290fab3a8626f6c1b
 }

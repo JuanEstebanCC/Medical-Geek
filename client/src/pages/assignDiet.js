@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import "../styles/styles.css";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { object } from 'yup/lib/locale';
 
 const DietViewDoctor = () => {
 
@@ -112,6 +113,7 @@ const DietViewDoctor = () => {
                             }}
                           >
                             <option value="">----</option>
+                            <option value="null">Without diet</option>
                             <option value="Vegetarian">Vegetarian</option>
                             <option value="Carnivore">Carnivore</option>
                             <option value="Macrobiotic">Macrobiotic</option>
