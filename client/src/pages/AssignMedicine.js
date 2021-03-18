@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+import TimePicker from 'react-time-picker';
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 
 const AssignMedicine = () => {
 
-    const [data, setData] = useState([])
-    const [patient, setPatient] = useState('')
-    useEffect(()=>{
-        fetch(`/my_patientes?email=${localStorage.getItem('email')}`, {
+    const [data, setData] = useState([]);
+    const [patient, setPatient] = useState('');
+    const [value, onChange] = useState('10:30');
+    const [times, setTimes] = useState([]);
+
+    useEffect(async()=>{
+
+        const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id')}));
+
+        const data = await res.json();
+
+        fetch(`/my_patientes?doctorName=${data[0].full_name}`, {
             method: 'GET'
         })
         .then(res => res.json())
@@ -28,15 +37,19 @@ const AssignMedicine = () => {
                 "patient_email":patient, 
                 "medicineName": values.medicine_name, 
                 "how_many": values.how_many,
-                "how_often": values.how_often
+                "how_often": times
             })
         })
+    }
+
+    function addTime(time){
+        setTimes(prevArray => [...prevArray, time])
     }
 
     const validate = Yup.object({
         medicine_name: Yup.string().required("Name required"),
         how_many: Yup.number(),
-        how_often: Yup.number()
+        how_often: Yup.string()
       });
     return (
 
@@ -134,12 +147,23 @@ const AssignMedicine = () => {
                                             >
                                                 how often (hours)
                                             </label>
-                                            <Field
-                                                type="number"
-                                                className="form-control"
-                                                id="how_often"
-                                                name="how_often"
+                                            <div className="time">
+                                            <TimePicker
+                                                type="textbox"
+                                                format="HH:mm"
+                                                disableClock="true"
+                                                onChange={onChange}
+                                                value={value}
                                             />
+                                            <input type="button" value="Add time" onClick={()=>addTime(value)}/>
+                                        </div>
+                                            {
+                                                times.map((item)=>
+                                                    <div className="show-time">
+                                                        <h4>{item}</h4>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                     <div className="button">
