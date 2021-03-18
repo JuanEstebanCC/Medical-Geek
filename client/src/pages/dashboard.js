@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
+import { Formik, Form, Field } from "formik";
 
 const Dashboard = () => {
   const [datos, setdatos] = useState([{}]);
   const [chats, setChats] = useState([{ participants: [] }]);
-  const token = localStorage.getItem("token");
+  const [individualChat, setIndividualChat] = useState({ messages: [{ /* author: '', messages: '' */ }], participants: [{}] });  const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
 
   const { Logout } = useAuthContext();
@@ -28,29 +29,54 @@ const Dashboard = () => {
         .then(data => {
 
           setChats(data)
+          console.log(data)
         })
     })();
   }, [token]);
-  console.log(chats);
+
   function logout() {
     Logout();
   }
+
+  //Save new message in database
+  async function newMessage(values) {
+    if (values.message != "") {
+       
+        fetch('/new_message', {
+            method: "PUT",
+            headers: { "content-Type": "application/JSON" },
+            body: JSON.stringify({
+                email: datos.email,
+                email_participant1: individualChat.participants[0].email,
+                email_participant2: individualChat.participants[1].email,
+                author: datos.full_name,
+                message: values.message
+            })
+        })
+    }
+}
+
   return (
     <>
       <div class="container-fluid ">
         <div class="row margina-dash ">
           <div class="col-md-2 overflow-h">
-            <h4 className="text-center bg-light border p-2 rounded">
-              Your chat's
+            <h4 className="text-center">
+              {datos.usertype === 2 ? "Your doctor" : "Your patientes"}
             </h4>
             {chats.map((item, index) => {
               let name;
               item.participants.map((item2, index2) => {
-                if (item2 != localStorage.getItem('email')) {
+                if (item2.email != localStorage.getItem('email')) {
                   name = item2.name
                 }
               })
-              return <a href="/chatdoctor">
+              return <div onClick={() => {
+                setIndividualChat(item)
+
+              }
+
+              }>
                 <img
                   className="mt-5 mr-4 mx-auto d-block rounded-circle"
                   alt="Preview"
@@ -59,30 +85,66 @@ const Dashboard = () => {
                 <p className="m-5 mx-auto d-block text-center text-muted ">
                   {name}
                 </p>
-              </a>
+              </div>
             })}
           </div>
-          <div class="col-md-8 bg-light p-4 rounded">
-            <div class="row">
-              <div class="col-md-12">
-                <h3>h3. Lorem ipsum dolor sit amet.</h3>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-group">
-                <input type="text" class="form-control" />
-                <button class="btn btn-outline-secondary" type="button">
-                  Go
-                </button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <span class="badge badge-default">Label</span>
-              </div>
-            </div>
+          <div class="col-md-8 bg-light p-4 rounded container-center-dashboard">
+            {
+
+              individualChat.messages.map((item, index) => {
+
+                let messagesDesign = "leftMessage"
+
+                if (item.email == `${datos.email}`) {
+                  messagesDesign = "rightMessage"
+                }
+                return <div className={messagesDesign}>
+                  {item.message} <br />
+
+                </div>
+
+
+              })
+
+
+            }
+            <div className="input-messages-container">
+                        <Formik
+                            initialValues={{
+                                message: ""
+                            }}
+                            onSubmit={(values) => {
+                                console.log(values)
+                                newMessage(values)
+                            }}
+                        >
+                            {(formik) => (
+                                <Form>
+
+                                    <div className="mb-3 input-messages-container">
+                                        <label
+                                            htmlFor="message"
+                                            className="form-label letter general-letter"
+                                        >
+
+                                        </label>
+                                        <Field
+                                            type="text"
+                                            className="input-messages"
+                                            id="message"
+                                            name="message"
+                                        />
+                                        -<button type="submit" className="btn btn-info">Enviar</button>
+                                    </div>
+
+                                    
+
+                                </Form>
+                            )}
+                        </Formik>
+                    </div>
           </div>
-          <div class="col-md-2  border border-secondary ml-4 rounded">
+          <div class="col-md-2  border border-secondary ml-4 rounded container-overflow-dashboard">
             <div class="row">
               <div class="col-md-12">
                 <img
@@ -94,44 +156,43 @@ const Dashboard = () => {
             </div>
             <button
               type="button"
-              class="btn btn-outline-success mx-auto d-block"
+              class="btn btn-outline-success mx-auto d-block button-dashboard"
             >
               Edit profile
             </button>
             <h5 className="text-center text-muted mb-0">
               {datos.usertype === 2 ? "Patient" : "Doctor"}
             </h5>
+
             <h4 className="text-center text-justify p-2">{datos.full_name}</h4>
-            <div className="d-flex align-content-end flex-wrap">
-              <a href={datos.usertype === 2 ? "/MyMedicine" : "/AssignMedicine"}>
-                <button className="btn  btn-outline-success d-block mt-4  mx-auto ">
-                  {datos.usertype === 2 ? "View medicaments" : "Assign Medicaments"}
+
+            <a href={datos.usertype === 2 ? "/MyMedicine" : "/AssignMedicine"}>
+              <button className="btn  btn-outline-success d-block mt-4  mx-auto button-dashboard ">
+                {datos.usertype === 2 ? "View medicaments" : "Assign Medicaments"}
               </button>
-              </a>
-              <a href={datos.usertype ===2 ? "/MyDiet" : "assignDiet"}>
-                <button className="btn btn-outline-success d-block mt-4 mx-auto">
+            </a>
+            <a href={datos.usertype === 2 ? "/MyDiet" : "assignDiet"}>
+              <button className="btn btn-outline-success d-block mt-4 mx-auto button-dashboard ">
                 {datos.usertype === 2 ? "My diet" : "Assign a diet"}
               </button>
-              </a>
-              <a href="/grupalChats">
-                <button className="btn btn-outline-success d-block mt-4 mx-auto">
-                  Interesting chats
+            </a>
+            <a href="/grupalChats">
+              <button className="btn btn-outline-success d-block mt-4 mx-auto button-dashboard">
+                Interesting chats
               </button>
-              </a>
+            </a>
 
+            <div className="d-flex align-content-end flex-wrap">
 
-              <div className="m-5 p-5"></div>
               <div className="mt-5 pt-5"></div>
-              <div class="row align-items-end">
-                <div class="col-12 align-self-end">
-                  <button
-                    className="btn btn-secondary d-block align-self-end mt-5"
-                    onClick={logout}
-                  >
-                    Log out
+
+              <button
+                className="btn btn-secondary d-block align-self-end mt-5 button-dashboard"
+                onClick={logout}
+              >
+                Log out
                   </button>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
