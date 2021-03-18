@@ -684,3 +684,28 @@ input {
 .margin-dash {
   margin-top: 2rem !important;
 }
+
+/*Styles time*/
+.react-time-picker__wrapper{
+  background-color: #2ab7a9;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 100px;
+  height: 50px;
+}
+
+.time > input{
+  width: 80px;
+  background: #7872ea;
+  color: white;
+  border-radius: 80px;
+}
+
+.show-time{
+  display: table-cell;
+  padding-right: 15px;
+}
+
+.react-time-picker__inputGroup{
+  text-align: center;
+}

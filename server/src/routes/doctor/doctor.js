@@ -23,10 +23,10 @@ router.put("/assign_medicine", async (req,res)=>{
   
   /* See all my patientes */
   router.get("/my_patientes", async (req, res, next) => {
-    const {email} = req.query;
+    const {doctorName} = req.query;
   
     try {
-      const patients = await User.find({ assignedDoctor: email });
+      const patients = await User.find({ assignedDoctor: doctorName });
       res.send(patients);
     } catch (err) {
       next(err);

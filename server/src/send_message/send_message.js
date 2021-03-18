@@ -1,5 +1,3 @@
-const { json } = require('express');
-const {ObjectId} = require('mongodb');
 //Import Schema
 const User = require('../models/User');
 
@@ -16,7 +14,7 @@ module.exports = async function(moment) {
         users = data
     })
 
-    const time = moment().format('LT');
+    const time = moment().format('HH:mm');
     console.log(time);
 
     users.map((user) => {
@@ -24,7 +22,7 @@ module.exports = async function(moment) {
             
             if (medicine.how_often != null) {
         
-                const arrayTime = medicine.how_often.split(', ');
+                const arrayTime = medicine.how_often;
                 
                 for (let i = 0; i <= arrayTime.length; i++) {
                 
