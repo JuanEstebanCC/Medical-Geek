@@ -451,7 +451,7 @@ input:password {
 }
 
 input {
-  width: 250px;
+  /* width: 250px; */
   padding: 8px;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
@@ -683,4 +683,24 @@ input {
 
 .margin-dash {
   margin-top: 2rem !important;
+}
+
+.container-overflow-dashboard{
+  height: 680px;
+  overflow: scroll;
+}
+
+.container-center-dashboard{
+  height: 600px;
+  overflow-y: scroll;
+}
+
+.button-dashboard{
+  width: 100%;
+  height: auto;
+  margin-top: 2%;
+  background: #7872ea;
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 90px;
+  color: #ffffff !important;
 }
