@@ -20,7 +20,7 @@ import {
   _MyDiet,
   _AssignDiet,
   _MyMedicine,
-  _GrupalChats
+  _GrupalChats,
 } from "./config/path";
 
 //Import pages
@@ -54,7 +54,7 @@ const App = () => {
           <PrivateRoute path={_AssignMedicine} component={AssignMedicine} />
           <PrivateRoute path={_MyMedicine} component={MyMedicine} />
           <PublicRoute component={NotFound} />
-          <PrivateRoute path={_GrupalChats} component={GrupalChats} />
+          <PublicRoute path={_GrupalChats} component={GrupalChats} />
         </Switch>
       </BrowserRouter>
     </AuthProvider>
