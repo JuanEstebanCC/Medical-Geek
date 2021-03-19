@@ -9,3 +9,4 @@ export const _MyMedicine = "/MyMedicine"
 export const _MyDiet = '/myDiet';
 export const _AssignDiet = '/assignDiet';
 export const _GrupalChats = '/GrupalChats';
+export const _Profile = '/Profile'
