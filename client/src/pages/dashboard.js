@@ -149,17 +149,19 @@ const Dashboard = () => {
               <div class="col-md-12">
                 <img
                   alt="Preview"
-                  src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg"
+                  src={datos.photo}
                   class="m-3 mt-5 rounded mx-auto d-block rounded-circle w-75"
                 />
               </div>
             </div>
+            <a href="/Profile">
             <button
               type="button"
               class="btn btn-outline-success mx-auto d-block button-dashboard"
             >
               Edit profile
             </button>
+            </a>
             <h5 className="text-center text-muted mb-0">
               {datos.usertype === 2 ? "Patient" : "Doctor"}
             </h5>
@@ -171,7 +173,7 @@ const Dashboard = () => {
                 {datos.usertype === 2 ? "View medicaments" : "Assign Medicaments"}
               </button>
             </a>
-            <a href={datos.usertype === 2 ? "/MyDiet" : "assignDiet"}>
+            <a href={datos.usertype === 2 ? "/MyDiet" : "/assignDiet"}>
               <button className="btn btn-outline-success d-block mt-4 mx-auto button-dashboard ">
                 {datos.usertype === 2 ? "My diet" : "Assign a diet"}
               </button>

@@ -1,8 +1,8 @@
 // Import all modules
 const { Router } = require("express");
-const multer = require('multer')
+const multer = require("multer");
 const router = Router();
-const subir = require('../../helpers/subir')
+const subir = require("../../helpers/subir");
 const upload = multer({ storage: multer.memoryStorage() });
 
 const jwt = require("jsonwebtoken");
@@ -171,10 +171,10 @@ router.put("/new_message", async (req, res, next) => {
 /* --------------------------- My information --------------------------- */
 
 router.get("/my_information", async (req, res, next) => {
-  const {id} = req.query
+  const { id } = req.query;
 
   try {
-    const information = await User.find({ "_id":id });
+    const information = await User.find({ _id: id });
     res.send(information);
   } catch (err) {
     next(err);
@@ -183,17 +183,30 @@ router.get("/my_information", async (req, res, next) => {
 /* -------------------------------------------------------------------------- */
 
 /* Upload photo and edit user information */
-  
-    
 
-router.put("/profile",upload.single('img'),subir, async (req,res,next) => {
-    try{
-        console.log(req.body.URL)
-        res.json("File updated")
-        console.log()
-    } catch(err) {
-        next(err)
-    }
-})
+router.put("/profile", upload.single("img"), subir, async (req, res, next) => {
+  try {
+    const full_name = req.body.full_name;
+    const email = req.body.email;
+    const photo = req.body.URL;
+    console.log(photo, "- ", full_name, email);
+    User.findOneAndUpdate(
+      { email: email },
+      {
+        $set: {
+          full_name: req.body.full_name,
+          photo: photo,
+        },
+      },
+      {
+        upsert: true,
+      }
+    ).then((result) => {
+      res.json("File has been update correctly");
+    });
+  } catch (err) {
+    next(err);
+  }
+});
 //Export the module
 module.exports = router;
