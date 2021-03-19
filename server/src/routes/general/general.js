@@ -172,9 +172,10 @@ router.put("/new_message", async (req, res, next) => {
 
 router.get("/my_information", async (req, res, next) => {
   const { id } = req.query;
+  const {email} = req.query
 
   try {
-    const information = await User.find({ _id: id });
+    const information = await User.find({ "email":email });
     res.send(information);
   } catch (err) {
     next(err);

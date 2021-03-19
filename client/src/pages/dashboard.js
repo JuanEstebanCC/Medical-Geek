@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
 import { Formik, Form, Field } from "formik";
+import io from 'socket.io-client'
+
+
+let socket;
 
 const Dashboard = () => {
   const [datos, setdatos] = useState([{}]);
@@ -24,12 +28,14 @@ const Dashboard = () => {
         .then((response) => response.json())
         .then((data) => setdatos(data));
 
+        socket = io('http://localhost:3000')
+
       fetch(`/chats/${localStorage.getItem('email')}`)
         .then(res => res.json())
         .then(data => {
 
           setChats(data)
-          console.log(data)
+          
         })
     })();
   }, [token]);
@@ -41,7 +47,19 @@ const Dashboard = () => {
   //Save new message in database
   async function newMessage(values) {
     if (values.message != "") {
-       
+      await socket.emit('chat:message', {
+        message: values.message
+      });
+
+     socket.on('new:message', function(data){
+        console.log(data)
+         let container =  document.getElementById('container-messages')
+         console.log(container)
+        container.innerHTML += `<div className="rightMessage">
+        ${data.message} <br />
+
+        </div>`
+    })
         fetch('/new_message', {
             method: "PUT",
             headers: { "content-Type": "application/JSON" },
@@ -73,7 +91,8 @@ const Dashboard = () => {
               })
               return <div onClick={() => {
                 setIndividualChat(item)
-
+                console.log(individualChat)
+                 /* socket = io(`http://localhost:3000/dashboard${individualChat._id}`)  */
               }
 
               }>
@@ -88,7 +107,7 @@ const Dashboard = () => {
               </div>
             })}
           </div>
-          <div class="col-md-8 bg-light p-4 rounded container-center-dashboard">
+          <div id="container-messages" className="col-md-8 bg-light p-4 rounded container-center-dashboard">
             {
 
               individualChat.messages.map((item, index) => {
@@ -114,7 +133,7 @@ const Dashboard = () => {
                                 message: ""
                             }}
                             onSubmit={(values) => {
-                                console.log(values)
+                                
                                 newMessage(values)
                             }}
                         >
