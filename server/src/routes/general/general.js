@@ -1,6 +1,9 @@
 // Import all modules
 const { Router } = require("express");
+const multer = require('multer')
 const router = Router();
+const subir = require('../../helpers/subir')
+const upload = multer({ storage: multer.memoryStorage() });
 
 const jwt = require("jsonwebtoken");
 const config = require("../../config/config");
@@ -174,36 +177,23 @@ router.get("/my_information", async (req, res, next) => {
     const information = await User.find({ "email":email });
     res.send(information);
   } catch (err) {
-    console.log(err)
     next(err);
   }
 });
 /* -------------------------------------------------------------------------- */
 
-/* --------------------------- Send notifications --------------------------- */
+/* Upload photo and edit user information */
+  
+    
 
-router.post("/notification_medicine", async (req, res, next) => {
-  try {
-    const { to, message } = req.body;
-    // Your Account Sid and Auth Token from twilio.com/console
-    // and set the environment variables. See http://twil.io/secure
-    const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    const authToken = process.env.TWILIO_AUTH_TOKEN;
-    const client = require("twilio")(accountSid, authToken);
-
-    client.messages
-      .create({
-        from: "whatsapp:+14155238886",
-        body: message,
-        to: `whatsapp:+57${to}`,
-      })
-      .then((message) => console.log(message.sid));
-  } catch (err) {
-    next(err);
-  }
-});
-
-/* -------------------------------------------------------------------------- */
-
+router.put("/profile",upload.single('img'),subir, async (req,res,next) => {
+    try{
+        console.log(req.body.URL)
+        res.json("File updated")
+        console.log()
+    } catch(err) {
+        next(err)
+    }
+})
 //Export the module
 module.exports = router;

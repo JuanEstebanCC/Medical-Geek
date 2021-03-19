@@ -385,6 +385,11 @@ button:hover {
   background-repeat: no-repeat;
   background-size: 75%;
 }
+
+.overflow-medicine{
+  height: 590px;
+  overflow-y: scroll;
+}
 .image-mymedicine {
   width: 100%;
   height: 70%;
@@ -708,4 +713,29 @@ input {
   box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
   border-radius: 90px;
   color: #ffffff !important;
+}
+
+/*Styles time*/
+.react-time-picker__wrapper{
+  background-color: #2ab7a9;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 100px;
+  height: 50px;
+}
+
+.time > input{
+  width: 80px;
+  background: #7872ea;
+  color: white;
+  border-radius: 80px;
+}
+
+.show-time{
+  display: table-cell;
+  padding-right: 15px;
+}
+
+.react-time-picker__inputGroup{
+  text-align: center;
 }

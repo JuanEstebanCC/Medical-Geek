@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+import TimePicker from 'react-time-picker';
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import Modal from 'react-modal'
@@ -8,6 +9,9 @@ const AssignMedicine = () => {
     const [data, setData] = useState([])
     const [patient, setPatient] = useState('')
     const [patientMedicine, setPatientMedicine] = useState([{ medicines: [] }])
+    const [value, onChange] = useState('10:30');
+    const [times, setTimes] = useState([]);
+
     useEffect(() => {
         fetch(`/my_patientes?email=${localStorage.getItem('email')}`, {
             method: 'GET'
@@ -29,7 +33,7 @@ const AssignMedicine = () => {
                 "patient_email": patient,
                 "medicineName": values.medicine_name,
                 "how_many": values.how_many,
-                "how_often": values.how_often
+                "how_often": times
             })
         })
     }
@@ -77,13 +81,16 @@ const AssignMedicine = () => {
 
             })
         )
+        }
+    function addTime(time){
+        setTimes(prevArray => [...prevArray, time])
     }
 
     const validate = Yup.object({
         medicine_name: Yup.string().required("Name required"),
         how_many: Yup.number(),
-        how_often: Yup.number()
-    });
+        how_often: Yup.string()
+      });
     return (
 
         <body>
@@ -95,7 +102,7 @@ const AssignMedicine = () => {
 
             </div>
             <div className="main-container">
-                <div className="container-left">
+                <div className="container-left overflow-medicine">
                     <div className="tittle-login">
                         <p className="main-tittle general-letter">Prescribe medications to your patientes</p>
                         <br />
@@ -180,12 +187,23 @@ const AssignMedicine = () => {
                                             >
                                                 how often (hours)
                                             </label>
-                                            <Field
-                                                type="number"
-                                                className="form-control"
-                                                id="how_often"
-                                                name="how_often"
+                                            <div className="time">
+                                            <TimePicker
+                                                type="textbox"
+                                                format="HH:mm"
+                                                disableClock="true"
+                                                onChange={onChange}
+                                                value={value}
                                             />
+                                            <input type="button" value="Add hour" onClick={()=>addTime(value)}/>
+                                        </div>
+                                            {
+                                                times.map((item)=>
+                                                    <div className="show-time">
+                                                        <h4>{item}</h4>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                     <div className="button">
