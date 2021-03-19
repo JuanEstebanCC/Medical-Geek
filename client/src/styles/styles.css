@@ -395,7 +395,12 @@ button:hover {
   background-repeat: no-repeat;
   background-size: contain;
 }
-
+.delete-Medicine{
+  width: 30%;
+  position: absolute;
+  right: 0%;
+  margin-top: 8%;
+}
 /* Styles for Register */
 input:password {
   font-size: 5px;
@@ -692,7 +697,7 @@ input {
 
 .container-center-dashboard{
   height: 600px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .button-dashboard{

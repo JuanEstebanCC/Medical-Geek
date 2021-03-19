@@ -20,7 +20,26 @@ router.put("/assign_medicine", async (req,res)=>{
     }
   });
   
-  
+  // Delete medicine
+  router.delete('/deleteMedicine',async(req,res)=>{
+    try {
+      const {id_user, id_medicine} = req.body
+
+       await User.findById(id_user, (err, deletedMedicine) => {
+         if(!err){
+          deletedMedicine.medicines.remove({_id: id_medicine})
+         deletedMedicine.save()
+         res.send('ok')
+         }
+        console.log(err)
+    })
+    
+    } catch (error) {
+      console.log(error)
+      next(error)
+    }
+  })
+
   /* See all my patientes */
   router.get("/my_patientes", async (req, res, next) => {
     const {email} = req.query;
