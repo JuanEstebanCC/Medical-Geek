@@ -721,6 +721,17 @@ input {
   border-radius: 80px;
 }
 
+.delete-hour{
+  background: url("../images/delete.png");
+  background-size: 30px, 30px;
+  border: none;
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 50px;
+  background-position: center;
+  margin-left: 10%;
+}
+
 .show-time{
   display: table-cell;
   padding-right: 15px;

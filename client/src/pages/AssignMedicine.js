@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import TimePicker from 'react-time-picker';
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import faker from "faker";
 
 const AssignMedicine = () => {
 
@@ -22,12 +23,16 @@ const AssignMedicine = () => {
         })
         .then(res => res.json())
         .then(data => {
-                console.log(data)
                 setData(data)
          })
     },[])
 
     function AssignMedication(values){
+        const hours = [];
+        times.map(item => {
+            hours.push(item.hour);
+        })
+        
         fetch('/assign_medicine', {
             method: 'PUT',
             headers: {
@@ -37,13 +42,21 @@ const AssignMedicine = () => {
                 "patient_email":patient, 
                 "medicineName": values.medicine_name, 
                 "how_many": values.how_many,
-                "how_often": times
+                "how_often": hours
             })
         })
     }
 
     function addTime(time){
-        setTimes(prevArray => [...prevArray, time])
+        const newhour = {
+            hour: time,
+            uid: faker.random.uuid()
+        }
+        setTimes([...times, newhour])   
+    }
+
+    function deleteHour(uid){
+        setTimes(times.filter(item => item.uid !== uid));
     }
 
     const validate = Yup.object({
@@ -159,8 +172,9 @@ const AssignMedicine = () => {
                                         </div>
                                             {
                                                 times.map((item)=>
-                                                    <div className="show-time">
-                                                        <h4>{item}</h4>
+                                                    <div key={item.uid} className="show-time">
+                                                        <h4>{item.hour}</h4>
+                                                        <input className="delete-hour" type="button" onClick={()=>deleteHour(item.uid)}/>
                                                     </div>
                                                 )
                                             }

@@ -30,7 +30,7 @@ module.exports = async function(moment) {
                 
                         client.messages 
                             .create({ 
-                            body: `hello ${user.full_name} it's time for your medicine ${medicine.nameMedicine}`, 
+                            body: `hello ${user.full_name} it's time for your medicine ${medicine.nameMedicine} its amount is ${medicine.how_many}`, 
                             from: 'whatsapp:+14155238886',       
                             to: 'whatsapp:+573003943986' 
                         }) 
