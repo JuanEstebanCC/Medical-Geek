@@ -18,17 +18,18 @@ const chat = require("../../models/chat");
 
 // End point to register a user
 router.post("/register", async (req, res, next) => {
-  const { email, full_name, password, specialization, usertype } = req.body;
+  const { email, full_name, cell_phone, password, specialization, usertype } = req.body;
   const validate = await validation_Register.validateAsync(req.body);
   let filter = { usertype: 3, specialization };
   User.findRandom(filter, {}, { limit: 1 }, async function (err, results) {
     if (!err) {
       if (usertype === 2) {
         try {
-          const assignedDoctor = results[0].full_name;
+          const assignedDoctor = results[0].email;
           const newUser = new User({
             email,
             full_name,
+            cell_phone,
             password,
             specialization,
             usertype,
@@ -49,6 +50,7 @@ router.post("/register", async (req, res, next) => {
           const newUser = new User({
             email,
             full_name,
+            cell_phone,
             password,
             specialization,
             usertype,
@@ -172,10 +174,9 @@ router.put("/new_message", async (req, res, next) => {
 
 router.get("/my_information", async (req, res, next) => {
   const { id } = req.query;
-  const {email} = req.query
 
   try {
-    const information = await User.find({ "email":email });
+    const information = await User.findById(id, {password: 0});
     res.send(information);
   } catch (err) {
     next(err);

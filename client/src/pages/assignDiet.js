@@ -13,11 +13,7 @@ const DietViewDoctor = () => {
 
   useEffect(async () => {
 
-    const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id')}));
-
-    const data = await res.json();
-
-    const response = await fetch('my_patients?' + new URLSearchParams({doctorName: data[0].full_name}));
+    const response = await fetch('my_patients?' + new URLSearchParams({email: localStorage.getItem('email')}));
 
     const user = await response.json();
 

@@ -69,10 +69,10 @@ router.put("/assign_diet", async (req, res, next)=>{
 
 //My patents
 router.get("/my_patients", async (req, res, next) => {
-    const {doctorName} = req.query;
+    const {email} = req.query;
   
     try {
-      const user = await User.find({assignedDoctor: doctorName});
+      const user = await User.find({assignedDoctor: email});
       res.send(user);
     } catch (error) {
       next(error);

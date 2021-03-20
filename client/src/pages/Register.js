@@ -69,6 +69,7 @@ const Register = () => {
   const validate = Yup.object({
     email: Yup.string().required("Email required"),
     full_name: Yup.string().required("Name required"),
+    cell_phone: Yup.number().required("Cell required"),
     password: Yup.string().min(5, "Password must have at least 5 characters"),
   });
 
@@ -84,6 +85,7 @@ const Register = () => {
       body: JSON.stringify({
         email: values.email,
         full_name: values.full_name,
+        cell_phone: values.cell_phone,
         password: values.password,
         usertype: userTypeState,
         specialization: specialization,
@@ -152,6 +154,7 @@ const Register = () => {
             initialValues={{
               full_name: "",
               email: "",
+              cell_phone: "",
               password: "",
               userType: "",
               specialization: "",
@@ -176,6 +179,21 @@ const Register = () => {
                       className="form-control-register form-group"
                       id="full_name"
                       name="full_name"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label
+                      htmlFor="cell_phone"
+                      className="form-label letter general-letter"
+                    >
+                      Cell phone
+                    </label>
+                    <Field
+                      type="number"
+                      className="form-control-register"
+                      id="cell_phone"
+                      name="cell_phone"
                       required
                     />
                   </div>

@@ -41,7 +41,15 @@ const AssignMedicine = () => {
                 "how_many": values.how_many,
                 "how_often": hours
             })
-        })
+        }).then(res => {
+            if (res.status === 200) {
+                alert('Correctly assigned medicine')
+                setPatient('')
+                values.medicine_name = ""
+                values.how_many = ""
+                setTimes([])
+            }
+          })
     }
 
     async function viewPatientesMedicine(patient) {
@@ -50,6 +58,7 @@ const AssignMedicine = () => {
         setPatientMedicine(data)
     }
 
+    //Remove medicine
     async function deleteMedicine(id,id_user){
         
        await fetch('/deleteMedicine',{
@@ -87,7 +96,9 @@ const AssignMedicine = () => {
 
             })
         )
-        }
+    }
+
+    //Add hour
     function addTime(time){
         const newhour = {
             hour: time,
@@ -96,6 +107,7 @@ const AssignMedicine = () => {
         setTimes([...times, newhour])   
     }
 
+    //Remove hour
     function deleteHour(uid){
         setTimes(times.filter(item => item.uid !== uid));
     }
@@ -105,10 +117,9 @@ const AssignMedicine = () => {
         how_many: Yup.number(),
         how_often: Yup.string()
       });
+
     return (
-
         <body>
-
             <div className="nav-medicine">
                 <div className="logo-medicine">
 
@@ -285,10 +296,7 @@ const AssignMedicine = () => {
                     </div>
                 </div>
             </div>
-
-
         </body>
-
     )
 }
 

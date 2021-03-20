@@ -15,12 +15,12 @@ module.exports = async function(moment) {
     })
 
     const time = moment().format('HH:mm');
-    console.log(time);
 
     users.map((user) => {
-        user.medicines.map((medicine) => {
-            
-            if (medicine.how_often != null) {
+        
+        if (user.medicines) {
+
+            user.medicines.map((medicine) => {
         
                 const arrayTime = medicine.how_often;
                 
@@ -32,13 +32,13 @@ module.exports = async function(moment) {
                             .create({ 
                             body: `hello ${user.full_name} it's time for your medicine ${medicine.nameMedicine} its amount is ${medicine.how_many}`, 
                             from: 'whatsapp:+14155238886',       
-                            to: 'whatsapp:+573003943986' 
+                            to: `whatsapp:+57${user.cell_phone}` 
                         }) 
                         .then(message => console.log('message sent successfully')) 
                         .done();
                     }
                 }
-            }
-        })
+            })
+        }  
     })
 }
