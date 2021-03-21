@@ -21,7 +21,7 @@ import {
   _AssignDiet,
   _MyMedicine,
   _GrupalChats,
-  _Profile,
+  _MyProfile,
 } from "./config/path";
 
 //Import pages
@@ -34,11 +34,10 @@ import ChatPatient from "./pages/chatPatient";
 import ChatDoctor from "./pages/chatDoctor";
 import MyDiet from "./pages/myDiet";
 import AssignDiet from "./pages/assignDiet";
-import AssignMedicine from './pages/AssignMedicine'
-import MyMedicine from './pages/MyMedicine'
-import GrupalChats from './pages/grupalChat'
-import Profile from './pages/Profile.js'
-
+import AssignMedicine from "./pages/AssignMedicine";
+import MyMedicine from "./pages/MyMedicine";
+import GrupalChats from "./pages/grupalChat";
+import MyProfile from "./pages/MyProfile";
 
 const App = () => {
   return (
@@ -55,9 +54,8 @@ const App = () => {
           <PublicRoute path={_Register} component={Register} />
           <PrivateRoute path={_AssignMedicine} component={AssignMedicine} />
           <PrivateRoute path={_MyMedicine} component={MyMedicine} />
-          <PublicRoute component={NotFound} />
           <PublicRoute path={_GrupalChats} component={GrupalChats} />
-          <PublicRoute path={_Profile} component={Profile} />
+          <PrivateRoute path={_MyProfile} component={MyProfile} />
         </Switch>
       </BrowserRouter>
     </AuthProvider>

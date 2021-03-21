@@ -10,26 +10,24 @@ a {
 .body-home {
   overflow: hidden;
 }
-.div-home{
+.div-home {
   width: 100%;
   display: flex;
   height: 670px;
   overflow: scroll;
 }
 
-.container-rigth-home{
+.container-rigth-home {
   width: 60%;
   padding: 3%;
-  
 }
 
-.container-left-home{
+.container-left-home {
   width: 40%;
   padding: 4%;
 }
 
 .img-home {
-  
   width: 100%;
   height: 600px;
   background: url(../images/414.jpg);
@@ -52,13 +50,10 @@ a {
   letter-spacing: 1.25px;
   /* font-feature-settings: "kern" off, "clig" off; */
 
- 
-
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
 }
 
 .p-home {
-  
   width: 90%;
   text-align: center;
 
@@ -386,7 +381,7 @@ button:hover {
   background-size: 75%;
 }
 
-.overflow-medicine{
+.overflow-medicine {
   height: 590px;
   overflow-y: scroll;
 }
@@ -400,7 +395,7 @@ button:hover {
   background-repeat: no-repeat;
   background-size: contain;
 }
-.delete-Medicine{
+.delete-Medicine {
   width: 30%;
   position: absolute;
   right: 0%;
@@ -412,7 +407,6 @@ input:password {
 }
 
 .image-register {
-  
   background-image: url(../images/415.jpg) !important;
   background-size: contain;
   width: 80%;
@@ -695,17 +689,17 @@ input {
   margin-top: 2rem !important;
 }
 
-.container-overflow-dashboard{
+.container-overflow-dashboard {
   height: 680px;
   overflow: scroll;
 }
 
-.container-center-dashboard{
+.container-center-dashboard {
   height: 600px;
   overflow-y: auto;
 }
 
-.button-dashboard{
+.button-dashboard {
   width: 100%;
   height: auto;
   margin-top: 2%;
@@ -716,7 +710,7 @@ input {
 }
 
 /*Styles time*/
-.react-time-picker__wrapper{
+.react-time-picker__wrapper {
   background-color: #2ab7a9;
   margin-top: 20px;
   margin-right: 20px;
@@ -724,14 +718,14 @@ input {
   height: 50px;
 }
 
-.time > input{
+.time > input {
   width: 80px;
   background: #7872ea;
   color: white;
   border-radius: 80px;
 }
 
-.delete-hour{
+.delete-hour {
   background: url("../images/delete.png");
   background-size: 30px, 30px;
   border: none;
@@ -742,25 +736,25 @@ input {
   margin-left: 10%;
 }
 
-.show-time{
+.show-time {
   display: table-cell;
   padding-right: 15px;
 }
 
-.react-time-picker__inputGroup{
+.react-time-picker__inputGroup {
   text-align: center;
 }
-.container-overflow-dashboard{
+.container-overflow-dashboard {
   height: 680px;
   overflow: scroll;
 }
 
-.container-center-dashboard{
+.container-center-dashboard {
   height: 600px;
   overflow-y: scroll;
 }
 
-.button-dashboard{
+.button-dashboard {
   width: 100%;
   height: auto;
   margin-top: 2%;
@@ -770,3 +764,7 @@ input {
   color: #ffffff !important;
 }
 
+.img-profile-max {
+  width: 235px;
+  height: 235px;
+}
