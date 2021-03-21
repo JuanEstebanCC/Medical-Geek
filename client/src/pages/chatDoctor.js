@@ -9,12 +9,8 @@ import '../styles/chat.css'
 const socket = io('http://localhost:3000')
 
 socket.on('new:message', function(data){
-    console.log(data)
     let container =  document.getElementById('container-messages')
-    console.log(container)
-    container.innerHTML += `<div className=${'rightMessage'}>
-    ${data.message} <br />
-    </div>`
+    container.innerHTML += `<div class="rightMessage">${data.message} <br /></div>`
 })
 
 const Chat = () => {
@@ -40,7 +36,7 @@ const Chat = () => {
 
     //Save new message in database
     async function newMessage(values) {
-        if (values.message != "") {
+        if (individualChat.participants[0].email && values.message) {
 
             socket.emit('chat:message', {
                 message: values.message
@@ -56,10 +52,15 @@ const Chat = () => {
                     author: information.full_name,
                     message: values.message
                 })
-            }).then(res => {
-                if (res.status === 200) {values.message = ""}
-              })
-        }
+            })
+                
+            const context_message =  document.getElementById('message');
+            context_message.value = "";
+            values.message = "";
+            
+        } else if (!individualChat.participants[0].email){
+            alert('choose a recipient')
+        } else {alert('write a message')}
     }
     
     return (
