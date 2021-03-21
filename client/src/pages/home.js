@@ -1,38 +1,45 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import "../styles/styles.css";
+import Logo from "../images/logo.ico";
+import HomeImage from "../images/home.jpg";
 
 const Home = () => {
   return (
-
-    <div className="div-home">
-      <div className="container-left-home">
-        <div className="home-title">
-        Chat with a doctor
+    <body>
+      <div className="row">
+        <div className="col s12">
+          <div className="items-home">
+            <img className="materialboxed" width="200" src={Logo} />
+            <h1 className="h1">Chat with <br></br> a doctor!</h1>
+            <p className="flow-text">
+              Worry no more about <br></br> diet, medicine, or <br></br> medical appointment
+        </p>
+            <h3> <b>All in one place</b></h3>
+          </div>
         </div>
-        <div className="p-home">
-        Worry no more about diet, medicine, or medical appointment All in one
-          place.          
+        <div className="col s12">
+          <img className="materialboxed mt-5 " width="800" src={HomeImage} />
+          <div className="buttons">
+            <button className="btn waves-effect waves-light m-5 deep-purple lighten-1" type="submit" name="signin">
+              <a href="/signin"> Sign in
+        <i className="material-icons right">send</i> </a>
+            </button>
+            <button className="btn waves-effect waves-light m-5 deep-purple lighten-1" type="submit" name="signup">
+              <a href="/signup"> Sign up
+        <i className="material-icons right">send</i></a>
+            </button>
+          </div>
         </div>
-        {/* <h1 className="home-title">Chat with a doctor</h1>
-        <div class="p-home">
-          Worry no more about diet, medicine, or medical appointment All in one
-          place.
-        </div>
-        <a class="button-home" href="/login">
-          <span className="text-button-home">Register</span>
-        </a> */}
       </div>
-      <div className="container-rigth-home">
-        <div className="img-home"></div>
+      <div className="footer-copyright">
+        <div className="container">
+          © 2021 Medical Geek, All rights reserved.
+            <a className="grey-text text-darken-4 right" href="https://github.com/JuanEstebanCC/Medical-Geek">GitHub Code</a>
+        </div>
       </div>
-
-
-      
-    </div>
-
-
-  );
+    </body>
+  )
 };
 
 export default withRouter(Home);
