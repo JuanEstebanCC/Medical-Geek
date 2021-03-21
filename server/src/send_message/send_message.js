@@ -1,5 +1,3 @@
-const { json } = require('express');
-const {ObjectId} = require('mongodb');
 //Import Schema
 const User = require('../models/User');
 
@@ -16,15 +14,15 @@ module.exports = async function(moment) {
         users = data
     })
 
-    const time = moment().format('LT');
-    console.log(time);
+    const time = moment().format('HH:mm');
 
     users.map((user) => {
-        user.medicines.map((medicine) => {
-            
-            if (medicine.how_often != null) {
         
-                const arrayTime = medicine.how_often.split(', ');
+        if (user.medicines) {
+
+            user.medicines.map((medicine) => {
+        
+                const arrayTime = medicine.how_often;
                 
                 for (let i = 0; i <= arrayTime.length; i++) {
                 
@@ -32,15 +30,15 @@ module.exports = async function(moment) {
                 
                         client.messages 
                             .create({ 
-                            body: `hello ${user.full_name} it's time for your medicine ${medicine.nameMedicine}`, 
+                            body: `hello ${user.full_name} it's time for your medicine ${medicine.nameMedicine} its amount is ${medicine.how_many}`, 
                             from: 'whatsapp:+14155238886',       
-                            to: 'whatsapp:+573003943986' 
+                            to: `whatsapp:+57${user.cell_phone}` 
                         }) 
                         .then(message => console.log('message sent successfully')) 
                         .done();
                     }
                 }
-            }
-        })
+            })
+        }  
     })
 }

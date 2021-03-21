@@ -10,11 +10,18 @@ const userSchema = new Schema({
     maxLength: 80,
     minLength: 3,
   },
+
+  cell_phone: {
+    type: Number,
+    unique: true
+  },
+  
   email: {
     type: String,
     unique: true,
     pattern: "^w+@[a-zA-Z_]+?.[a-zA-Z]{2,3}$",
   },
+
   password: {
     type: String,
     required: true,
@@ -49,7 +56,7 @@ const userSchema = new Schema({
         default: null,
       },
       how_often: {
-        type: String,
+        type: Array,
         default: null,
       },
     },

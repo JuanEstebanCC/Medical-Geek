@@ -12,8 +12,9 @@ const MyDiet = () => {
         const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id')}));
 
         const data = await res.json();
+        console.log(data[0].dietType)
 
-        if (typeof data[0].dietType !== 'object') {
+        if (data[0].dietType !== "null" && typeof data[0].dietType !== 'object') {
             const response = await fetch('/diet?' + new URLSearchParams({typeDiet: data[0].dietType}));
 
             const diet = await response.json();
@@ -21,8 +22,6 @@ const MyDiet = () => {
             setdata(diet);
             setlist(diet[0].list)
         }
-
-        
 
     }, [])
     const array = Array.from(list)
@@ -59,7 +58,6 @@ const MyDiet = () => {
             </div>
         )
     }
-  
 };
 
 export default withRouter(MyDiet);

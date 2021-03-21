@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import "../styles/styles.css";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import { object } from 'yup/lib/locale';
 
 const DietViewDoctor = () => {
 
@@ -12,11 +13,7 @@ const DietViewDoctor = () => {
 
   useEffect(async () => {
 
-    const res = await fetch('/user_data?' + new URLSearchParams({id: localStorage.getItem('id')}));
-
-    const data = await res.json();
-
-    const response = await fetch('my_patients?' + new URLSearchParams({doctorName: data[0].full_name}));
+    const response = await fetch('my_patients?' + new URLSearchParams({email: localStorage.getItem('email')}));
 
     const user = await response.json();
 
@@ -112,6 +109,7 @@ const DietViewDoctor = () => {
                             }}
                           >
                             <option value="">----</option>
+                            <option value="null">Without diet</option>
                             <option value="Vegetarian">Vegetarian</option>
                             <option value="Carnivore">Carnivore</option>
                             <option value="Macrobiotic">Macrobiotic</option>

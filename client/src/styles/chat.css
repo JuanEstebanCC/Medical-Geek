@@ -1,7 +1,7 @@
-/* body{
+body{
     
     overflow: hidden;
-} */
+}
 
 .chat-container{
     /* overflow-y: hidden; */
@@ -58,14 +58,14 @@
 }
 
 .input-messages-container{
-    width: 82%;
+    width: 78%;
     display: flex;
     position: absolute;
     bottom: 0%;
 }
 
 .input-messages{
-    width: 100%;
+    width: 80%;
 }
 
 .rightMessage{

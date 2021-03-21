@@ -4,7 +4,7 @@ module.exports = function (io) {
         console.log("New connection:", socket.id);
     
         socket.on('chat:message', (data) => {
-            /* console.log(data) */
+            console.log(data)
 
             io.sockets.emit('new:message',data);
         });

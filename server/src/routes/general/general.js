@@ -1,6 +1,9 @@
 // Import all modules
 const { Router } = require("express");
+const multer = require("multer");
 const router = Router();
+const subir = require("../../helpers/subir");
+const upload = multer({ storage: multer.memoryStorage() });
 
 const jwt = require("jsonwebtoken");
 const config = require("../../config/config");
@@ -15,17 +18,25 @@ const chat = require("../../models/chat");
 
 // End point to register a user
 router.post("/register", async (req, res, next) => {
-  const { email, full_name, password, specialization, usertype } = req.body;
+  const {
+    email,
+    full_name,
+    cell_phone,
+    password,
+    specialization,
+    usertype,
+  } = req.body;
   const validate = await validation_Register.validateAsync(req.body);
   let filter = { usertype: 3, specialization };
   User.findRandom(filter, {}, { limit: 1 }, async function (err, results) {
     if (!err) {
       if (usertype === 2) {
         try {
-          const assignedDoctor = results[0].full_name;
+          const assignedDoctor = results[0].email;
           const newUser = new User({
             email,
             full_name,
+            cell_phone,
             password,
             specialization,
             usertype,
@@ -46,6 +57,7 @@ router.post("/register", async (req, res, next) => {
           const newUser = new User({
             email,
             full_name,
+            cell_phone,
             password,
             specialization,
             usertype,
@@ -168,42 +180,42 @@ router.put("/new_message", async (req, res, next) => {
 /* --------------------------- My information --------------------------- */
 
 router.get("/my_information", async (req, res, next) => {
-  const {id} = req.query
+  const { id } = req.query;
 
   try {
-    const information = await User.find({ "_id":id });
+    const information = await User.findById(id, { password: 0 });
     res.send(information);
   } catch (err) {
-    console.log(err)
     next(err);
   }
 });
 /* -------------------------------------------------------------------------- */
 
-/* --------------------------- Send notifications --------------------------- */
+/* Upload photo and edit user information */
 
-router.post("/notification_medicine", async (req, res, next) => {
+router.put("/profile", upload.single("img"), subir, async (req, res, next) => {
   try {
-    const { to, message } = req.body;
-    // Your Account Sid and Auth Token from twilio.com/console
-    // and set the environment variables. See http://twil.io/secure
-    const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    const authToken = process.env.TWILIO_AUTH_TOKEN;
-    const client = require("twilio")(accountSid, authToken);
-
-    client.messages
-      .create({
-        from: "whatsapp:+14155238886",
-        body: message,
-        to: `whatsapp:+57${to}`,
-      })
-      .then((message) => console.log(message.sid));
+    const full_name = req.body.full_name;
+    const email = req.body.email;
+    const photo = req.body.URL;
+    console.log(photo, "- ", full_name, email);
+    User.findOneAndUpdate(
+      { email: email },
+      {
+        $set: {
+          full_name: req.body.full_name,
+          photo: photo,
+        },
+      },
+      {
+        upsert: true,
+      }
+    ).then((result) => {
+      res.json("File has been update correctly");
+    });
   } catch (err) {
     next(err);
   }
 });
-
-/* -------------------------------------------------------------------------- */
-
 //Export the module
 module.exports = router;
