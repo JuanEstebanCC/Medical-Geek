@@ -65,7 +65,7 @@ const Dashboard = () => {
           <div class="col-md-8 bg-light p-4 rounded">
             <div class="row">
               <div class="col-md-12">
-                <h3>h3. Lorem ipsum dolor sit amet.</h3>
+                <h3>Hi! This is Medical Geek</h3>
               </div>
             </div>
             <div class="row">

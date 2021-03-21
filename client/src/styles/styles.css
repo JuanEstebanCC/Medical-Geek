@@ -2,6 +2,25 @@
   font-family: "Padauk", sans-serif;
 }
 
+.items-home{
+  margin-left: 35px;
+  margin-top: 30px;
+}
+
+img{
+  border-radius: 10%;
+}
+
+.p-signup{
+  margin-top: 600px;
+  margin-left: 190px;
+}
+
+.btn-signup{
+  margin-top: 460px;
+  margin-left: 20px;
+}
+
 a {
   text-decoration: none;
 }
@@ -9,20 +28,6 @@ a {
 /* Styles for Home*/
 .body-home {
   overflow: hidden;
-}
-
-.img-home {
-  position: absolute;
-  width: 947px;
-  height: 704px;
-  left: 796px;
-  top: 107px;
-
-  background: url(../images/414.jpg);
-  background-size: 70em 45em;
-  background-repeat: no-repeat;
-  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
-  border-radius: 224px;
 }
 
 .home-title {
@@ -376,7 +381,7 @@ button:hover {
 .logo-medicine {
   width: 10%;
   height: 80px;
-  background: url(../images/logo.png);
+  background: url(../images/logo.ico);
   background-repeat: no-repeat;
   background-size: 75%;
 }
@@ -394,21 +399,6 @@ button:hover {
 /* Styles for Register */
 input:password {
   font-size: 5px;
-}
-
-.image-register {
-  position: absolute;
-  width: 55rem;
-  height: 726px;
-  left: 8rem;
-  top: 10rem;
-
-  margin-top: 1.2rem;
-  background: url("../images/415.jpg");
-  background-size: 55em 45em;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.25));
-  border-radius: 121px;
 }
 
 .button-register {
@@ -484,7 +474,7 @@ input {
 
 .logo-diet {
   position: absolute;
-  background: url("../images/logo.png");
+  background: url("../images/logo.ico");
   background-size: 120px, 120px;
   border: none;
   background-repeat: no-repeat;
@@ -624,6 +614,8 @@ input {
   font-feature-settings: "kern" off;
   color: #000000;
 }
+
+
 
 .assign-diet > h2 {
   position: absolute;

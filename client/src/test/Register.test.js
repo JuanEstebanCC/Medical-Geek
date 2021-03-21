@@ -1,5 +1,5 @@
 import React from "react";
-import Register from "../../../client/src/pages/Register";
+import Register from "../pages/Register";
 import { mount } from "enzyme";
 
 describe("Register", () => {
