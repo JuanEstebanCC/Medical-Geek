@@ -11,16 +11,6 @@ img{
   border-radius: 10%;
 }
 
-.p-signup{
-  margin-top: 600px;
-  margin-left: 190px;
-}
-
-.btn-signup{
-  margin-top: 460px;
-  margin-left: 20px;
-}
-
 a {
   text-decoration: none;
 }
@@ -51,6 +41,8 @@ a {
 
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.35);
 }
+
+
 
 .p-home {
   width: 90%;
@@ -676,29 +668,7 @@ input {
   max-height: 61.46rem !important;
 }
 
-.margin-dash {
-  margin-top: 2rem !important;
-}
 
-.container-overflow-dashboard {
-  height: 680px;
-  overflow: scroll;
-}
-
-.container-center-dashboard {
-  height: 600px;
-  overflow-y: auto;
-}
-
-.button-dashboard {
-  width: 100%;
-  height: auto;
-  margin-top: 2%;
-  background: #7872ea;
-  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
-  border-radius: 90px;
-  color: #ffffff !important;
-}
 
 /*Styles time*/
 .react-time-picker__wrapper {
@@ -734,25 +704,6 @@ input {
 
 .react-time-picker__inputGroup {
   text-align: center;
-}
-.container-overflow-dashboard {
-  height: 680px;
-  overflow: scroll;
-}
-
-.container-center-dashboard {
-  height: 600px;
-  overflow-y: scroll;
-}
-
-.button-dashboard {
-  width: 100%;
-  height: auto;
-  margin-top: 2%;
-  background: #7872ea;
-  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
-  border-radius: 90px;
-  color: #ffffff !important;
 }
 
 .img-profile-max {

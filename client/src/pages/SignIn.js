@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { io } from "socket.io-client";
 import useAuthContext from "../hooks/useAuthContext";
 import SignInImage from "../images/signin.jpg";
 
@@ -53,7 +52,7 @@ const Login = () => {
             <h5 className="flow text">
               Remember a daily contact<br></br> with your doctor
           </h5>
-            <img className="materialboxed ml-5" width="550" src={SignInImage} />
+            <img className="materialboxed ml-5 hoverable" width="550" src={SignInImage} />
           </div>
           <div className="col s12">
             <div className="form-login">
@@ -102,7 +101,7 @@ const Login = () => {
                       </div>
                     </div>
                     <div className="btn-signin">
-                      <button className="btn waves-effect waves-light deep-purple lighten-1" type="submit" name="signup">
+                      <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable" type="submit" name="signup">
                         Sign in
                         <i className="material-icons right">send</i>
                       </button>

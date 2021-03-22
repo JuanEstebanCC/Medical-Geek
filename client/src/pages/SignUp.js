@@ -4,7 +4,6 @@ import { Formik, Form, Field } from "formik";
 import useAuthContext from "../hooks/useAuthContext";
 import * as Yup from "yup";
 import SignUpImage from "../images/signup.jpg";
-import "../styles/styles.css";
 
 const Register = () => {
   const [userType, setUserType] = useState(2);
@@ -15,10 +14,10 @@ const Register = () => {
   function specializationS() {
     if (userTypeState === 3) {
       return (
-        <div class="specialization">
+        <div className="specialization">
           <label
             htmlFor="specialization"
-            className="form-label letter  general-letter"
+            className="specialization form-label letter  general-letter"
           >
             Specialization
           </label>
@@ -42,7 +41,7 @@ const Register = () => {
     }
     if (userTypeState === 2) {
       return (
-        <div class="specialization">
+        <div className="specialization">
           <label
             htmlFor="specialization"
             className="form-label letter  general-letter"
@@ -53,7 +52,6 @@ const Register = () => {
             as="select"
             id="specialization"
             name="specialization"
-            className="p-2 form-select  form-control-register"
             required
             onChange={(e) => {
               setspecialization(e.target.value);
@@ -134,16 +132,15 @@ const Register = () => {
   };
   return (
     <>
-      <div className="container">
         <div className="row">
-          <div className="col s12 mt-2">
+          <div className="col s6 mt-2">
             <h3> <b> Help or help you!</b></h3>
             <h5 className="flow text">
               Find someone to help or <br></br> help yourself
           </h5>
-            <img className="materialboxed ml-5" width="550" src={SignUpImage} />
+            <img className="materialboxed ml-5 hoverable" width="550" src={SignUpImage} />
           </div>
-          <div className="col s12">
+          <div className="col s6">
             <div className="form-login">
               <Formik
                 initialValues={{
@@ -212,13 +209,12 @@ const Register = () => {
                           htmlFor="userType"
                           className="form-label letter  general-letter"
                         >
-                          User Type
+                          You're a?
                     </label>
                         <select
                           as="select"
                           id="userType"
                           name="userType"
-                          className="p-2 form-select  form-control-register"
                           required
                           onChange={(e) => {
                             setUserType(e.target.value);
@@ -228,16 +224,15 @@ const Register = () => {
                           <option value="3">Doctor</option>
                         </select>
                       </div>
+                      {specializationS()}
                     </div>
-
-                    {specializationS()}
                     {errorMessage && (
                       <div className="error text-danger">
                         Error: {errorMessage}{" "}
                       </div>
                     )}
                     <div className="btn-signup">
-                      <button className="btn waves-effect waves-light deep-purple lighten-1" type="submit" name="signup">
+                      <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable" type="submit" name="signup">
                         Sign up
                         <i className="material-icons right">send</i>
                       </button>
@@ -254,7 +249,6 @@ const Register = () => {
             </div>
           </div>
         </div>
-      </div>
       <div className="footer-copyright">
         <div className="container">
           © 2021 Medical Geek, All rights reserved.
