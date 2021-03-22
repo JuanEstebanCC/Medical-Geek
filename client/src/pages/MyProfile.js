@@ -3,6 +3,9 @@ import { withRouter } from "react-router-dom";
 import axios from "axios";
 import "../styles/styles.css";
 
+import ConfirmationB from "../components/confirmationButton";
+import ChangeButton from "../components/changeButton";
+
 const MyProfile = () => {
   const [datos, setdatos] = useState([{}]);
   const [newDatos, setNewDatos] = useState({
@@ -20,6 +23,10 @@ const MyProfile = () => {
   const handlePhoto = (e) => {
     setNewDatos({ ...newDatos, photo: e.target.files[0] });
   };
+
+  const [confirmation, setConfirmation] = useState({
+    confirmationButton: "",
+  });
 
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("id");
@@ -62,6 +69,19 @@ const MyProfile = () => {
     }, 200);
   };
 
+  const toggleConfirmation = (e) => {
+    e.preventDefault();
+    setConfirmation({
+      confirmationButton: true,
+    });
+  };
+
+  const toggleConfirmationFalse = (e) => {
+    e.preventDefault();
+    setConfirmation({
+      confirmationButton: false,
+    });
+  };
   return (
     <body>
       <div className="myDiet">
@@ -81,7 +101,9 @@ const MyProfile = () => {
               height="255px"
               alt="There is you"
             />
-            <form onSubmit={handleSubmitEdit} encType="multipart/form-data">
+            <form //onSubmit={handleSubmitEdit}
+              encType="multipart/form-data"
+            >
               <div class="form-row">
                 <div class="col pb-3">
                   <input
@@ -110,12 +132,14 @@ const MyProfile = () => {
                 </div>
               </div>
               <div className="d-flex justify-content-center align-items-center m-2">
-                <button
-                  onClick={handleSubmitEdit}
-                  className="btn btn-danger m-3"
-                >
-                  Change
-                </button>
+                {confirmation.confirmationButton ? (
+                  <ConfirmationB
+                    onClick={handleSubmitEdit}
+                    onClick2={toggleConfirmationFalse}
+                  />
+                ) : (
+                  <ChangeButton onClick={toggleConfirmation} />
+                )}
               </div>
             </form>
           </div>

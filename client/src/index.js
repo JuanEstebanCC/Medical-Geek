@@ -7,7 +7,7 @@ import PrivateRoute from "./components/privateRout";
 import PublicRoute from "./components/publicRout";
 //Import auth contenxt provider
 import AuthProvider from "./contexts/authContext";
-import 'materialize-css/dist/css/materialize.min.css';
+import "materialize-css/dist/css/materialize.min.css";
 
 //Import path
 import {
@@ -27,7 +27,7 @@ import {
 
 //Import pages
 import NotFound from "./pages/notFound";
-import Home from "./pages/Home";
+import Home from "./pages/home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";

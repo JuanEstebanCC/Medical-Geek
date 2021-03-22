@@ -115,12 +115,17 @@ const Dashboard = () => {
           })}
         </div>
         <div className="col s4">
-          <h3>Hi! This is  <img className="materialboxed ml-10" width="100" src={Logo} />
+          <h3>
+            Hi! This is{" "}
+            <img className="materialboxed ml-10" width="100" src={Logo} />
           </h3>
           <div class="input-field col s10">
             <input id="last_name" type="text" className="validate" />
             <label for="last_name">Write here</label>
-            <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable" type="button">
+            <button
+              className="btn waves-effect waves-light deep-purple lighten-1 hoverable"
+              type="button"
+            >
               Go<i class="material-icons right">send</i>
             </button>
           </div>
@@ -140,7 +145,7 @@ const Dashboard = () => {
                 );
               })}
               /*Chat Dashboard*/
-              /* <div className="input-messages-container">
+          /* <div className="input-messages-container">
               <Formik
                 initialValues={{
                   message: "",
@@ -173,12 +178,17 @@ const Dashboard = () => {
         </div>
         <div className="col s4">
           <img
-            alt="profile picture"
+            alt="Your face here"
             src={datos.photo}
+            width="155px"
+            height="185px"
             className="m-3 mt-5 rounded mx-auto d-block rounded-circle w-75"
           />
           <a href="/MyProfile">
-            <button type="button" className="btn waves-effect waves-light deep-purple lighten-1 hoverable mx-auto d-block">
+            <button
+              type="button"
+              className="btn waves-effect waves-light deep-purple lighten-1 hoverable mx-auto d-block"
+            >
               Edit profile <i class="material-icons right">edit</i>
             </button>
           </a>
@@ -188,24 +198,26 @@ const Dashboard = () => {
           <h4 className="text-center text-justify p-2">{datos.full_name}</h4>
           <a href={datos.usertype === 2 ? "/MyMedicine" : "/AssignMedicine"}>
             <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mx-auto d-block">
-              {datos.usertype === 2
-                ? "View medicaments"
-                : "Assign Medicaments"} <i class="material-icons right">local_hospital</i>
+              {datos.usertype === 2 ? "View medicaments" : "Assign Medicaments"}{" "}
+              <i class="material-icons right">local_hospital</i>
             </button>
           </a>
           <a href={datos.usertype === 2 ? "/MyDiet" : "/assignDiet"}>
             <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-5 mx-auto d-block">
-              {datos.usertype === 2 ? "My diet" : "Assign a diet"} <i class="material-icons right">local_dining</i>
+              {datos.usertype === 2 ? "My diet" : "Assign a diet"}{" "}
+              <i class="material-icons right">local_dining</i>
             </button>
           </a>
           <a href="/grupalChats">
             <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-5 mx-auto d-block">
-              Interesting chats <i class="material-icons right">question_answer</i>
+              Interesting chats{" "}
+              <i class="material-icons right">question_answer</i>
             </button>
           </a>
           <button
             className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-5 mx-auto d-block"
-            onClick={logout}>
+            onClick={logout}
+          >
             Logout<i class="material-icons right">exit_to_app</i>
           </button>
         </div>
