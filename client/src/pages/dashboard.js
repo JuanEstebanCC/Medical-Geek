@@ -7,13 +7,17 @@ import Logo from "../images/logo.ico";
 
 const socket = io('http://localhost:3000')
 
-socket.on('new:message', function(data){
+/*socket.on('new:message', function(data){
   let container =  document.getElementById('container-messages')
 
   if (data.sender_id != localStorage.getItem("id")) {('msg_history').append (
     container.innerHTML += `<div class="rightMessage">${data.message} <br /></div>`
   )
-}})
+}})*/
+socket.on('new:message', function(data){
+  let container =  document.getElementById('container-messages')
+  container.innerHTML += `<div class="rightMessage">${data.message} <br /></div>`
+})
 
 const Dashboard = () => {
   const [datos, setdatos] = useState([{}]);
@@ -64,7 +68,7 @@ const Dashboard = () => {
         sender_id: localStorage.getItem("id")
       });
 
-      /*fetch("/new_message", {
+      fetch("/new_message", {
         method: "PUT",
         headers: { "content-Type": "application/JSON" },
         body: JSON.stringify({
@@ -74,7 +78,7 @@ const Dashboard = () => {
           author: datos.full_name,
           message: values.message,
         }),
-      });*/
+      });
 
       const context_message =  document.getElementById('message');
       context_message.value = "";
