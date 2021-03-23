@@ -66,7 +66,7 @@ const MyProfile = () => {
       });
     setTimeout(() => {
       window.location.reload();
-    }, 800);
+    }, 1000);
   };
 
   const toggleConfirmation = (e) => {
