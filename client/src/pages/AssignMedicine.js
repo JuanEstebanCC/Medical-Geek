@@ -177,7 +177,7 @@ const AssignMedicine = () => {
         <div className="col s6">
           <section className="section scrollspy">
             <p className="main-tittle mt-5 general-letter">
-              Prescribe medications to your patientes
+              Prescribe medications to your patients
             </p>
             <br />
             <div className="pb-4">
@@ -292,7 +292,7 @@ const AssignMedicine = () => {
                         </div>
                       ))}
                       <button
-                      className="btn waves-effect waves-light mt-5 deep-purple lighten-1 hoverable"
+                      className="btn waves-effect waves-light mx-auto d-block mt-5 deep-purple lighten-1 hoverable"
                       type="submit"
                       name="signup"
                     >
