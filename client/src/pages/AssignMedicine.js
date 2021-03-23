@@ -171,16 +171,18 @@ const AssignMedicine = () => {
             <br />
           </div>
           <div className="medicine-form">
-            <ReactSearchAutocomplete
-              items={enfermedades}
-              fuseOptions={{ keys: ["code", "description"] }}
-              onSearch={handleOnSearch}
-              onSelect={handleOnSelect}
-              onFocus={handleOnFocus}
-              maxResults={5}
-              resultStringKeyName="description"
-              autoFocus
-            />
+            <div className="mt-5 mb-5 p-4">
+              <ReactSearchAutocomplete
+                items={enfermedades}
+                fuseOptions={{ keys: ["code", "description"] }}
+                onSearch={handleOnSearch}
+                onSelect={handleOnSelect}
+                onFocus={handleOnFocus}
+                maxResults={5}
+                resultStringKeyName="description"
+                autoFocus
+              />
+            </div>
             <Formik
               initialValues={{
                 patient: "juanescifuentes75@gmail.com",

@@ -17,7 +17,7 @@ const Register = () => {
         <div className="mt-3">
           <label
             htmlFor="specialization"
-            className="specialization form-label letter  general-letter"
+            className="form-label letter  general-letter"
           >
             Specialization
           </label>
@@ -25,7 +25,6 @@ const Register = () => {
             as="select"
             id="specialization"
             name="specialization"
-            className="p-2 form-select  form-control-register"
             required
             onChange={(e) => {
               setspecialization(e.target.value);
@@ -70,6 +69,7 @@ const Register = () => {
     email: Yup.string().required("Email required"),
     full_name: Yup.string().required("Name required"),
     password: Yup.string().min(5, "Password must have at least 5 characters"),
+    cell_phone: Yup.number().required("Cell Phone required"),
   });
 
   const handleSubmit = async (values) => {
@@ -87,6 +87,7 @@ const Register = () => {
         password: values.password,
         usertype: userTypeState,
         specialization: specialization,
+        cell_phone: values.cell_phone,
       }),
     });
     const content = await rawResponse.json();
@@ -155,6 +156,7 @@ const Register = () => {
                 email: "",
                 password: "",
                 userType: "",
+                cell_phone: "",
                 specialization: "",
               }}
               validationSchema={validate}
@@ -174,7 +176,7 @@ const Register = () => {
                       </label>
                       <Field
                         type="text"
-                        className="form-control-register form-group"
+                        className="form-control-register"
                         id="full_name"
                         name="full_name"
                         required
@@ -213,8 +215,23 @@ const Register = () => {
                     </div>
                     <div className="mb-3">
                       <label
+                        htmlFor="cell_phone"
+                        className="form-label letter general-letter"
+                      >
+                        Cell Phone
+                      </label>
+                      <Field
+                        type="number"
+                        className="form-control-register"
+                        id="cell_phone"
+                        name="cell_phone"
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label
                         htmlFor="userType"
-                        className="form-label letter  general-letter"
+                        className="form-label letter  general-letter mt-3"
                       >
                         You're a?
                       </label>

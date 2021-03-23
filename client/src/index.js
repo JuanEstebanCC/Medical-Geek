@@ -53,7 +53,7 @@ const App = () => {
           <PrivateRoute path={_MyDiet} component={MyDiet} />
           <PrivateRoute path={_AssignDiet} component={AssignDiet} />
           <PublicRoute path={_SignUp} component={SignUp} />
-          <PublicRoute path={_AssignMedicine} component={AssignMedicine} />
+          <PrivateRoute path={_AssignMedicine} component={AssignMedicine} />
           <PrivateRoute path={_MyMedicine} component={MyMedicine} />
           <PublicRoute path={_GrupalChats} component={GrupalChats} />
           <PrivateRoute path={_MyProfile} component={MyProfile} />
