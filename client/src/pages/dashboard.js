@@ -115,15 +115,15 @@ const Dashboard = () => {
           })}
         </div>
         <div className="col s4">
-          <h3>
+          <h3 className="text-center">
             Hi! This is{" "}
-            <img className="materialboxed ml-10 hoverable" width="100" src={Logo} />
+            <img className="materialboxed ml-10 center-block hoverable" width="100" src={Logo} />
           </h3>
           <div class="input-field col s10">
             <input id="last_name" type="text" className="validate" />
             <label for="last_name">Write here</label>
             <button
-              className="btn waves-effect waves-light deep-purple lighten-1 hoverable"
+              className="btn waves-effect waves-light mx-auto d-block deep-purple lighten-1 hoverable"
               type="button"
             >
               Go<i class="material-icons right">send</i>

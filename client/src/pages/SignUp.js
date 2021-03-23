@@ -135,16 +135,16 @@ const Register = () => {
     <>
       <div className="row">
         <div className="col s6 mt-2">
-          <h3>
+          <h3 className="text-center">
             {" "}
             <b> Help or help you!</b>
           </h3>
-          <h5 className="flow text">
+          <h5 className="flow-text text-center">
             Find someone to help or <br></br> help yourself
           </h5>
           <img
-            className="materialboxed ml-5 hoverable"
-            width="550"
+            className="materialboxed center-block ml-5 hoverable"
+            width="600"
             src={SignUpImage}
           />
         </div>
@@ -257,7 +257,7 @@ const Register = () => {
                   )}
                   <div className="btn-signup">
                     <button
-                      className="btn waves-effect waves-light deep-purple lighten-1 hoverable"
+                      className="btn waves-effect waves-light mx-auto d-block deep-purple lighten-1 hoverable"
                       type="submit"
                       name="signup"
                     >
@@ -270,7 +270,7 @@ const Register = () => {
             </Formik>
           </div>
           <div className="p-signup">
-            <p className="flow-text">
+            <p className="flow-text right">
               Do you have an account? <br />
               <a href="/signin">Sign In</a>
             </p>

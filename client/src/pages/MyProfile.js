@@ -129,7 +129,7 @@ const MyProfile = () => {
             <label for="new_name">write your new name here</label>
           </div>
           <div className="col s6">
-            <label class="h5 form-label" for="photo">
+            <label className="h5 form-label text-center" for="photo">
               Choose your new profile picture!
                   </label>
             <input

@@ -10,12 +10,12 @@ const Home = () => {
       <div className="row">
         <div className="col s12">
           <div className="items-home">
-            <img className="materialboxed" width="200" src={Logo} />
-            <h1 className="h1">Chat with <br></br> a doctor!</h1>
-            <p className="flow-text">
+            <img className="materialboxed center-block" width="275" src={Logo} />
+            <h1 className="h1 text-center">Chat with <br></br> a doctor!</h1>
+            <p className="flow-text text-center">
               Worry no more about <br></br> diet, medicine, or <br></br> medical appointment
         </p>
-            <h3> <b>All in one place</b></h3>
+            <h3 className="text-center"> <b>All in one place</b></h3>
           </div>
         </div>
         <div className="col s12">

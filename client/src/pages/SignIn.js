@@ -45,14 +45,13 @@ const Login = () => {
 
   return (
     <>
-      <div className="container">
         <div className="row">
           <div className="col s12 mt-2">
-            <h3> <b> Welcome!</b></h3>
-            <h5 className="flow text">
+            <h3 className="text-center"> <b> Welcome!</b></h3>
+            <h5 className="flow-text text-center">
               Remember a daily contact<br></br> with your doctor
           </h5>
-            <img className="materialboxed ml-5 hoverable" width="550" src={SignInImage} />
+            <img className="materialboxed center-block ml-5 hoverable" width="550" src={SignInImage} />
           </div>
           <div className="col s12">
             <div className="form-login">
@@ -101,7 +100,7 @@ const Login = () => {
                       </div>
                     </div>
                     <div className="btn-signin">
-                      <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable" type="submit" name="signup">
+                      <button className="btn waves-effect waves-light mx-auto d-block deep-purple lighten-1 hoverable" type="submit" name="signup">
                         Sign in
                         <i className="material-icons right">send</i>
                       </button>
@@ -111,14 +110,13 @@ const Login = () => {
               </Formik>
             </div>
             <div className="p-signin">
-              <p className="flow-text">
+              <p className="flow-text right">
                 Don't have an account yet? <br />
                 <a href="/signup">Sign Up</a>
               </p>
             </div>
           </div>
         </div>
-      </div>
       <div className="footer-copyright">
         <div className="container">
           © 2021 Medical Geek, All rights reserved.
