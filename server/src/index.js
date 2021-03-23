@@ -6,7 +6,6 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const app = express();
-const socketio = require("socket.io");
 const http = require("http");
 const cron = require("node-cron");
 const moment = require("moment");
@@ -57,7 +56,13 @@ app.use(handleErrors);
 
 //Socket.io
 const server = http.createServer(app);
-const io = socketio(server);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*:*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  },
+});
+//const io = socketio(server);
 //Import connection socket
 require("./sockets/sockets")(io);
 
