@@ -234,6 +234,7 @@ const AssignMedicine = () => {
                       >
                         Patient
                       </label>
+                      <div className="input-field col s12">
                       <select
                         id="patient"
                         name="patient"
@@ -241,21 +242,23 @@ const AssignMedicine = () => {
                           setPatient(e.target.value);
                         }}
                       >
-                        <option value="">-</option>
-                        <option value="juanpaciente@gmail.com">
-                          Juan Paciente{" "}
-                        </option>
-                        {data.map((item, index) => {
-                          console.log(item.email, item.full_name);
+                        <option value="">Choose a patient</option>
+                        <option value={data.map((item, index) => {
+                          console.log("Mail: ", item.email);
                           return (
-                            <option value={item.email}>{item.full_name}</option>
+                           item.email
+                          );
+                        })}>
+                          {data.map((item, index) => {
+                          console.log("Full name: ", item.full_name);
+                          return (
+                            item.full_name
                           );
                         })}
+                        </option>
                       </select>
+                      </div>
                     </div>
-                    {/* <div class="mb-3">
-                                            <br />
-                                        </div> */}
                     <div class="mb-3">
                       <label
                         htmlFor="password"

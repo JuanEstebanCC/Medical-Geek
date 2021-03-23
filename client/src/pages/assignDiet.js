@@ -13,7 +13,7 @@ const DietViewDoctor = () => {
   useEffect(async () => {
     const response = await fetch(
       "my_patients?" +
-        new URLSearchParams({ email: localStorage.getItem("email") })
+      new URLSearchParams({ email: localStorage.getItem("email") })
     );
 
     const user = await response.json();
@@ -78,7 +78,9 @@ const DietViewDoctor = () => {
               <Form>
                 <div>
                   <div>
-                    <label htmlFor="patient_name">Patient</label>
+                    <label
+                      className="form-label letter general-letter"
+                    >Patient</label>
                     <select
                       id="patient_name"
                       name="patient_name"
@@ -87,10 +89,14 @@ const DietViewDoctor = () => {
                         setpatient_name(e.target.value);
                       }}
                     >
-                      <option value="">-</option>
+                      <option value={data.map((patient) => (
+                        <option value={patient.email}>
+                          {patient.email}
+                        </option>
+                      ))}>Choose a patient</option>
                       {data.map((patient) => (
                         <option value={patient.full_name}>
-                          {patient.email}
+                          {patient.full_name}
                         </option>
                       ))}
                     </select>
@@ -110,7 +116,7 @@ const DietViewDoctor = () => {
                         setdietType(e.target.value);
                       }}
                     >
-                      <option value="">----</option>
+                      <option value="">Choose a diet</option>
                       <option value="null">Without diet</option>
                       <option value="Vegetarian">Vegetarian</option>
                       <option value="Carnivore">Carnivore</option>
