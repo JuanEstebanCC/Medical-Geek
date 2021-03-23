@@ -48,6 +48,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", generalServices);
 app.use("/", doctorServices);
 app.use("/", patienteServices);
+
 app.use(require("./routes/send_mail/send_mail"));
 
 // Error Middlewares
@@ -61,10 +62,9 @@ const io = socketio(server);
 require("./sockets/sockets")(io);
 
 // send message
-cron.schedule('* * * * *', () => {
+cron.schedule("* * * * *", () => {
   require("./send_message/send_message")(moment);
 });
-
 
 server.listen(app.get("port"), () => {
   console.log(`Server running on port ${app.get("port")}`);

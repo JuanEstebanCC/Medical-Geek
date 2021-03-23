@@ -4,6 +4,8 @@ const multer = require("multer");
 const router = Router();
 const subir = require("../../helpers/subir");
 const upload = multer({ storage: multer.memoryStorage() });
+const csv = require("csv-parser");
+const fs = require("fs");
 
 const jwt = require("jsonwebtoken");
 const config = require("../../config/config");
@@ -215,6 +217,20 @@ router.put("/profile", upload.single("img"), subir, async (req, res, next) => {
     });
   } catch (err) {
     next(err);
+  }
+});
+
+router.get("/enfermedades", async (req, res, next) => {
+  try {
+    const results = [];
+    fs.createReadStream(__dirname + "/" + "data.csv")
+      .pipe(csv())
+      .on("data", (data) => results.push(data))
+      .on("end", (data) => {
+        res.send(results);
+      });
+  } catch (err) {
+    console.log(err);
   }
 });
 //Export the module

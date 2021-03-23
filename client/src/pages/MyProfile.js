@@ -82,6 +82,7 @@ const MyProfile = () => {
       confirmationButton: false,
     });
   };
+
   return (
     <body>
       <div className="myDiet">
