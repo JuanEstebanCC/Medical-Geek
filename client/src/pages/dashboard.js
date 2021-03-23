@@ -5,7 +5,15 @@ import { Formik, Form, Field } from "formik";
 import io from "socket.io-client";
 import Logo from "../images/logo.ico";
 
-let socket;
+const socket = io('http://localhost:3000')
+
+socket.on('new:message', function(data){
+  let container =  document.getElementById('container-messages')
+
+  if (data.sender_id != localStorage.getItem("id")) {('msg_history').append (
+    container.innerHTML += `<div class="rightMessage">${data.message} <br /></div>`
+  )
+}})
 
 const Dashboard = () => {
   const [datos, setdatos] = useState([{}]);
@@ -36,8 +44,6 @@ const Dashboard = () => {
         .then((response) => response.json())
         .then((data) => setdatos(data));
 
-      socket = io("http://localhost:3000");
-
       fetch(`/chats/${localStorage.getItem("email")}`)
         .then((res) => res.json())
         .then((data) => {
@@ -52,21 +58,13 @@ const Dashboard = () => {
 
   //Save new message in database
   async function newMessage(values) {
-    if (values.message != "") {
+    if (individualChat.participants[0].email && values.message) {
       await socket.emit("chat:message", {
         message: values.message,
+        sender_id: localStorage.getItem("id")
       });
 
-      socket.on("new:message", function (data) {
-        console.log(data);
-        let container = document.getElementById("container-messages");
-        console.log(container);
-        container.innerHTML += `<div className="rightMessage">
-        ${data.message} <br />
-
-        </div>`;
-      });
-      fetch("/new_message", {
+      /*fetch("/new_message", {
         method: "PUT",
         headers: { "content-Type": "application/JSON" },
         body: JSON.stringify({
@@ -76,8 +74,15 @@ const Dashboard = () => {
           author: datos.full_name,
           message: values.message,
         }),
-      });
-    }
+      });*/
+
+      const context_message =  document.getElementById('message');
+      context_message.value = "";
+      values.message = "";
+      
+    } else if (!individualChat.participants[0].email){
+      alert('choose a recipient')
+    } else {alert('write a message')}
   }
 
   return (
@@ -115,7 +120,7 @@ const Dashboard = () => {
           })}
         </div>
         <div className="col s4">
-          <h3 className="text-center">
+          {/*<h3 className="text-center">
             Hi! This is{" "}
             <img
               className="materialboxed ml-10 center-block hoverable"
@@ -132,9 +137,8 @@ const Dashboard = () => {
             >
               Go<i class="material-icons right">send</i>
             </button>
-          </div>
-          {/* Messages and Chat */}
-          {/* <div id="container-messages">
+        </div>*/}
+           <div id="container-messages">
               {individualChat.messages.map((item, index) => {
                 let messagesDesign = "leftMessage";
                 if (item.email == `${datos.email}`) {
@@ -143,13 +147,13 @@ const Dashboard = () => {
                 return (
                   <div className="contenedor">
                     <div className={messagesDesign}>
-                      {item.message} your messages will appear here<br />
+                      {item.message}<br />
                     </div>
                   </div>
                 );
               })}
-              /*Chat Dashboard*/
-          /* <div className="input-messages-container">
+              {/*Chat Dashboard*/}
+              <div className="input-messages-container">
               <Formik
                 initialValues={{
                   message: "",
@@ -167,10 +171,11 @@ const Dashboard = () => {
                       >Hi! Doctor</label>
                       <Field
                         type="text"
+                        className="form-control input-messages"
                         id="message"
                         name="message"
                       />
-                      <button type="submit" className="btn btn-info">
+                      <button  type="submit" className="btn btn-info">
                         Enviar
                       </button>
                     </div>
@@ -178,7 +183,7 @@ const Dashboard = () => {
                 )}
               </Formik>
             </div>
-            </div> */}
+            </div>
         </div>
         <div className="col s4">
           <img
