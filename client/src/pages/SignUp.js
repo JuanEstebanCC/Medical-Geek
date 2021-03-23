@@ -14,10 +14,10 @@ const Register = () => {
   function specializationS() {
     if (userTypeState === 3) {
       return (
-        <div className="specialization">
+        <div className="mt-3">
           <label
             htmlFor="specialization"
-            className="specialization form-label letter  general-letter"
+            className="form-label letter  general-letter"
           >
             Specialization
           </label>
@@ -25,7 +25,6 @@ const Register = () => {
             as="select"
             id="specialization"
             name="specialization"
-            className="form-select  form-control-register"
             required
             onChange={(e) => {
               setspecialization(e.target.value);
@@ -41,7 +40,7 @@ const Register = () => {
     }
     if (userTypeState === 2) {
       return (
-        <div className="specialization">
+        <div className="mt-3">
           <label
             htmlFor="specialization"
             className="form-label letter  general-letter"
@@ -70,6 +69,7 @@ const Register = () => {
     email: Yup.string().required("Email required"),
     full_name: Yup.string().required("Name required"),
     password: Yup.string().min(5, "Password must have at least 5 characters"),
+    cell_phone: Yup.number().required("Cell Phone required"),
   });
 
   const handleSubmit = async (values) => {
@@ -87,6 +87,7 @@ const Register = () => {
         password: values.password,
         usertype: userTypeState,
         specialization: specialization,
+        cell_phone: values.cell_phone,
       }),
     });
     const content = await rawResponse.json();
@@ -117,10 +118,10 @@ const Register = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          "email_participant1": values.email,
-          "name_participant1": values.full_name,
-          "name_participant2": 'Lorena',
-          "email_participant2": 'lorena0118a@gmail.com',
+          email_participant1: values.email,
+          name_participant1: values.full_name,
+          name_participant2: "Lorena",
+          email_participant2: "lorena0118a@gmail.com",
         }),
       });
     } else {
@@ -132,127 +133,159 @@ const Register = () => {
   };
   return (
     <>
-        <div className="row">
-          <div className="col s6 mt-2">
-            <h3> <b> Help or help you!</b></h3>
-            <h5 className="flow text">
-              Find someone to help or <br></br> help yourself
+      <div className="row">
+        <div className="col s6 mt-2">
+          <h3>
+            {" "}
+            <b> Help or help you!</b>
+          </h3>
+          <h5 className="flow text">
+            Find someone to help or <br></br> help yourself
           </h5>
-            <img className="materialboxed ml-5 hoverable" width="550" src={SignUpImage} />
-          </div>
-          <div className="col s6">
-            <div className="form-login">
-              <Formik
-                initialValues={{
-                  full_name: "",
-                  email: "",
-                  password: "",
-                  userType: "",
-                  specialization: "",
-                }}
-                validationSchema={validate}
-                onSubmit={(values) => {
-                  handleSubmit(values);
-                }}
-              >
-                {(formik) => (
-                  <Form className="register-form">
-                    <div className="register-form">
-                      <div className="mb-3">
-                        <label
-                          htmlFor="full_name"
-                          className="form-label letter general-letter"
-                        >
-                          Full name
-                    </label>
-                        <Field
-                          type="text"
-                          className="form-control-register form-group"
-                          id="full_name"
-                          name="full_name"
-                          required
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label
-                          htmlFor="email"
-                          className="form-label letter general-letter"
-                        >
-                          Email
-                    </label>
-                        <Field
-                          type="email"
-                          className="form-control-register"
-                          id="email"
-                          name="email"
-                          required
-                        />
-                      </div>
+          <img
+            className="materialboxed ml-5 hoverable"
+            width="550"
+            src={SignUpImage}
+          />
+        </div>
+        <div className="col s6">
+          <div className="form-login">
+            <Formik
+              initialValues={{
+                full_name: "",
+                email: "",
+                password: "",
+                userType: "",
+                cell_phone: "",
+                specialization: "",
+              }}
+              validationSchema={validate}
+              onSubmit={(values) => {
+                handleSubmit(values);
+              }}
+            >
+              {(formik) => (
+                <Form className="register-form">
+                  <div className="register-form">
+                    <div className="mb-3">
+                      <label
+                        htmlFor="full_name"
+                        className="form-label letter general-letter"
+                      >
+                        Full name
+                      </label>
+                      <Field
+                        type="text"
+                        className="form-control-register"
+                        id="full_name"
+                        name="full_name"
+                        required
+                      />
+                    </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="email"
+                        className="form-label letter general-letter"
+                      >
+                        Email
+                      </label>
+                      <Field
+                        type="email"
+                        className="form-control-register"
+                        id="email"
+                        name="email"
+                        required
+                      />
+                    </div>
 
-                      <div className="mb-3">
-                        <label
-                          htmlFor="password"
-                          className="form-label letter general-letter"
-                        >
-                          Password
-                    </label>
-                        <Field
-                          type="password"
-                          className="form-control-register"
-                          id="password"
-                          name="password"
-                          required
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <label
-                          htmlFor="userType"
-                          className="form-label letter  general-letter"
-                        >
-                          You're a?
-                    </label>
-                        <select
-                          as="select"
-                          id="userType"
-                          name="userType"
-                          required
-                          onChange={(e) => {
-                            setUserType(e.target.value);
-                          }}
-                        >
-                          <option value="2">Patient</option>
-                          <option value="3">Doctor</option>
-                        </select>
-                      </div>
-                      {specializationS()}
+                    <div className="mb-3">
+                      <label
+                        htmlFor="password"
+                        className="form-label letter general-letter"
+                      >
+                        Password
+                      </label>
+                      <Field
+                        type="password"
+                        className="form-control-register"
+                        id="password"
+                        name="password"
+                        required
+                      />
                     </div>
-                    {errorMessage && (
-                      <div className="error text-danger">
-                        Error: {errorMessage}{" "}
-                      </div>
-                    )}
-                    <div className="btn-signup">
-                      <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable" type="submit" name="signup">
-                        Sign up
-                        <i className="material-icons right">send</i>
-                      </button>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="cell_phone"
+                        className="form-label letter general-letter"
+                      >
+                        Cell Phone
+                      </label>
+                      <Field
+                        type="number"
+                        className="form-control-register"
+                        id="cell_phone"
+                        name="cell_phone"
+                        required
+                      />
                     </div>
-                  </Form>
-                )}
-              </Formik>
-            </div>
-            <div className="p-signup">
-              <p className="flow-text">
-                Do you have an account? <br />
-                <a href="/signin">Sign In</a>
-              </p>
-            </div>
+                    <div className="mb-3">
+                      <label
+                        htmlFor="userType"
+                        className="form-label letter  general-letter mt-3"
+                      >
+                        You're a?
+                      </label>
+                      <select
+                        as="select"
+                        id="userType"
+                        name="userType"
+                        required
+                        onChange={(e) => {
+                          setUserType(e.target.value);
+                        }}
+                      >
+                        <option value="2">Patient</option>
+                        <option value="3">Doctor</option>
+                      </select>
+                    </div>
+                    {specializationS()}
+                  </div>
+                  {errorMessage && (
+                    <div className="error text-danger">
+                      Error: {errorMessage}{" "}
+                    </div>
+                  )}
+                  <div className="btn-signup">
+                    <button
+                      className="btn waves-effect waves-light deep-purple lighten-1 hoverable"
+                      type="submit"
+                      name="signup"
+                    >
+                      Sign up
+                      <i className="material-icons right">send</i>
+                    </button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
+          </div>
+          <div className="p-signup">
+            <p className="flow-text">
+              Do you have an account? <br />
+              <a href="/signin">Sign In</a>
+            </p>
           </div>
         </div>
+      </div>
       <div className="footer-copyright">
         <div className="container">
           © 2021 Medical Geek, All rights reserved.
-            <a className="grey-text text-darken-4 right" href="https://github.com/JuanEstebanCC/Medical-Geek">GitHub Code</a>
+          <a
+            className="grey-text text-darken-4 right"
+            href="https://github.com/JuanEstebanCC/Medical-Geek"
+          >
+            GitHub Code
+          </a>
         </div>
       </div>
     </>
