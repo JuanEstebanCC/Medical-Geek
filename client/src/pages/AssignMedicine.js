@@ -12,6 +12,9 @@ const AssignMedicine = () => {
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState([]);
   const [patient, setPatient] = useState("");
+  const [diagnostic, setDiagnostic] = useState({
+    diagnostic: "",
+  });
   const [patientMedicine, setPatientMedicine] = useState([{ medicines: [] }]);
   const [value, onChange] = useState("10:30");
   const [times, setTimes] = useState([]);
@@ -39,7 +42,8 @@ const AssignMedicine = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        patient_email: patient,
+        patient_email: "juanpaciente@gmail.com",
+        diagnostic: diagnostic.diagnostic,
         medicineName: values.medicine_name,
         how_many: values.how_many,
         how_often: hours,
@@ -151,12 +155,16 @@ const AssignMedicine = () => {
 
   const handleOnSelect = (item) => {
     // the item selected
-    console.log(item);
+    console.info(item.description);
+    setDiagnostic({
+      diagnostic: item.description,
+    });
   };
 
   const handleOnFocus = () => {
     console.log("Focused");
   };
+  console.log(diagnostic.diagnostic);
 
   return (
     <>
@@ -186,6 +194,12 @@ const AssignMedicine = () => {
               Prescribe medications to your patients
             </p>
             <br />
+            <label
+              htmlFor="email"
+              className="form-label letter general-letter mb-3"
+            >
+              Insert your diagnostic
+            </label>
             <div className="pb-4">
               <ReactSearchAutocomplete
                 items={enfermedades}
@@ -228,7 +242,11 @@ const AssignMedicine = () => {
                         }}
                       >
                         <option value="">-</option>
+                        <option value="juanpaciente@gmail.com">
+                          Juan Paciente{" "}
+                        </option>
                         {data.map((item, index) => {
+                          console.log(item.email, item.full_name);
                           return (
                             <option value={item.email}>{item.full_name}</option>
                           );

@@ -13,7 +13,7 @@ const DietViewDoctor = () => {
   useEffect(async () => {
     const response = await fetch(
       "my_patients?" +
-      new URLSearchParams({ email: localStorage.getItem("email") })
+        new URLSearchParams({ email: localStorage.getItem("email") })
     );
 
     const user = await response.json();
@@ -47,7 +47,9 @@ const DietViewDoctor = () => {
         <div class="nav-wrapper deep-purple lighten-1">
           <div className="row">
             <div className="col s1">
-              <a href="/dashboard" class="brand-logo"> <img className="ml-5 hoverable" width="65" src={Logo} />
+              <a href="/dashboard" class="brand-logo">
+                {" "}
+                <img className="ml-5 hoverable" width="65" src={Logo} />
               </a>
             </div>
             <div className="col s11">
@@ -74,14 +76,9 @@ const DietViewDoctor = () => {
           >
             {(formik) => (
               <Form>
-                <div >
-                  <div  >
-                    <label
-                      htmlFor="patient_name"
-                      className="form-label letter general-letter"
-                    >
-                      Patient
-                    </label>
+                <div>
+                  <div>
+                    <label htmlFor="patient_name">Patient</label>
                     <select
                       id="patient_name"
                       name="patient_name"
@@ -90,10 +87,10 @@ const DietViewDoctor = () => {
                         setpatient_name(e.target.value);
                       }}
                     >
-                      <option value="">----</option>
+                      <option value="">-</option>
                       {data.map((patient) => (
                         <option value={patient.full_name}>
-                          {patient.full_name}
+                          {patient.email}
                         </option>
                       ))}
                     </select>
@@ -127,7 +124,7 @@ const DietViewDoctor = () => {
                     name="signup"
                   >
                     Assign
-                      <i className="material-icons right">send</i>
+                    <i className="material-icons right">send</i>
                   </button>
                 </div>
               </Form>
@@ -154,4 +151,3 @@ const DietViewDoctor = () => {
 };
 
 export default withRouter(DietViewDoctor);
-

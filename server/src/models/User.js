@@ -13,9 +13,9 @@ const userSchema = new Schema({
 
   cell_phone: {
     type: Number,
-    unique: true
+    unique: true,
   },
-  
+
   email: {
     type: String,
     unique: true,
@@ -53,6 +53,10 @@ const userSchema = new Schema({
       },
       how_many: {
         type: Number,
+        default: null,
+      },
+      diagnostic: {
+        type: String,
         default: null,
       },
       how_often: {

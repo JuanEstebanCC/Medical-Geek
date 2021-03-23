@@ -201,12 +201,13 @@ router.put("/profile", upload.single("img"), subir, async (req, res, next) => {
     const full_name = req.body.full_name;
     const email = req.body.email;
     const photo = req.body.URL;
-    console.log(photo, "- ", full_name, email);
+    console.log(photo, "Toy acá- ", full_name, email);
+    User.updateOne();
     User.findOneAndUpdate(
       { email: email },
       {
         $set: {
-          full_name: req.body.full_name,
+          full_name: full_name,
           photo: photo,
         },
       },
@@ -214,9 +215,11 @@ router.put("/profile", upload.single("img"), subir, async (req, res, next) => {
         upsert: true,
       }
     ).then((result) => {
+      console.log(result);
       res.json("File has been update correctly");
     });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 });

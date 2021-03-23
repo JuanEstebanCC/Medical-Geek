@@ -44,6 +44,7 @@ const MyProfile = () => {
         .then((response) => response.json())
         .then((data) => setdatos(data));
     })();
+    console.log(newDatos.photo, email);
   }, [token]);
 
   const handleSubmitEdit = (e) => {
@@ -65,7 +66,7 @@ const MyProfile = () => {
       });
     setTimeout(() => {
       window.location.reload();
-    }, 100);
+    }, 800);
   };
 
   const toggleConfirmation = (e) => {
@@ -88,7 +89,8 @@ const MyProfile = () => {
         <div class="nav-wrapper deep-purple lighten-1">
           <div className="row">
             <div className="col s1">
-              <a href="/dashboard" class="brand-logo"> <img className="ml-5 hoverable" width="65" src={Logo} />
+              <a href="/dashboard" class="brand-logo">
+                <img className="ml-5 hoverable" width="65" src={Logo} />
               </a>
             </div>
             <div className="col s11">
@@ -98,9 +100,7 @@ const MyProfile = () => {
         </div>
       </nav>
       <div className="row">
-        <div className="col s4">
-          {/* Grid spacing */}
-        </div>
+        <div className="col s5">{/* Grid spacing */}</div>
         <div className="col s4">
           <img
             src={datos.photo}
@@ -110,13 +110,18 @@ const MyProfile = () => {
             alt="This is you"
           />
         </div>
-        <div className="col s4">
-          {/* Grid spacing */}
-        </div>
+        <div className="col s4">{/* Grid spacing */}</div>
       </div>
-      <form className="container" /*onSubmit={handleSubmitEdit}*/ encType="multipart/form-data">
+      <form
+        className="container"
+        onSubmit={handleSubmitEdit}
+        encType="multipart/form-data"
+      >
         <div class="row">
-          <div class="input-field col s6">
+          <div class="col s6">
+            <label className="h5 form-label text-center" for="photo">
+              {datos.full_name}
+            </label>
             <input
               type="text"
               class="h3 form-control"
@@ -124,14 +129,14 @@ const MyProfile = () => {
               id="new_name"
               onChange={handleInputChange}
               name="full_name"
+              placeholder="Write your new name here"
               required
             />
-            <label for="new_name">write your new name here</label>
           </div>
           <div className="col s6">
             <label className="h5 form-label text-center" for="photo">
               Choose your new profile picture!
-                  </label>
+            </label>
             <input
               type="file"
               class="form-control-file d-block ml-2"
