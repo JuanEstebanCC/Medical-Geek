@@ -117,7 +117,7 @@ const Dashboard = () => {
         <div className="col s4">
           <h3>
             Hi! This is{" "}
-            <img className="materialboxed ml-10" width="100" src={Logo} />
+            <img className="materialboxed ml-10 hoverable" width="100" src={Logo} />
           </h3>
           <div class="input-field col s10">
             <input id="last_name" type="text" className="validate" />

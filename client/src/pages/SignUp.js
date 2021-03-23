@@ -25,7 +25,7 @@ const Register = () => {
             as="select"
             id="specialization"
             name="specialization"
-            className="p-2 form-select  form-control-register"
+            className="form-select  form-control-register"
             required
             onChange={(e) => {
               setspecialization(e.target.value);
