@@ -129,7 +129,7 @@ const MyProfile = () => {
               id="new_name"
               onChange={handleInputChange}
               name="full_name"
-              placeholder="Write your new name here"
+              placeholder="Type your new name here"
               required
             />
           </div>
