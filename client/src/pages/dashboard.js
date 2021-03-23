@@ -203,19 +203,19 @@ const Dashboard = () => {
             </button>
           </a>
           <a href={datos.usertype === 2 ? "/MyDiet" : "/assignDiet"}>
-            <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-5 mx-auto d-block">
+            <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-2 mx-auto d-block">
               {datos.usertype === 2 ? "My diet" : "Assign a diet"}{" "}
               <i class="material-icons right">local_dining</i>
             </button>
           </a>
           <a href="/grupalChats">
-            <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-5 mx-auto d-block">
+            <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-2 mx-auto d-block">
               Interesting chats{" "}
               <i class="material-icons right">question_answer</i>
             </button>
           </a>
           <button
-            className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-5 mx-auto d-block"
+            className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-2 mx-auto d-block"
             onClick={logout}
           >
             Logout<i class="material-icons right">exit_to_app</i>

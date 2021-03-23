@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import "../styles/styles.css";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { object } from "yup/lib/locale";
+import Logo from "../images/logo.ico";
 
 const DietViewDoctor = () => {
   const [data, setdata] = useState([{}]);
@@ -13,7 +13,7 @@ const DietViewDoctor = () => {
   useEffect(async () => {
     const response = await fetch(
       "my_patients?" +
-        new URLSearchParams({ email: localStorage.getItem("email") })
+      new URLSearchParams({ email: localStorage.getItem("email") })
     );
 
     const user = await response.json();
@@ -42,22 +42,27 @@ const DietViewDoctor = () => {
   }
 
   return (
-    <body>
-      <div className="myDiet">
-        <div className="header-myDiet">
-          <span className="logo-diet"></span>
-          <img src="https://st.depositphotos.com/1771835/1477/i/950/depositphotos_14779771-stock-photo-portrait-of-confident-young-doctor.jpg" />
-          <a href="/Dashboard">
-            <button className="button-myDiet">Close</button>
-          </a>
+    <>
+      <nav>
+        <div class="nav-wrapper deep-purple lighten-1">
+          <div className="row">
+            <div className="col s1">
+              <a href="/dashboard" class="brand-logo"> <img className="ml-5 hoverable" width="65" src={Logo} />
+              </a>
+            </div>
+            <div className="col s11">
+              <label className="text-white">You're assign diet!</label>
+            </div>
+          </div>
         </div>
-        <div className="assign-diet">
+      </nav>
+      <div className="row">
+        <div className="col s6">
           <h2>
             Assign a necessary
             <br />
             diet to your patients
           </h2>
-          <img src="https://img.freepik.com/vector-gratis/proceso-metabolico-mujer-dieta_74855-6569.jpg?size=626&ext=jpg&ga=GA1.2.509040202.1614980453"></img>
           <Formik
             initialValues={{
               patient_name: "",
@@ -69,8 +74,8 @@ const DietViewDoctor = () => {
           >
             {(formik) => (
               <Form>
-                <div className="form-diet">
-                  <div class="patient-diet">
+                <div >
+                  <div  >
                     <label
                       htmlFor="patient_name"
                       className="form-label letter general-letter"
@@ -78,7 +83,6 @@ const DietViewDoctor = () => {
                       Patient
                     </label>
                     <select
-                      className="form-control"
                       id="patient_name"
                       name="patient_name"
                       required
@@ -102,7 +106,6 @@ const DietViewDoctor = () => {
                       Name of the diet
                     </label>
                     <select
-                      className="form-control"
                       id="dietType"
                       name="dietType"
                       required
@@ -118,21 +121,35 @@ const DietViewDoctor = () => {
                       <option value="Fertility">Fertility</option>
                     </select>
                   </div>
-                </div>
-                <div className="">
-                  <button type="submit" className="button-diet">
+                  <button
+                    className="btn waves-effect waves-light mx-auto d-block mt-5 deep-purple lighten-1 hoverable"
+                    type="submit"
+                    name="signup"
+                  >
                     Assign
+                      <i className="material-icons right">send</i>
                   </button>
                 </div>
               </Form>
             )}
           </Formik>
         </div>
-        <footer class="footer-diet">
-          <h1>You are doctor, you are medical geek</h1>
-        </footer>
+        <div className="col s6">
+          <img src="https://img.freepik.com/vector-gratis/proceso-metabolico-mujer-dieta_74855-6569.jpg?size=626&ext=jpg&ga=GA1.2.509040202.1614980453"></img>
+        </div>
       </div>
-    </body>
+      <div className="footer-copyright">
+        <div className="container">
+          © 2021 Medical Geek, All rights reserved.
+          <a
+            className="grey-text text-darken-4 right"
+            href="https://github.com/JuanEstebanCC/Medical-Geek"
+          >
+            GitHub Code
+          </a>
+        </div>
+      </div>
+    </>
   );
 };
 

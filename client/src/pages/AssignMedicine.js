@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import Modal from "react-modal";
 import faker from "faker";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import Logo from "../images/logo.ico";
 
 const AssignMedicine = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -158,20 +159,28 @@ const AssignMedicine = () => {
   };
 
   return (
-    <body>
-      <div className="nav-medicine">
-        <div className="logo-medicine"></div>
-      </div>
-      <div className="main-container">
-        <div className="container-left overflow-medicine">
-          <div className="tittle-login">
-            <p className="main-tittle general-letter">
+    <>
+      <nav>
+        <div class="nav-wrapper deep-purple lighten-1">
+          <div className="row">
+            <div className="col s1">
+              <a href="/dashboard" class="brand-logo"> <img className="ml-5 hoverable" width="65" src={Logo} />
+              </a>
+            </div>
+            <div className="col s11">
+              <label className="text-white">You're assign medicine!</label>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div className="row">
+        <div className="col s6">
+          <section className="section scrollspy">
+            <p className="main-tittle mt-5 general-letter">
               Prescribe medications to your patientes
             </p>
             <br />
-          </div>
-          <div className="medicine-form">
-            <div className="mt-5 mb-5 p-4">
+            <div className="pb-4">
               <ReactSearchAutocomplete
                 items={enfermedades}
                 fuseOptions={{ keys: ["code", "description"] }}
@@ -206,7 +215,6 @@ const AssignMedicine = () => {
                         Patient
                       </label>
                       <select
-                        className="form-control"
                         id="patient"
                         name="patient"
                         onChange={(e) => {
@@ -272,7 +280,7 @@ const AssignMedicine = () => {
                           value="Add hour"
                           onClick={() => addTime(value)}
                         />
-                      </div>
+                      </div>                      
                       {times.map((item) => (
                         <div key={item.uid} className="show-time">
                           <h4>{item.hour}</h4>
@@ -283,64 +291,76 @@ const AssignMedicine = () => {
                           />
                         </div>
                       ))}
-                    </div>
-                  </div>
-                  <div className="button">
-                    <button type="submit" className="button-login letter">
-                      assign
+                      <button
+                      className="btn waves-effect waves-light mt-5 deep-purple lighten-1 hoverable"
+                      type="submit"
+                      name="signup"
+                    >
+                      Assign
+                      <i className="material-icons right">send</i>
                     </button>
+                    </div>
                   </div>
                 </Form>
               )}
             </Formik>
-          </div>
+            </section>
         </div>
-        <div className="container-left">
-          <div className="edit-medicine">
+        <div className="col s6">
+          <button
+            className="btn waves-effect waves-light mx-auto d-block mt-5 deep-purple lighten-1 hoverable"
+            type="submit"
+            name="signup"
+            onClick={() => setOpenModal(true)}
+          >
+            Edit
+                      <i className="material-icons right">edit</i>
+          </button>
+          <Modal isOpen={openModal}>
+            <label
+              htmlFor="email"
+              className="form-label letter general-letter"
+            >
+              Patient
+              </label>
+            <select
+              className="form-control"
+              id="patient"
+              name="patient"
+              onChange={(e) => {
+                console.log(e.target.value);
+                viewPatientesMedicine(e.target.value);
+              }}
+            >
+              <option value="">-</option>
+              {data.map((item, index) => {
+                return <option value={item.email}>{item.full_name}</option>;
+              })}
+            </select>
+            {patientMedicineF(patientMedicine)}
+            <br />
             <button
               type="button"
-              className="btn btn-outline-success mx-auto d-block button-dashboard"
-              onClick={() => setOpenModal(true)}
+              className="btn btn-outline-success mx-auto d-block"
+              onClick={() => setOpenModal(false)}
             >
-              Edit
-            </button>
-            <Modal isOpen={openModal}>
-              <label
-                htmlFor="email"
-                className="form-label letter general-letter"
-              >
-                Patient
-              </label>
-              <select
-                className="form-control"
-                id="patient"
-                name="patient"
-                onChange={(e) => {
-                  console.log(e.target.value);
-                  viewPatientesMedicine(e.target.value);
-                }}
-              >
-                <option value="">-</option>
-                {data.map((item, index) => {
-                  return <option value={item.email}>{item.full_name}</option>;
-                })}
-              </select>
-              {patientMedicineF(patientMedicine)}
-              <br />
-              <button
-                type="button"
-                className="btn btn-outline-success mx-auto d-block"
-                onClick={() => setOpenModal(false)}
-              >
-                Close
+              Close
               </button>
-            </Modal>
-          </div>
-
-          <div className="assigMedicine_image"></div>
+          </Modal>
         </div>
       </div>
-    </body>
+      <div className="footer-copyright">
+        <div className="container">
+          © 2021 Medical Geek, All rights reserved.
+          <a
+            className="grey-text text-darken-4 right"
+            href="https://github.com/JuanEstebanCC/Medical-Geek"
+          >
+            GitHub Code
+          </a>
+        </div>
+      </div>
+    </>
   );
 };
 
