@@ -164,7 +164,13 @@ const AssignMedicine = () => {
         <div class="nav-wrapper deep-purple lighten-1">
           <div className="row">
             <div className="col s1">
-              <a href="/dashboard" class="brand-logo"> <img className="ml-5 hoverable" width="65" src={Logo} />
+              <a href="/dashboard" class="brand-logo">
+                <img
+                  className="ml-5 hoverable"
+                  width="65"
+                  src={Logo}
+                  alt="a imagen"
+                />
               </a>
             </div>
             <div className="col s11">
@@ -280,7 +286,7 @@ const AssignMedicine = () => {
                           value="Add hour"
                           onClick={() => addTime(value)}
                         />
-                      </div>                      
+                      </div>
                       {times.map((item) => (
                         <div key={item.uid} className="show-time">
                           <h4>{item.hour}</h4>
@@ -292,19 +298,19 @@ const AssignMedicine = () => {
                         </div>
                       ))}
                       <button
-                      className="btn waves-effect waves-light mx-auto d-block mt-5 deep-purple lighten-1 hoverable"
-                      type="submit"
-                      name="signup"
-                    >
-                      Assign
-                      <i className="material-icons right">send</i>
-                    </button>
+                        className="btn waves-effect waves-light mx-auto d-block mt-5 deep-purple lighten-1 hoverable"
+                        type="submit"
+                        name="signup"
+                      >
+                        Assign
+                        <i className="material-icons right">send</i>
+                      </button>
                     </div>
                   </div>
                 </Form>
               )}
             </Formik>
-            </section>
+          </section>
         </div>
         <div className="col s6">
           <button
@@ -314,15 +320,12 @@ const AssignMedicine = () => {
             onClick={() => setOpenModal(true)}
           >
             Edit
-                      <i className="material-icons right">edit</i>
+            <i className="material-icons right">edit</i>
           </button>
           <Modal isOpen={openModal}>
-            <label
-              htmlFor="email"
-              className="form-label letter general-letter"
-            >
+            <label htmlFor="email" className="form-label letter general-letter">
               Patient
-              </label>
+            </label>
             <select
               className="form-control"
               id="patient"
@@ -345,7 +348,7 @@ const AssignMedicine = () => {
               onClick={() => setOpenModal(false)}
             >
               Close
-              </button>
+            </button>
           </Modal>
         </div>
       </div>

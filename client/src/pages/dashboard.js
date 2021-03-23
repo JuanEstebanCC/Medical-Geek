@@ -117,7 +117,11 @@ const Dashboard = () => {
         <div className="col s4">
           <h3 className="text-center">
             Hi! This is{" "}
-            <img className="materialboxed ml-10 center-block hoverable" width="100" src={Logo} />
+            <img
+              className="materialboxed ml-10 center-block hoverable"
+              width="100"
+              src={Logo}
+            />
           </h3>
           <div class="input-field col s10">
             <input id="last_name" type="text" className="validate" />
@@ -180,8 +184,8 @@ const Dashboard = () => {
           <img
             alt="Your face here"
             src={datos.photo}
-            width="155px"
-            height="185px"
+            width="135px"
+            height="235px"
             className="m-3 mt-5 rounded mx-auto d-block rounded-circle w-75"
           />
           <a href="/MyProfile">
@@ -197,25 +201,19 @@ const Dashboard = () => {
           </h5>
           <h4 className="text-center text-justify p-2">{datos.full_name}</h4>
           <a href={datos.usertype === 2 ? "/MyMedicine" : "/AssignMedicine"}>
-            <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mx-auto d-block">
+            <button className="btn mb-3 waves-effect waves-light deep-purple lighten-1 hoverable mx-auto d-block">
               {datos.usertype === 2 ? "View medicaments" : "Assign Medicaments"}{" "}
               <i class="material-icons right">local_hospital</i>
             </button>
           </a>
           <a href={datos.usertype === 2 ? "/MyDiet" : "/assignDiet"}>
-            <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-2 mx-auto d-block">
+            <button className="btn mb-3 waves-effect waves-light deep-purple lighten-1 hoverable mt-2 mx-auto d-block">
               {datos.usertype === 2 ? "My diet" : "Assign a diet"}{" "}
               <i class="material-icons right">local_dining</i>
             </button>
           </a>
-          <a href="/grupalChats">
-            <button className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-2 mx-auto d-block">
-              Interesting chats{" "}
-              <i class="material-icons right">question_answer</i>
-            </button>
-          </a>
           <button
-            className="btn waves-effect waves-light deep-purple lighten-1 hoverable mt-2 mx-auto d-block"
+            className="btn waves-effect mb-3 waves-light deep-purple lighten-1 hoverable mt-2 mx-auto d-block"
             onClick={logout}
           >
             Logout<i class="material-icons right">exit_to_app</i>

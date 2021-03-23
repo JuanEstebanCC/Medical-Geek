@@ -8,5 +8,4 @@ export const _AssignMedicine = "/AssignMedicine";
 export const _MyMedicine = "/MyMedicine";
 export const _MyDiet = "/myDiet";
 export const _AssignDiet = "/assignDiet";
-export const _GrupalChats = "/GrupalChats";
 export const _MyProfile = "/MyProfile";

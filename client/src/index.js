@@ -21,13 +21,12 @@ import {
   _MyDiet,
   _AssignDiet,
   _MyMedicine,
-  _GrupalChats,
   _MyProfile,
 } from "./config/path";
 
 //Import pages
 import NotFound from "./pages/notFound";
-import Home from "./pages/Home";
+import Home from "./pages/home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/dashboard";
@@ -37,7 +36,6 @@ import MyDiet from "./pages/myDiet";
 import AssignDiet from "./pages/assignDiet";
 import AssignMedicine from "./pages/AssignMedicine";
 import MyMedicine from "./pages/MyMedicine";
-import GrupalChats from "./pages/grupalChat";
 import MyProfile from "./pages/MyProfile";
 
 const App = () => {
@@ -55,7 +53,6 @@ const App = () => {
           <PublicRoute path={_SignUp} component={SignUp} />
           <PrivateRoute path={_AssignMedicine} component={AssignMedicine} />
           <PrivateRoute path={_MyMedicine} component={MyMedicine} />
-          <PublicRoute path={_GrupalChats} component={GrupalChats} />
           <PrivateRoute path={_MyProfile} component={MyProfile} />
         </Switch>
       </BrowserRouter>
