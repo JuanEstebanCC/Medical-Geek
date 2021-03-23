@@ -19,7 +19,7 @@ const Home = () => {
           </div>
         </div>
         <div className="col s12">
-          <img className="materialboxed mt-5 " width="800" src={HomeImage} />
+          <img className="materialboxed mt-5" width="800" src={HomeImage} />
           <div className="buttons">
             <button className="btn waves-effect waves-light m-5 deep-purple lighten-1 hoverable" type="submit" name="signin">
               <a href="/signin"> Sign in

@@ -12,6 +12,9 @@ const AssignMedicine = () => {
   const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState([]);
   const [patient, setPatient] = useState("");
+  const [diagnostic, setDiagnostic] = useState({
+    diagnostic: "",
+  });
   const [patientMedicine, setPatientMedicine] = useState([{ medicines: [] }]);
   const [value, onChange] = useState("10:30");
   const [times, setTimes] = useState([]);
@@ -39,7 +42,8 @@ const AssignMedicine = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        patient_email: patient,
+        patient_email: "juanpaciente@gmail.com",
+        diagnostic: diagnostic.diagnostic,
         medicineName: values.medicine_name,
         how_many: values.how_many,
         how_often: hours,
@@ -151,12 +155,16 @@ const AssignMedicine = () => {
 
   const handleOnSelect = (item) => {
     // the item selected
-    console.log(item);
+    console.info(item.description);
+    setDiagnostic({
+      diagnostic: item.description,
+    });
   };
 
   const handleOnFocus = () => {
     console.log("Focused");
   };
+  console.log(diagnostic.diagnostic);
 
   return (
     <>
@@ -186,6 +194,12 @@ const AssignMedicine = () => {
               Prescribe medications to your patients
             </p>
             <br />
+            <label
+              htmlFor="email"
+              className="form-label letter general-letter mb-3"
+            >
+              Insert your diagnostic
+            </label>
             <div className="pb-4">
               <ReactSearchAutocomplete
                 items={enfermedades}
@@ -220,6 +234,7 @@ const AssignMedicine = () => {
                       >
                         Patient
                       </label>
+                      <div className="input-field col s12">
                       <select
                         id="patient"
                         name="patient"
@@ -227,17 +242,23 @@ const AssignMedicine = () => {
                           setPatient(e.target.value);
                         }}
                       >
-                        <option value="">-</option>
-                        {data.map((item, index) => {
+                        <option value="">Choose a patient</option>
+                        <option value={data.map((item, index) => {
+                          console.log("Mail: ", item.email);
                           return (
-                            <option value={item.email}>{item.full_name}</option>
+                           item.email
+                          );
+                        })}>
+                          {data.map((item, index) => {
+                          console.log("Full name: ", item.full_name);
+                          return (
+                            item.full_name
                           );
                         })}
+                        </option>
                       </select>
+                      </div>
                     </div>
-                    {/* <div class="mb-3">
-                                            <br />
-                                        </div> */}
                     <div class="mb-3">
                       <label
                         htmlFor="password"
