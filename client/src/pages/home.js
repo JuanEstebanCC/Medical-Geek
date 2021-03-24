@@ -22,11 +22,11 @@ const Home = () => {
           <img className="materialboxed mt-5" width="800" src={HomeImage} />
           <div className="buttons">
             <button className="btn waves-effect waves-light m-5 deep-purple lighten-1 hoverable" type="submit" name="signin">
-              <a href="/signin"> Sign in
+              <a className="text-white" href="/signin"> Sign in
         <i className="material-icons right">send</i> </a>
             </button>
             <button className="btn waves-effect waves-light m-5 deep-purple lighten-1 hoverable" type="submit" name="signup">
-              <a href="/signup"> Sign up
+              <a className="text-white" href="/signup"> Sign up
         <i className="material-icons right">send</i></a>
             </button>
           </div>

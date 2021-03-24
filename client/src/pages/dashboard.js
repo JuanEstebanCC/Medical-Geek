@@ -80,13 +80,13 @@ const Dashboard = () => {
         }),
       });
 
-      const context_message =  document.getElementById('message');
+      const context_message = document.getElementById('message');
       context_message.value = "";
       values.message = "";
-      
-    } else if (!individualChat.participants[0].email){
+
+    } else if (!individualChat.participants[0].email) {
       alert('choose a recipient')
-    } else {alert('write a message')}
+    } else { alert('write a message') }
   }
 
   return (
@@ -123,41 +123,23 @@ const Dashboard = () => {
             );
           })}
         </div>
-        <div className="col s4">
-          {/*<h3 className="text-center">
-            Hi! This is{" "}
-            <img
-              className="materialboxed ml-10 center-block hoverable"
-              width="100"
-              src={Logo}
-            />
-          </h3>
-          <div class="input-field col s10">
-            <input id="last_name" type="text" className="validate" />
-            <label for="last_name">Write here</label>
-            <button
-              className="btn waves-effect waves-light mx-auto d-block deep-purple lighten-1 hoverable"
-              type="button"
-            >
-              Go<i class="material-icons right">send</i>
-            </button>
-        </div>*/}
-           <div id="container-messages">
-              {individualChat.messages.map((item, index) => {
-                let messagesDesign = "leftMessage";
-                if (item.email == `${datos.email}`) {
-                  messagesDesign = "rightMessage";
-                }
-                return (
-                  <div className="contenedor">
-                    <div className={messagesDesign}>
-                      {item.message}<br />
-                    </div>
+        <div className="col s4 mt-5">
+          <div id="container-messages">
+            {individualChat.messages.map((item, index) => {
+              let messagesDesign = "leftMessage";
+              if (item.email == `${datos.email}`) {
+                messagesDesign = "rightMessage";
+              }
+              return (
+                <div className="contenedor">
+                  <div className={messagesDesign}>
+                    {/* The messages will appear here */}{item.message}<br />
                   </div>
-                );
-              })}
-              {/*Chat Dashboard*/}
-              <div className="input-messages-container">
+                </div>
+              );
+            })}
+            {/*Chat Dashboard*/}
+            <div className="input-messages-container">
               <Formik
                 initialValues={{
                   message: "",
@@ -168,26 +150,29 @@ const Dashboard = () => {
               >
                 {(formik) => (
                   <Form>
-                    <div >
-                      <label
-                        htmlFor="message"
-
-                      >Hi! Doctor</label>
-                      <Field
-                        type="text"
-                        className="form-control input-messages"
-                        id="message"
-                        name="message"
-                      />
-                      <button  type="submit" className="btn btn-info">
-                        Enviar
-                      </button>
+                    <div className="row">
+                      <div className="col s6 mb-5">
+                        <label
+                          htmlFor="message"
+                        >Type a message</label>
+                        <Field
+                          type="text"
+                          id="message"
+                          name="message"
+                        />
+                      </div>
+                      <div className="col s6">
+                      <button className="btn waves-effect waves-light mt-4 deep-purple lighten-1 hoverable" type="submit" name="signup">
+              <a className="text-white">Enviar
+        <i className="material-icons right">send</i></a>
+            </button>
+                      </div>
                     </div>
                   </Form>
                 )}
               </Formik>
             </div>
-            </div>
+          </div>
         </div>
         <div className="col s4">
           <img
@@ -227,6 +212,17 @@ const Dashboard = () => {
           >
             Logout<i class="material-icons right">exit_to_app</i>
           </button>
+        </div>
+      </div>
+      <div className="footer-copyright">
+        <div className="container">
+          © 2021 Medical Geek, All rights reserved.
+          <a
+            className="grey-text text-darken-4 right"
+            href="https://github.com/JuanEstebanCC/Medical-Geek"
+          >
+            GitHub Code
+          </a>
         </div>
       </div>
     </>
