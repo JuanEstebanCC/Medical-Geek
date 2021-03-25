@@ -39,10 +39,11 @@ const Chat = () => {
         if (individualChat.participants[0].email && values.message) {
 
             socket.emit('chat:message', {
-                message: values.message
+                message: values.message,
+                chat_id: individualChat.participants[0].email
             });
 
-            fetch('/new_message', {
+            /*fetch('/new_message', {
                 method: "PUT",
                 headers: { "content-Type": "application/JSON" },
                 body: JSON.stringify({
@@ -52,7 +53,7 @@ const Chat = () => {
                     author: information.full_name,
                     message: values.message
                 })
-            })
+            })*/
                 
             const context_message =  document.getElementById('message');
             context_message.value = "";
@@ -75,7 +76,7 @@ const Chat = () => {
                     {
                         data.map((item, index) => {
                             let chatName = 'no sirve';    
-
+                            
                             item.participants.map((item2,index2)=>{
                                  if(item2.email != `${information.email}`){
                                 chatName = item2.name;
@@ -107,7 +108,7 @@ const Chat = () => {
                     <div className="messages" id="container-messages">
                         {
                             individualChat.messages.map((item, index) => {
-
+                                
                                 let messagesDesign = "leftMessage"
 
                                 if (item.email == `${information.email}`) {

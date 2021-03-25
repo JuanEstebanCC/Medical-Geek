@@ -7,17 +7,15 @@ import Logo from "../images/logo.ico";
 
 const socket = io('http://localhost:3000')
 
-/*socket.on('new:message', function(data){
-  let container =  document.getElementById('container-messages')
+socket.on('new:message', function (data) {
+  let container =  document.getElementById('container-messages');
 
-  if (data.sender_id != localStorage.getItem("id")) {('msg_history').append (
+  if(data.chat_id === localStorage.getItem("chat_id")){
+    console.log('error')
+  } else {
     container.innerHTML += `<div class="rightMessage">${data.message} <br /></div>`
-  )
-}})*/
-socket.on('new:message', function(data){
-  let container =  document.getElementById('container-messages')
-  container.innerHTML += `<div class="rightMessage">${data.message} <br /></div>`
-})
+  }
+});
 
 const Dashboard = () => {
   const [datos, setdatos] = useState([{}]);
@@ -52,6 +50,7 @@ const Dashboard = () => {
         .then((res) => res.json())
         .then((data) => {
           setChats(data);
+          window.localStorage.removeItem("chat_id", true);
         });
     })();
   }, [token]);
@@ -61,11 +60,13 @@ const Dashboard = () => {
   }
 
   //Save new message in database
-  async function newMessage(values) {
+  function newMessage(values) {
+    //event.preventDefault();
     if (individualChat.participants[0].email && values.message) {
-      await socket.emit("chat:message", {
+
+      socket.emit("chat:message", {
         message: values.message,
-        sender_id: localStorage.getItem("id")
+        chat_id: localStorage.getItem("chat_id")
       });
 
       fetch("/new_message", {
@@ -107,8 +108,7 @@ const Dashboard = () => {
               <div
                 onClick={() => {
                   setIndividualChat(item);
-                  console.log(individualChat);
-                  /* socket = io(`http://localhost:3000/dashboard${individualChat._id}`)  */
+                  window.localStorage.setItem("chat_id", item._id);
                 }}
               >
                 <img
@@ -140,7 +140,7 @@ const Dashboard = () => {
             })}
             {/*Chat Dashboard*/}
             <div className="input-messages-container">
-              <Formik
+              <Formik 
                 initialValues={{
                   message: "",
                 }}
@@ -162,10 +162,7 @@ const Dashboard = () => {
                         />
                       </div>
                       <div className="col s6">
-                      <button className="btn waves-effect waves-light mt-4 deep-purple lighten-1 hoverable" type="submit" name="signup">
-              <a className="text-white">Enviar
-        <i className="material-icons right">send</i></a>
-            </button>
+                      <button className="btn waves-effect waves-light mt-4 deep-purple lighten-1 hoverable" type="submit">Enviar</button>
                       </div>
                     </div>
                   </Form>
