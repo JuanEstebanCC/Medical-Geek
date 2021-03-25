@@ -14,6 +14,7 @@ export default function AuthProvider({ children }) {
 
   const Logout = useCallback(() => {
     window.localStorage.removeItem("authentication", true);
+    window.localStorage.removeItem("email", true);
     window.localStorage.removeItem("id", true);
     window.localStorage.removeItem("token", true);
     setIsAutenticated(false);
