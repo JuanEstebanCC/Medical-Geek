@@ -270,7 +270,7 @@ const Register = () => {
             </Formik>
           </div>
           <div className="p-signup">
-            <p className="flow-text right">
+            <p className="flow-text center">
               Do you have an account? <br />
               <a href="/signin">Sign In</a>
             </p>
@@ -278,7 +278,7 @@ const Register = () => {
         </div>
       </div>
       <div className="footer-copyright">
-        <div className="container">
+        <div className="container center">
           © 2021 Medical Geek, All rights reserved.
           <a
             className="grey-text text-darken-4 right"

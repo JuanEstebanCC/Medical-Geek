@@ -56,12 +56,8 @@ app.use(handleErrors);
 
 //Socket.io
 const server = http.createServer(app);
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  },
-});
+const io = require("socket.io")(server, { origins: "*:*" });
+
 //const io = socketio(server);
 //Import connection socket
 require("./sockets/sockets")(io);

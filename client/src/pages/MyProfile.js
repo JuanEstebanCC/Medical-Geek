@@ -47,6 +47,7 @@ const MyProfile = () => {
     console.log(newDatos.photo, email);
   }, [token]);
 
+  console.log(email);
   const handleSubmitEdit = (e) => {
     e.preventDefault();
     const formData = new FormData();

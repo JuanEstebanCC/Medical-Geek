@@ -5,15 +5,15 @@ import { Formik, Form, Field } from "formik";
 import io from "socket.io-client";
 import Logo from "../images/logo.ico";
 
-const socket = io('http://localhost:3000')
+const socket = io("http://localhost:3000");
 
-socket.on('new:message', function (data) {
-  let container =  document.getElementById('container-messages');
+socket.on("new:message", function (data) {
+  let container = document.getElementById("container-messages");
 
-  if(data.chat_id === localStorage.getItem("chat_id")){
-    console.log('error')
+  if (data.chat_id === localStorage.getItem("chat_id")) {
+    console.log("error");
   } else {
-    container.innerHTML += `<div class="rightMessage">${data.message} <br /></div>`
+    container.innerHTML += `<div class="rightMessage">${data.message} <br /></div>`;
   }
 });
 
@@ -63,10 +63,9 @@ const Dashboard = () => {
   function newMessage(values) {
     //event.preventDefault();
     if (individualChat.participants[0].email && values.message) {
-
       socket.emit("chat:message", {
         message: values.message,
-        chat_id: localStorage.getItem("chat_id")
+        chat_id: localStorage.getItem("chat_id"),
       });
 
       fetch("/new_message", {
@@ -81,13 +80,14 @@ const Dashboard = () => {
         }),
       });
 
-      const context_message = document.getElementById('message');
+      const context_message = document.getElementById("message");
       context_message.value = "";
       values.message = "";
-
     } else if (!individualChat.participants[0].email) {
-      alert('choose a recipient')
-    } else { alert('write a message') }
+      alert("choose a recipient");
+    } else {
+      alert("write a message");
+    }
   }
 
   return (
@@ -133,14 +133,16 @@ const Dashboard = () => {
               return (
                 <div className="contenedor">
                   <div className={messagesDesign}>
-                    {/* The messages will appear here */}{item.message}<br />
+                    {/* The messages will appear here */}
+                    {item.message}
+                    <br />
                   </div>
                 </div>
               );
             })}
             {/*Chat Dashboard*/}
             <div className="input-messages-container">
-              <Formik 
+              <Formik
                 initialValues={{
                   message: "",
                 }}
@@ -152,17 +154,16 @@ const Dashboard = () => {
                   <Form>
                     <div className="row">
                       <div className="col s6 mb-5">
-                        <label
-                          htmlFor="message"
-                        >Type a message</label>
-                        <Field
-                          type="text"
-                          id="message"
-                          name="message"
-                        />
+                        <label htmlFor="message">Type a message</label>
+                        <Field type="text" id="message" name="message" />
                       </div>
                       <div className="col s6">
-                      <button className="btn waves-effect waves-light mt-4 deep-purple lighten-1 hoverable" type="submit">Enviar</button>
+                        <button
+                          className="btn waves-effect waves-light mt-4 deep-purple lighten-1 hoverable"
+                          type="submit"
+                        >
+                          Enviar
+                        </button>
                       </div>
                     </div>
                   </Form>
@@ -211,19 +212,9 @@ const Dashboard = () => {
           </button>
         </div>
       </div>
-      <div className="footer-copyright">
-        <div className="container">
-          © 2021 Medical Geek, All rights reserved.
-          <a
-            className="grey-text text-darken-4 right"
-            href="https://github.com/JuanEstebanCC/Medical-Geek"
-          >
-            GitHub Code
-          </a>
-        </div>
-      </div>
     </>
   );
 };
 
 export default withRouter(Dashboard);
+

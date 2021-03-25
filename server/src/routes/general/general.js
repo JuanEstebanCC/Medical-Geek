@@ -52,6 +52,7 @@ router.post("/register", async (req, res, next) => {
           });
           res.json({ auth: true, token, email, id });
         } catch (err) {
+          console.log(err);
           next(err);
         }
       } else if (usertype === 3) {
