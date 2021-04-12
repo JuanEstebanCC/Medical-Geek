@@ -7,11 +7,7 @@
 
 <p align="center"> A website for people with medical conditions that helps maintain a healthy lifestyle, <br/>contact professionals, and an easier life in general.</p>
 
-<p align="center">
-<img align="center" alt="GitHub last commit" src="https://img.shields.io/github/last-commit/juanestebancc/Medical-geek"> 
- <img align="center" alt="GitHub top language" src="https://img.shields.io/github/languages/top/juanestebancc/Medical-Geek">
- <img align="center" alt="Lines of code" src="https://img.shields.io/tokei/lines/github/juanestebancc/Medical-Geek">
-</P>
+
 
 ### Table of contents
 - [Features](#features)
